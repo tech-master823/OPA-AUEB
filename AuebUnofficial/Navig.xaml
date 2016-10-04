@@ -12,25 +12,30 @@
 
     <SplitView x:Name="SamplesSplitView" DisplayMode="Overlay" x:FieldModifier="Public">
         <SplitView.Pane>
-            <StackPanel>
+            <StackPanel Background="Transparent">
                 <Button Style="{StaticResource SplitViewTogglePaneButtonStyle}"
-                Click="ShowSliptView"/>
+                Click="ShowSliptView" />
+
                 <Button Style="{StaticResource HomeButtonStyle}" 
                             HorizontalAlignment="Stretch" 
                             HorizontalContentAlignment="Left" 
                             Content="Home" 
-                            Click="NavigateToHome"/>
+                            Click="NavigateToHome"
+                        />
+
                 <Button Content="Ανακοινώσεις" 
                         
                         Click="NavigateToOptimizedGrid" 
                             Style="{StaticResource HomeButtonStyle}" 
                             HorizontalAlignment="Stretch" 
-                            HorizontalContentAlignment="Left" />
+                            HorizontalContentAlignment="Left" 
+                        />
                 <Button Content="Απεργίες" 
                             Click="NavigateToApergies" 
                             Style="{StaticResource HomeButtonStyle}" 
                             HorizontalAlignment="Stretch" 
-                            HorizontalContentAlignment="Left" />
+                            HorizontalContentAlignment="Left"
+                            />
                 <!--Button Content="Ορωλόγιο" 
                             Click="NavigateToProgram" 
                             Style="{StaticResource HomeButtonStyle}" 

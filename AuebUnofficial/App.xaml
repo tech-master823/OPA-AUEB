@@ -105,9 +105,11 @@
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
+                                <FontIcon Glyph="{Binding SegoeSymbol}"/>
 
-                                <ContentPresenter x:Name="ContentPresenter"
+                                <ContentPresenter x:Name="ContentPresenter" Grid.Column="1"
                                           BorderBrush="{TemplateBinding BorderBrush}"
                                           BorderThickness="{TemplateBinding BorderThickness}"
                                           Content="{TemplateBinding Content}"
@@ -118,7 +120,7 @@
                                           VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                           AutomationProperties.AccessibilityView="Raw"/>
 
-                                <FontIcon Glyph="&#xE974;" FontSize="13" Grid.Column="1" />
+                                <FontIcon Glyph="&#xE974;" FontSize="13" Grid.Column="2" />
                             </Grid>
                         </ControlTemplate>
                     </Setter.Value>
