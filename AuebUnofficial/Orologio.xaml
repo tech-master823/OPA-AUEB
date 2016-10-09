@@ -1,0 +1,33 @@
+﻿<Page
+    x:Class="AuebUnofficial.Orologio"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AuebUnofficial"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:syncfusion="using:Syncfusion.Windows.PdfViewer"
+    mc:Ignorable="d">
+    <Page.DataContext>
+        <local:PdfReport/>
+    </Page.DataContext>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Button Style="{StaticResource SplitViewTogglePaneButtonStyle}"
+                Click="ShowSliptView"/>
+        <TextBlock Text="Ωρολόγιο Πρόγραμμα" 
+                       VerticalAlignment="Center"
+                       Style="{ThemeResource TitleTextBlockStyle}" 
+                       Grid.Column="1"/>
+        <syncfusion:SfPdfViewerControl Name="pdfViewer" ItemsSource="{Binding DocumentStream}" Grid.Column="1" Grid.Row="1"></syncfusion:SfPdfViewerControl>
+        <local:Navig x:Name="MySamplesPane" Grid.ColumnSpan="2" Grid.RowSpan="2" />
+
+    </Grid>
+</Page>

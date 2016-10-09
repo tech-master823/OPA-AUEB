@@ -26,11 +26,21 @@ namespace AuebUnofficial
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
         /// </summary>
+        SymbolsDataSource s;
         public App()
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            MainPage_Loaded();
         }
+        void MainPage_Loaded()
+        {
+            s = new SymbolsDataSource();
+
+
+            //ListView.ItemsSource = articles;
+        }
+
 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
@@ -104,4 +114,5 @@ namespace AuebUnofficial
         }
         
     }
+    
 }

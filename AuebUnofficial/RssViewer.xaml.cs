@@ -39,7 +39,7 @@ namespace AuebUnofficial
         {
             articles = new ArticlesDataSource("http://www.aueb.gr/pages/news/RSS/anakoinoseis_akad.xml");
 
-
+            
             ListView.ItemsSource = articles;
         }
 

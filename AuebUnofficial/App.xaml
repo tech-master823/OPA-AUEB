@@ -107,7 +107,10 @@
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
-                                <FontIcon Glyph="{Binding SegoeSymbol}"/>
+
+
+                                <!--TextBlock FontFamily="Segoe MDL2 Assets" Text="{Binding Symbol}" x:Name="tx"/-->
+
 
                                 <ContentPresenter x:Name="ContentPresenter" Grid.Column="1"
                                           BorderBrush="{TemplateBinding BorderBrush}"

@@ -15,12 +15,13 @@
             <StackPanel Background="Transparent">
                 <Button Style="{StaticResource SplitViewTogglePaneButtonStyle}"
                 Click="ShowSliptView" />
-
+                
                 <Button Style="{StaticResource HomeButtonStyle}" 
                             HorizontalAlignment="Stretch" 
                             HorizontalContentAlignment="Left" 
                             Content="Home" 
                             Click="NavigateToHome"
+                            
                         />
 
                 <Button Content="Ανακοινώσεις" 
@@ -36,11 +37,11 @@
                             HorizontalAlignment="Stretch" 
                             HorizontalContentAlignment="Left"
                             />
-                <!--Button Content="Ορωλόγιο" 
-                            Click="NavigateToProgram" 
+                <Button Content="Ορωλόγιο" 
+                            Click="NavigateToOrologio" 
                             Style="{StaticResource HomeButtonStyle}" 
                             HorizontalAlignment="Stretch" 
-                            HorizontalContentAlignment="Left" /-->
+                            HorizontalContentAlignment="Left" />
             </StackPanel>
         </SplitView.Pane>
     </SplitView>

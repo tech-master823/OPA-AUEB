@@ -22,7 +22,9 @@ namespace AuebUnofficial
         public Navig()
         {
             this.InitializeComponent();
+           
         }
+        
         private void ShowSliptView(object sender, RoutedEventArgs e)
         {
             SamplesSplitView.IsPaneOpen = !SamplesSplitView.IsPaneOpen;
@@ -41,10 +43,11 @@ namespace AuebUnofficial
             ((Frame)Window.Current.Content).Navigate(typeof(Strikes));
         }
 
-        private void NavigateToProgram(object sender, RoutedEventArgs e)
+        private void NavigateToOrologio(object sender, RoutedEventArgs e)
         {
-            //((Frame)Window.Current.Content).Navigate(typeof(Programpf));
+            ((Frame)Window.Current.Content).Navigate(typeof(Orologio));
 
         }
+        
     }
 }

@@ -25,7 +25,7 @@ public class ArticlesDataSource : ObservableCollection<Article>
                 ar.Thesis = this.Count;
                 loadData(ar);
                  
-}
+            }
         }
     }
     public ArticlesDataSource(string uri)
