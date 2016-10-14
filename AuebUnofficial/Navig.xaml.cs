@@ -48,6 +48,10 @@ namespace AuebUnofficial
             ((Frame)Window.Current.Content).Navigate(typeof(Orologio));
 
         }
-        
+
+        private void NavigateToAbout(object sender, RoutedEventArgs e)
+        {
+            ((Frame)Window.Current.Content).Navigate(typeof(About));
+        }
     }
 }

@@ -12,17 +12,18 @@
 
     <SplitView x:Name="SamplesSplitView" DisplayMode="Overlay" x:FieldModifier="Public">
         <SplitView.Pane>
-            <StackPanel Background="Transparent">
+            <StackPanel Background="#5b6d92">
                 <Button Style="{StaticResource SplitViewTogglePaneButtonStyle}"
-                Click="ShowSliptView" />
-                
+                Click="ShowSliptView" Background="#c7c9d6" Foreground="Black"/>
+
                 <Button Style="{StaticResource HomeButtonStyle}" 
                             HorizontalAlignment="Stretch" 
                             HorizontalContentAlignment="Left" 
                             Content="Home" 
-                            Click="NavigateToHome"
-                            
-                        />
+                            Click="NavigateToHome"                            
+                        >
+                    
+                </Button>
 
                 <Button Content="Ανακοινώσεις" 
                         
@@ -42,6 +43,12 @@
                             Style="{StaticResource HomeButtonStyle}" 
                             HorizontalAlignment="Stretch" 
                             HorizontalContentAlignment="Left" />
+                <!--MenuFlyoutSeparator/>
+                <Button Content="About"
+                        Click="NavigateToAbout"
+                        Style="{StaticResource HomeButtonStyle}"
+                        HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Left"/-->
             </StackPanel>
         </SplitView.Pane>
     </SplitView>

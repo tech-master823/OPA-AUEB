@@ -7,7 +7,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <ControlTemplate x:Key="SplitViewTogglePaneButtonTemplate" TargetType="Button">
-                <Grid x:Name="RootGrid" Background="{TemplateBinding Background}">
+                <Grid x:Name="RootGrid" Background="#acb1d7">
                     <VisualStateManager.VisualStateGroups>
                         <VisualStateGroup x:Name="CommonStates">
                             <VisualState x:Name="Normal" />
@@ -39,14 +39,14 @@
                                       HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                       VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                       AutomationProperties.AccessibilityView="Raw"
-                                      ContentTemplate="{TemplateBinding ContentTemplate}"
+                                      ContentTemplate="{TemplateBinding ContentTemplate}"                                        
                                       ContentTransitions="{TemplateBinding ContentTransitions}" />
                 </Grid>
             </ControlTemplate>
 
             <Style x:Key="SplitViewTogglePaneButtonStyle" TargetType="Button">
-                <Setter Property="Background" Value="Transparent" />
-                <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                <Setter Property="Background" Value="#c7c9d6" />
+                <Setter Property="Foreground" Value="Black" />
                 <Setter Property="BorderBrush" Value="{ThemeResource SystemControlForegroundBaseHighBrush}" />
                 <Setter Property="BorderThickness" Value="0" />
                 <Setter Property="Padding" Value="0" />

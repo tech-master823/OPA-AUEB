@@ -9,39 +9,46 @@
 
     <Page.Resources>
         <DataTemplate x:Name="RssV">
-            <StackPanel Orientation="Vertical" Tapped="StackPanel_Tapped">
-                <TextBlock Text="{Binding Title}"/>
-                <TextBlock Text="{Binding Summary}"/>
-
+            <StackPanel Orientation="Vertical" >
+                <TextBlock Text="{Binding Title}" Foreground="#c7c9d6" TextWrapping="Wrap" MaxLines="2"/>
+                <TextBlock Text="{Binding PubDate}" Foreground="#c7c9d6"/>               
             </StackPanel>
         </DataTemplate>
     </Page.Resources>
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="#762124">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-            
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Button Style="{StaticResource SplitViewTogglePaneButtonStyle}"                    
+        <Button Style="{StaticResource SplitViewTogglePaneButtonStyle}" Background="#c7c9d6" Foreground="Black"
+                HorizontalAlignment="Left"              
                     Click="ShowSliptView"
                     />
-
-        <TextBlock Grid.Column="1" VerticalAlignment="Center" Text="Ανακοινώσεις" Style="{ThemeResource TitleTextBlockStyle}" />
-        <TextBlock Grid.Row="1" Grid.Column="1" Text="Ανακοινώσεις Προπτυχιακών Τμημάτων ΟΠΑ"/>
-        <ScrollViewer Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="20" BorderThickness="1">
-            <ItemsControl Name="Display" >
-
-                <ListView ItemTemplate="{StaticResource RssV}" x:Name="ListView"/>
-
+        <Border Background="Black" Grid.Column="1">
+            <TextBlock Margin="1" HorizontalAlignment="Left" Text="Ανακοινώσεις" FontWeight="Bold" Style="{ThemeResource TitleTextBlockStyle}" Foreground="White" FontStyle="Oblique"/>
+        </Border>
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="Ανακοινώσεις Προπτυχιακών Τμημάτων ΟΠΑ" Foreground="#acb1d7" FontWeight="Bold" FontSize="18"/>
+        <ScrollViewer Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" BorderThickness="1" Margin="5" Background="#762124">
+            <ItemsControl Name="Display" Background="#762124" Tapped="StackPanel_Tapped" >
+                <ListView ItemTemplate="{StaticResource RssV}" x:Name="ListView" HorizontalAlignment="Left"/>
+            </ItemsControl>
+        </ScrollViewer>
+        <TextBlock Grid.Row="3" Grid.Column="1" Text="Ανακοινώσεις Πρυτανείας" Foreground="#acb1d7" FontWeight="Bold" FontSize="18"/>
+        <ScrollViewer Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" BorderThickness="1" Margin="5" Background="#762124">
+            <ItemsControl Name="Display1" Background="#762124" Tapped="StackPanel_Tapped1">
+                <ListView ItemTemplate="{StaticResource RssV}" x:Name="ListView1" HorizontalAlignment="Left"/>
             </ItemsControl>
         </ScrollViewer>
         <ProgressRing x:Name="testring" Grid.Row="2"></ProgressRing>
-        <local:Navig x:Name="MySamplesPane" Grid.ColumnSpan="2" Grid.RowSpan="2" />
+        <local:Navig x:Name="MySamplesPane" Grid.ColumnSpan="2" Grid.RowSpan="5" />
     </Grid>
 
 </Page>

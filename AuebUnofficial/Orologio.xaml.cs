@@ -1,9 +1,12 @@
-﻿using System.ComponentModel;
+﻿using Syncfusion.Drawing;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Reflection;
+using Windows.ApplicationModel.DataTransfer;
+using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -14,6 +17,7 @@ namespace AuebUnofficial
     /// </summary>
     public sealed partial class Orologio : Page
     {
+        //private StorageFile img;
         public Orologio()
         {
             this.InitializeComponent();
@@ -21,8 +25,7 @@ namespace AuebUnofficial
         private void ShowSliptView(object sender, RoutedEventArgs e)
         {
             MySamplesPane.SamplesSplitView.IsPaneOpen = !MySamplesPane.SamplesSplitView.IsPaneOpen;
-        }
-
+        }       
 
     }
     class PdfReport : INotifyPropertyChanged

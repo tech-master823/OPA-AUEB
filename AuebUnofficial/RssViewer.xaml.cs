@@ -24,16 +24,17 @@ namespace AuebUnofficial
     {
         private int x = 0;
         ArticlesDataSource articles;
+        ArticlesDataSource articles1;
         public RssViewer()
         {
             this.InitializeComponent();
             this.Loaded += MainPage_Loaded;
+            this.Loaded += MainPage_Loades1;
 
         }
         private void ShowSliptView(object sender, RoutedEventArgs e)
         {
             MySamplesPane.SamplesSplitView.IsPaneOpen = !MySamplesPane.SamplesSplitView.IsPaneOpen;
-
         }
         void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
@@ -41,6 +42,11 @@ namespace AuebUnofficial
 
             
             ListView.ItemsSource = articles;
+        }
+        void MainPage_Loades1(object sender, RoutedEventArgs e)
+        {
+            articles1 = new ArticlesDataSource("http://aueb.gr/pages/news/RSS/anakoinoseis_pryt.xml");
+            ListView1.ItemsSource = articles1;
         }
 
         private async void StackPanel_Tapped(object sender, TappedRoutedEventArgs e)
@@ -54,6 +60,24 @@ namespace AuebUnofficial
             if (success)
             {
                 // URI launched
+            }
+            else
+            {
+                // URI launch failed
+            }
+            x++;
+        }
+        private async void StackPanel_Tapped1(object sender, TappedRoutedEventArgs e)
+        {
+
+            var uriBing = new Uri(articles1[x].Link.ToString());
+
+            // Launch the URI
+            var success = await Windows.System.Launcher.LaunchUriAsync(uriBing);
+
+            if (success)
+            {
+                
             }
             else
             {

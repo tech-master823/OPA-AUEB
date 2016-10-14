@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-    <Grid>
+    <Grid Background="#762124">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -16,12 +16,17 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Button Style="{StaticResource SplitViewTogglePaneButtonStyle}"
-                Click="ShowSliptView"/>
-        <TextBlock Text="Aueb.gr" 
-                       VerticalAlignment="Center"
-                       Style="{ThemeResource TitleTextBlockStyle}" 
-                       Grid.Column="1"/>
-        <WebView Grid.ColumnSpan="2" Grid.Row="1" Source="http://www.aueb.gr"></WebView>
+                Click="ShowSliptView" Background="#c7c9d6" Foreground="Black"
+                HorizontalAlignment="Left"/>
+        <Border Background="Black" Grid.Column="1">
+            <TextBlock  Text="www.aueb.gr"
+                       HorizontalAlignment="Center" 
+                       Style="{ThemeResource TitleTextBlockStyle}"
+                       FontWeight="Bold" Foreground="White" FontStyle="Oblique">
+                
+            </TextBlock>
+        </Border>
+        <WebView x:Name="auebgr" Grid.ColumnSpan="2" Grid.Row="1" Source="http://www.aueb.gr"> </WebView>
         <local:Navig x:Name="MySamplesPane" Grid.ColumnSpan="2" Grid.RowSpan="2" />
     </Grid>
 </Page>
