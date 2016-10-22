@@ -27,6 +27,7 @@
                                 <VisualState.Setters>
                                     <Setter Target="ContentPresenter.Foreground" Value="{ThemeResource SystemControlForegroundBaseLowBrush}" />
                                 </VisualState.Setters>
+                                
                             </VisualState>
                         </VisualStateGroup>
                     </VisualStateManager.VisualStateGroups>

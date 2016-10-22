@@ -20,21 +20,21 @@ public class ArticlesDataSource : ObservableCollection<Article>
                 Article ar = new Article();
                 ar.Title = item.Title.Text;
                 ar.Description = item.Summary.Text;
-                ar.PubDate = item.PublishedDate.DateTime;
+                ar.PubDate = item.PublishedDate.DateTime.ToString("MM/dd/yyyy HH:mm");
                 ar.Link = item.Links[0].Uri;
                 ar.Thesis = this.Count;
-                loadData(ar);
-                 
+                loadData(ar);                
             }
         }
     }
+    
+    
     public ArticlesDataSource(string uri)
     {
         loada(new Uri(uri));
            
 
     }
-   
     public void loadData(Article article)
     {
         this.Add(article);
@@ -46,7 +46,7 @@ public class Article
         private string title;
         private string description;
         private Uri link;
-        private DateTime pubDate;
+        private string pubDate;
     private int thesis;
 
     public int Thesis
@@ -55,7 +55,7 @@ public class Article
         set { thesis = value; }
     }
 
-        public DateTime PubDate
+        public String PubDate
         {
             get { return pubDate; }
             set { pubDate = value; }
@@ -81,7 +81,8 @@ public class Article
             this.title = title;
             this.description = description;
         }
-    }
+    
+}
 
 
 

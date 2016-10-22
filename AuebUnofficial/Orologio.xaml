@@ -6,20 +6,24 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:syncfusion="using:Syncfusion.Windows.PdfViewer"
+    xmlns:triggers="using:WindowsStateTriggers"
     mc:Ignorable="d">
     <Page.DataContext>
         <local:PdfReport/>
     </Page.DataContext>
+    
 
     <Grid Background="#762124">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>            
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+        
         <Button Style="{StaticResource SplitViewTogglePaneButtonStyle}"
                 Click="ShowSliptView" Background="#c7c9d6" Foreground="Black" HorizontalAlignment="Left"/>
         <Border Background="Black" Grid.Column="1">
@@ -28,15 +32,49 @@
                        Style="{ThemeResource TitleTextBlockStyle}"
                        FontWeight="Bold" Foreground="White" FontStyle="Oblique"/>
         </Border>
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                  <TextBlock x:Name="school" Text="Τμήμα: " Foreground="#c7c9d6" FontWeight="SemiBold"/>
+                <ComboBox x:Name="cb1" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                  <TextBlock x:Name="year" Text="Έτος: " Foreground="#c7c9d6" FontWeight="SemiBold"/>
+                  <ComboBox x:Name="cb2"/>
+            </StackPanel>
+            <Button Name="go" Content="Go!" Background="Azure" Tapped="Button_Tapped" HorizontalAlignment="Center"/>            
+            <Button HorizontalAlignment="Center" Background="Azure" Click="ReportBug">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock x:Name="mail" Text="&#xE715;" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center"/>
+                    <TextBlock Text="Πρόβλημα;"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>        
+            <syncfusion:SfPdfViewerControl x:Name="pdfViewer" ItemsSource="{Binding DocumentStream}"
+                                           Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2"/>                 
+        <local:Navig x:Name="MySamplesPane" Grid.ColumnSpan="2" Grid.RowSpan="3" />
         
-            <syncfusion:SfPdfViewerControl Name="pdfViewer" 
-                                       ItemsSource="{Binding DocumentStream}" 
-                                       Grid.Row="1" Grid.Column="1"
-                                       >
-                
-            </syncfusion:SfPdfViewerControl>
-           
-        <local:Navig x:Name="MySamplesPane" Grid.ColumnSpan="2" Grid.RowSpan="2" />
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup >
+                <VisualState x:Name="desktop">
+                    <VisualState.StateTriggers>
+                        <triggers:DeviceFamilyStateTrigger DeviceFamily="Desktop" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="school.Visibility" Value="Visible" />
+                        <Setter Target="year.Visibility" Value="Visible"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="phone">
+                    <VisualState.StateTriggers>
+                        <triggers:DeviceFamilyStateTrigger  DeviceFamily="Mobile" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="school.Visibility" Value="Collapsed"/>
+                        <Setter Target="year.Visibility" Value="Collapsed"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
 
     </Grid>
 </Page>

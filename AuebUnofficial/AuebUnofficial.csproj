@@ -8,11 +8,11 @@
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AuebUnofficial</RootNamespace>
-    <AssemblyName>AuebUnofficial</AssemblyName>
+    <AssemblyName>ΟΠΑ-AUEB</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.14393.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.10586.0</TargetPlatformMinVersion>
+    <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -20,7 +20,7 @@
     <PackageCertificateThumbprint>430A099BB73C7FB0DBA1D1701FC387CDDEF97648</PackageCertificateThumbprint>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxBundle>Auto</AppxBundle>
-    <AppxBundlePlatforms>x86|arm</AppxBundlePlatforms>
+    <AppxBundlePlatforms>x86</AppxBundlePlatforms>
     <AppxPackageDir>C:\Users\τασος\Desktop\Screenshots\AppPackages\</AppxPackageDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
@@ -105,7 +105,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ArticlesDataSource.cs" />
+    <Compile Include="Helpers\ArticlesDataSource.cs" />
+    <Compile Include="Helpers\CBoxSource.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -122,7 +123,10 @@
     <Compile Include="Strikes.xaml.cs">
       <DependentUpon>Strikes.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SymbolsDataSource.cs" />
+    <Compile Include="Helpers\SymbolsDataSource.cs" />
+    <Compile Include="Viewers\RSSArtViewer.xaml.cs">
+      <DependentUpon>RSSArtViewer.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -131,15 +135,15 @@
     <None Include="AuebUnofficial_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\ApplicationLogo.png" />
-    <Content Include="Assets\SplashScreen.scale-200.png" />
-    <Content Include="Assets\Square150x150Logo.scale-200.png" />
-    <Content Include="Assets\Square310x310Logo.scale-200.png" />
-    <Content Include="Assets\Square44x44Logo.scale-200.png" />
-    <Content Include="Assets\Square71x71Logo.scale-200.png" />
-    <Content Include="Assets\StoreLogo.scale-200.png" />
     <None Include="Package.StoreAssociation.xml" />
-    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <Content Include="Assets\Square150x150.scale-200.png" />
+    <Content Include="Assets\Square310x310.scale-200.png" />
+    <Content Include="Assets\Square44x44.scale-200.png" />
+    <Content Include="Assets\Square50x50.scale-200.png" />
+    <Content Include="Assets\Square71x71.scale-200.png" />
+    <Content Include="Assets\Splash620x300.scale-200.png" />
+    <Content Include="Assets\StoreLogo.scale-200.png" />
+    <Content Include="Assets\Wide310x150.scale-200.png" />
     <Content Include="Properties\Default.rd.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -171,11 +175,36 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Viewers\RSSArtViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
-    <SDKReference Include="Syncfusion Controls for UWP XAML, Version=14.2.0.26">
-      <Name>Syncfusion Controls for UWP XAML</Name>
-    </SDKReference>
+    <Reference Include="Syncfusion.Pdf.UWP, Version=14.3460.0.49, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\14.3.0.49\Assemblies for Universal Windows\10.0\Syncfusion.Pdf.UWP.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfColorPickers.UWP, Version=14.3460.0.49, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\14.3.0.49\Assemblies for Universal Windows\10.0\Syncfusion.SfColorPickers.UWP.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfInput.UWP, Version=14.3460.0.49, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\14.3.0.49\Assemblies for Universal Windows\10.0\Syncfusion.SfInput.UWP.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfPdfViewer.UWP, Version=14.3460.0.49, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\14.3.0.49\Assemblies for Universal Windows\10.0\Syncfusion.SfPdfViewer.UWP.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfRadialMenu.UWP, Version=14.3460.0.49, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\14.3.0.49\Assemblies for Universal Windows\10.0\Syncfusion.SfRadialMenu.UWP.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfShared.UWP, Version=14.3460.0.49, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\14.3.0.49\Assemblies for Universal Windows\10.0\Syncfusion.SfShared.UWP.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
