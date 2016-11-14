@@ -1,21 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.ApplicationModel;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using System.Diagnostics;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace AuebUnofficial
 {
     /// <summary>
@@ -23,24 +9,67 @@ namespace AuebUnofficial
     /// </summary>
     public sealed partial class About : Page
     {
+        DefPack dpack;
         public About()
         {
             this.InitializeComponent();
+            this.Loaded += MainPage_Loaded;
         }
-        private void ShowSliptView(object sender, RoutedEventArgs e)
+        
+        void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
-            MySamplesPane.SamplesSplitView.IsPaneOpen = !MySamplesPane.SamplesSplitView.IsPaneOpen;
-
+            dpack = new DefPack();
+            GridView.ItemsSource = dpack;
         }
-        public static string GetAppVersion()
+
+        private async void HyperlinkButton_Click(object sender, RoutedEventArgs e)
         {
+            var uriBing = new Uri("https://amoraitis.github.io/Portfolio/");
 
-            Package package = Package.Current;
-            PackageId packageId = package.Id;
-            PackageVersion version = packageId.Version;
+            // Launch the URI
+            var success = await Windows.System.Launcher.LaunchUriAsync(uriBing);
 
-            return string.Format("{0}.{1}.{2}.{3}", version.Major, version.Minor, version.Build, version.Revision);
+            if (success)
+            {
+                // URI launched
+            }
+            else
+            {
+                // URI launch failed
+            }
+        }
 
+        private async void GitHub(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        {
+            var uriBing = new Uri("https://github.com/amoraitis");
+
+            // Launch the URI
+            var success = await Windows.System.Launcher.LaunchUriAsync(uriBing);
+
+            if (success)
+            {
+                // URI launched
+            }
+            else
+            {
+                // URI launch failed
+            }
+        }
+        private async void Lin(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        {
+            var uriBing = new Uri("https://www.linkedin.com/in/anamoraitis");
+
+            // Launch the URI
+            var success = await Windows.System.Launcher.LaunchUriAsync(uriBing);
+
+            if (success)
+            {
+                // URI launched
+            }
+            else
+            {
+                // URI launch failed
+            }
         }
     }
 }

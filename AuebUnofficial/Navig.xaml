@@ -5,53 +5,33 @@
     xmlns:local="using:AuebUnofficial"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    d:DesignHeight="300"
-    d:DesignWidth="400">
-
-
-    <SplitView x:Name="SamplesSplitView" DisplayMode="Overlay" x:FieldModifier="Public">
-        <SplitView.Pane>
-            <StackPanel Background="#5b6d92">
-                <Button Style="{StaticResource SplitViewTogglePaneButtonStyle}"
-                Click="ShowSliptView" Background="#c7c9d6" Foreground="Black"/>
-
-                <Button Style="{StaticResource HomeButtonStyle}" 
-                            HorizontalAlignment="Stretch" 
-                            HorizontalContentAlignment="Left" 
-                            Content="Home" 
-                            Click="NavigateToHome"                            
-                        >
-                    
-                </Button>
-
-                <Button Content="Ανακοινώσεις" 
-                        
-                        Click="NavigateToOptimizedGrid" 
-                            Style="{StaticResource HomeButtonStyle}" 
-                            HorizontalAlignment="Stretch" 
-                            HorizontalContentAlignment="Left" 
-                        />
-                <Button Content="Απεργίες" 
-                            Click="NavigateToApergies" 
-                            Style="{StaticResource HomeButtonStyle}" 
-                            HorizontalAlignment="Stretch" 
-                            HorizontalContentAlignment="Left"
-                            />
-                <Button Content="Ορωλόγιο" 
-                            Click="NavigateToOrologio" 
-                            Style="{StaticResource HomeButtonStyle}" 
-                            HorizontalAlignment="Stretch" 
-                            HorizontalContentAlignment="Left" />
-                <!--MenuFlyoutSeparator/>
-                <Button Content="About"
-                        Click="NavigateToAbout"
-                        Style="{StaticResource HomeButtonStyle}"
-                        HorizontalAlignment="Stretch"
-                        HorizontalContentAlignment="Left"/-->
-            </StackPanel>
-        </SplitView.Pane>
-    </SplitView>
-
-
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:view="using:AuebUnofficial"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <DataTemplate x:Key="DefaultTemplate" x:DataType="local:MenuItem">
+            <Grid Width="240" Height="48">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="48" />
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <SymbolIcon Grid.Column="0" Symbol="{x:Bind Icon, Mode=OneWay}" Foreground="White" />
+                <TextBlock Grid.Column="1" Text="{x:Bind Name, Mode=OneWay}" FontSize="16" VerticalAlignment="Center" Foreground="White"/>
+            </Grid>
+        </DataTemplate>        
+    </UserControl.Resources>
+    <Grid>
+        <controls:HamburgerMenu x:Name="hamburgerMenuControl"
+                                DisplayMode="CompactOverlay"
+                                PaneBackground="Black"
+                                Foreground="White"
+                                CompactPaneLength="48"                                
+                                OpenPaneLength="240"
+                                ItemTemplate="{StaticResource DefaultTemplate}"
+                                ItemClick="OnMenuItemClick"                                
+                                OptionsItemTemplate="{StaticResource DefaultTemplate}"
+                                OptionsItemClick="OnMenuItemClick"
+                                >            
+        </controls:HamburgerMenu>
+    </Grid>
 </UserControl>

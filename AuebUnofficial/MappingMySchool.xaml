@@ -1,30 +1,25 @@
 ﻿<Page
-    x:Class="AuebUnofficial.Strikes"
+    x:Class="AuebUnofficial.MappingMySchool"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:AuebUnofficial"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Maps="using:Windows.UI.Xaml.Controls.Maps"
     mc:Ignorable="d">
 
-    <Grid Background="#762124">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>            
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="48"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Border Background="Black" Grid.Column="1">
-        <TextBlock Text="Απεργίες"
-                   VerticalAlignment="Center"
-                       Style="{ThemeResource TitleTextBlockStyle}"
-                       FontWeight="Bold" Foreground="White" FontStyle="Oblique"/>
-        </Border>
-        <WebView Grid.Row="1" Grid.Column="1" Source="http://www.apergia.gr/q/">            
-        </WebView>
+        <Maps:MapControl
+               x:Name="MapControl1"            
+               ZoomInteractionMode="GestureAndControl"
+               TiltInteractionMode="GestureAndControl"              
+               MapServiceToken="waRW_RF8Cgr82ptMxkRlBg" Grid.Column="1"/>
         <local:Navig x:Name="hamburgerMenuControl" Grid.RowSpan="2" Grid.ColumnSpan="3"/>
-
     </Grid>
 </Page>

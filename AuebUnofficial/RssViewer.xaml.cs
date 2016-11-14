@@ -19,10 +19,7 @@ namespace AuebUnofficial
             this.Loaded += MainPage_Loades1;
 
         }
-        private void ShowSliptView(object sender, RoutedEventArgs e)
-        {
-            MySamplesPane.SamplesSplitView.IsPaneOpen = !MySamplesPane.SamplesSplitView.IsPaneOpen;
-        }
+        
         void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
             articles = new ArticlesDataSource("http://www.aueb.gr/pages/news/RSS/anakoinoseis_akad.xml");

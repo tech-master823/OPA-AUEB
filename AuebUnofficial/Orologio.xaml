@@ -20,21 +20,22 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="48"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        
-        <Button Style="{StaticResource SplitViewTogglePaneButtonStyle}"
-                Click="ShowSliptView" Background="#c7c9d6" Foreground="Black" HorizontalAlignment="Left"/>
+
+
         <Border Background="Black" Grid.Column="1">
             <TextBlock Text="Ωρολόγιο Πρόγραμμα" 
                        VerticalAlignment="Center"
                        Style="{ThemeResource TitleTextBlockStyle}"
                        FontWeight="Bold" Foreground="White" FontStyle="Oblique"/>
         </Border>
+        <!--Button HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1" Click="Share_Click" Content="Share this page!"
+                Background="Azure" Foreground="#c7c9d6"/-->
         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                  <TextBlock x:Name="school" Text="Τμήμα: " Foreground="#c7c9d6" FontWeight="SemiBold"/>
+                  <TextBlock  x:Name="school" Text="Τμήμα: " Foreground="#c7c9d6" FontWeight="SemiBold"/>
                 <ComboBox x:Name="cb1" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
@@ -50,9 +51,10 @@
             </Button>
         </StackPanel>        
             <syncfusion:SfPdfViewerControl x:Name="pdfViewer" ItemsSource="{Binding DocumentStream}"
-                                           Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2"/>                 
-        <local:Navig x:Name="MySamplesPane" Grid.ColumnSpan="2" Grid.RowSpan="3" />
-        
+                                           Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2"/>
+        <local:Navig x:Name="hamburgerMenuControl" Grid.RowSpan="3" Grid.ColumnSpan="3"/>
+
+
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup >
                 <VisualState x:Name="desktop">
@@ -75,6 +77,6 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-
+        
     </Grid>
 </Page>

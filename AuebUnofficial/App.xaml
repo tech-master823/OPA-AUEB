@@ -6,7 +6,7 @@
     RequestedTheme="Light">
     <Application.Resources>
         <ResourceDictionary>
-            <ControlTemplate x:Key="SplitViewTogglePaneButtonTemplate" TargetType="Button">
+            <!--<ControlTemplate x:Key="SplitViewTogglePaneButtonTemplate" TargetType="Button">
                 <Grid x:Name="RootGrid" Background="#acb1d7">
                     <VisualStateManager.VisualStateGroups>
                         <VisualStateGroup x:Name="CommonStates">
@@ -110,7 +110,7 @@
                                 </Grid.ColumnDefinitions>
 
 
-                                <!--TextBlock FontFamily="Segoe MDL2 Assets" Text="{Binding Symbol}" x:Name="tx"/-->
+                                --><!--TextBlock FontFamily="Segoe MDL2 Assets" Text="{Binding Symbol}" x:Name="tx"/--><!--
 
 
                                 <ContentPresenter x:Name="ContentPresenter" Grid.Column="1"
@@ -129,7 +129,7 @@
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
-            </Style>
+            </Style>-->
 
         </ResourceDictionary>
     </Application.Resources>

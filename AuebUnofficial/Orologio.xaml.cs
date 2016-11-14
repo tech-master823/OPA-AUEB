@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Reflection;
+using Windows.ApplicationModel.DataTransfer;
+using Windows.Foundation;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using WindowsStateTriggers;
@@ -19,10 +23,7 @@ namespace AuebUnofficial
             addCB();            
 
         }
-        private void ShowSliptView(object sender, RoutedEventArgs e)
-        {
-            MySamplesPane.SamplesSplitView.IsPaneOpen = !MySamplesPane.SamplesSplitView.IsPaneOpen;
-        }
+        
         public void addCB(){            
             for (int i=0; i<8; i++)
             {                
@@ -37,6 +38,7 @@ namespace AuebUnofficial
             
         }
 
+
         private void Button_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
         {
             ComboboxItem car1 = (ComboboxItem)cb1.SelectedItem;
@@ -50,7 +52,7 @@ namespace AuebUnofficial
         {
             await Windows.System.Launcher.LaunchUriAsync(new Uri("mailto:?to=anas.moraitis@gmail.com&subject=BugAtOrologio"));
             mail.Text = "\uE8C3";
-        }
+        }        
     }
     public class ComboboxItem
     {

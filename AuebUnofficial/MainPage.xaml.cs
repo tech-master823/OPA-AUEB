@@ -25,11 +25,13 @@ namespace AuebUnofficial
         public MainPage()
         {
             this.InitializeComponent();           
-        }
-        private void ShowSliptView(object sender, RoutedEventArgs e)
+        }        
+        private async void ReportBug(object sender, RoutedEventArgs e)
         {
-            MySamplesPane.SamplesSplitView.IsPaneOpen = !MySamplesPane.SamplesSplitView.IsPaneOpen;
+            await Windows.System.Launcher.LaunchUriAsync(new Uri("mailto:?to=anas.moraitis@gmail.com&subject=BugAtAuebUWPApp"));
+            mail.Text = "\uE8C3";
         }
+
         
     }
 }

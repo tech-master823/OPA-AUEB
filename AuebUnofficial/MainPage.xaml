@@ -5,6 +5,7 @@
     xmlns:local="using:AuebUnofficial"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:triggers="using:WindowsStateTriggers"
     mc:Ignorable="d">
     <Grid Background="#762124">
         <Grid.RowDefinitions>
@@ -12,21 +13,22 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="48"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Button Style="{StaticResource SplitViewTogglePaneButtonStyle}"
-                Click="ShowSliptView" Background="#c7c9d6" Foreground="Black"
-                HorizontalAlignment="Left"/>
-        <Border Background="Black" Grid.Column="1">
-            <TextBlock  Text="www.aueb.gr"
-                       HorizontalAlignment="Center" 
-                       Style="{ThemeResource TitleTextBlockStyle}"
-                       FontWeight="Bold" Foreground="White" FontStyle="Oblique">
-                
-            </TextBlock>
+        <Border Background="#762124" Grid.Column="1">
+            <Button HorizontalAlignment="Center" Background="Azure" Click="ReportBug">
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock x:Name="mail" Text="&#xE715;" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center"/>
+                    <TextBlock Text="Ανάφερε πρόβλημα!"/>
+                </StackPanel>
+            </Button>
         </Border>
-        <WebView x:Name="auebgr" Grid.ColumnSpan="2" Grid.Row="1" Source="http://www.aueb.gr"> </WebView>
-        <local:Navig x:Name="MySamplesPane" Grid.ColumnSpan="2" Grid.RowSpan="2" />
+        <WebView x:Name="auebgr" Grid.Column="1" Grid.Row="1" Source="http://www.aueb.gr"> </WebView>
+        <local:Navig x:Name="hamburgerMenuControl" Grid.RowSpan="2" Grid.ColumnSpan="3"/>
+
+
     </Grid>
+    
 </Page>

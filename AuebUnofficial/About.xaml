@@ -6,32 +6,49 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-    
+    <Page.Resources>
+        <DataTemplate x:Name="AApppack">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="{Binding Name}" Foreground="Azure" TextWrapping="Wrap" MaxLines="2" FontWeight="ExtraBold"/>
+                <TextBlock Text="{Binding Version}" Foreground="Azure" FontWeight="SemiBold"/>
+                <Border BorderThickness="4" BorderBrush="Blue" HorizontalAlignment="Left">
+                    <Image x:Name="logo" Source="{Binding Imgsrc}" MaxHeight="310" MaxWidth="310" HorizontalAlignment="Left" />
+                </Border>
+                <HyperlinkButton IsHitTestVisible="True" Tapped="HyperlinkButton_Click" Content="{Binding DevName}" Foreground="Azure"/>
+                <TextBlock Text="{Binding Descriptio}" TextWrapping="Wrap" Foreground="Azure"/>
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="Assets//GitHub_Logo.png" Tapped="GitHub" MaxHeight="70" MaxWidth="59"/>
+                    <Image Source="Assets//In-2C-59px-R.png" Tapped="Lin" MaxHeight="70" MaxWidth="59"/>
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
+
     <Grid Background="#762124">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="48"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Button Style="{StaticResource SplitViewTogglePaneButtonStyle}"
-                Click="ShowSliptView" Background="#c7c9d6" Foreground="Black" HorizontalAlignment="Left"/>
+
         <Border Background="Black" Grid.Column="1">
             <TextBlock Text="About" 
                        VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
                        Style="{ThemeResource TitleTextBlockStyle}"
                        FontWeight="Bold" Foreground="White" FontStyle="Oblique"/>
         </Border>
-        <ScrollViewer Grid.Row="1" Grid.Column="1">
-            <StackPanel Margin="24,32,24,8">
-                <TextBlock />
-            </StackPanel>
-       
+
+        <ScrollViewer Grid.Column="1" Grid.Row="1">
+            <ItemsControl Name="Display" Background="#762124" Grid.Column="1" Grid.Row="1" >
+                <GridView ItemTemplate="{StaticResource AApppack}" x:Name="GridView" HorizontalAlignment="Center" BorderThickness="0"/>
+            </ItemsControl>
         </ScrollViewer>
+        <local:Navig x:Name="hamburgerMenuControl" Grid.RowSpan="2" Grid.ColumnSpan="3"/>
 
 
-        <local:Navig x:Name="MySamplesPane" Grid.ColumnSpan="2" Grid.RowSpan="2" />
     </Grid>
 </Page>
