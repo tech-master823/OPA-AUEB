@@ -8,6 +8,7 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Maps;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
@@ -37,6 +38,6 @@ namespace AuebUnofficial
             MapControl1.Center = cityCenter;
             MapControl1.ZoomLevel = 15.5;
             MapControl1.LandmarksVisible = true;
-        }
+        }       
     }
 }

@@ -14,7 +14,7 @@
 
     <Page.Resources>
         <DataTemplate x:Key="PhotosTemplate">
-            <Grid Background="#762124" BorderBrush="Black" BorderThickness="1">
+            <Grid Background="#762124" BorderThickness="1">
                 <TextBlock
                     Text="{Binding Header}"   
                     Foreground="Azure"

@@ -9,17 +9,17 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid.RowDefinitions>            
+        <Grid.RowDefinitions>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="48"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Maps:MapControl
-               x:Name="MapControl1"            
+               x:Name="MapControl1"           
                ZoomInteractionMode="GestureAndControl"
                TiltInteractionMode="GestureAndControl"              
-               MapServiceToken="waRW_RF8Cgr82ptMxkRlBg" Grid.Column="1"/>
+               MapServiceToken="exwabraOkDmCtrgOa9nN~V5xijbYrAJsFeECSTlMEsw~AsDHnK9GzSuVBZRybOzPiqBKVlyZkRaLXeBnoVjMUBclm6hcuITz8onUfOw5TRPT" Grid.Column="1"/>
         <local:Navig x:Name="hamburgerMenuControl" Grid.RowSpan="2" Grid.ColumnSpan="3"/>
     </Grid>
 </Page>

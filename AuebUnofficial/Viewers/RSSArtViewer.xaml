@@ -40,7 +40,6 @@
             <TextBlock Name="des" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TextWrapping="Wrap" Grid.Column="1"  Foreground="#c7c9d6" MaxLines="10" FontWeight="SemiBold" FontSize="18"/>
         </Border>       
             
-        <ProgressRing x:Name="testring" Grid.Row="2"></ProgressRing>       
     </Grid>
 
 </Page>

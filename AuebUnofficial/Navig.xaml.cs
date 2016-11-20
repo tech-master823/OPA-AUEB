@@ -36,9 +36,9 @@ namespace AuebUnofficial
             items.Add(new MenuItem() { Icon = Symbol.Home, Name = "Home", PageType = typeof(MainPage) });
             items.Add(new MenuItem() { Icon = Symbol.Bullets, Name = "Ανακοινώσεις", PageType = typeof(RssViewer) });
             items.Add(new MenuItem() { Icon = train.Symbol, Name = "Απεργίες", PageType = typeof(Strikes) });
-            items.Add(new MenuItem() { Icon = Symbol.Calendar, Name = "Ωρολογιο", PageType = typeof(Orologio) });           
-            items.Add(new MenuItem() { Icon = Symbol.Accept, Name = "Πληροφοριες", PageType = typeof(Classes) });
-            items.Add(new MenuItem() { Icon = Symbol.Map, Name = "Map", PageType = typeof(MappingMySchool) });
+            items.Add(new MenuItem() { Icon = Symbol.Calendar, Name = "Ωρολόγιο", PageType = typeof(Orologio) });           
+            items.Add(new MenuItem() { Icon = Symbol.ContactInfo, Name = "Πληροφορίες τμημάτων", PageType = typeof(Classes) });
+            //items.Add(new MenuItem() { Icon = Symbol.Map, Name = "Map", PageType = typeof(MappingMySchool) });
             return items;
         }
         //public static List<MenuItem> GetSubClassItems()

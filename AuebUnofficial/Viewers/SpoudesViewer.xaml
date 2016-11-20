@@ -11,6 +11,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -27,7 +28,13 @@
                 <TextBlock Text="Οδηγός Σπουδών" FontStyle="Normal" VerticalAlignment="Bottom" FontWeight="Medium"/>
             </StackPanel>
         </Border>
-        <syncfusion:SfPdfViewerControl x:Name="pdfViewer"
-                                           Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1"/>        
+            <RelativePanel  Visibility="Collapsed" Grid.Column="1" Grid.Row="1" x:Name="zero" HorizontalAlignment="Center">
+                <TextBlock x:Name="fd" Text="Oops! Φαίνεται πως το τμήμα σου δεν έχει οδηγό σπουδών σε μορφη .pdf"/>
+                <TextBlock x:Name="fdr" RelativePanel.Below="fd" Text="Ζήτα το απο τη γραμματεία του τμήματος!"/>
+                <Button RelativePanel.RightOf="fdr" RelativePanel.Below="fd" Content="&#xE715;" FontSize="20" MinHeight="20" MinWidth="20" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center" Click="Maila_Click"/>
+        </RelativePanel>
+       
+        <syncfusion:SfPdfViewerControl x:Name="pdfViewer" Visibility="Collapsed"
+                                           Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2"/>        
     </Grid>
 </Page>

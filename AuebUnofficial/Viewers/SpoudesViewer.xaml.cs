@@ -27,7 +27,6 @@ namespace AuebUnofficial.Viewers
     
     public sealed partial class SpoudesViewer : Page
     {
-        public string oditist;
         PivotdItem pi;
         public SpoudesViewer()
         {
@@ -38,8 +37,8 @@ namespace AuebUnofficial.Viewers
             base.OnNavigatedTo(e);
 
             pi = (PivotdItem)e.Parameter;
-            Title.Text = pi.Header;
-            if (pi.Spudes.Contains("www")){
+            Title.Text = pi.Header; 
+            if (pi.Spudes.StartsWith("http")){
                 // Create an instance of HttpClient
                 HttpClient httpClient = new HttpClient();
 
@@ -51,14 +50,19 @@ namespace AuebUnofficial.Viewers
 
                 // Display the PDF document in PdfViewer
                 pdfViewer.LoadDocument(loadedDocument);
-            }else if (pi.Spudes.Contains("Assets"))
+                pdfViewer.Visibility = Visibility.Visible;
+            }
+            else if (pi.Spudes.StartsWith("AuebUnofficial"))
             {
-                Assembly assembly = typeof(SpoudesViewer).GetTypeInfo().Assembly;
-                pdfViewer.DocumentStream = assembly.GetManifestResourceStream(pi.Spudes);
+                Stream s=this.GetType().GetTypeInfo().Assembly.GetManifestResourceStream(pi.Spudes);
+                pdfViewer.LoadDocument(s);
+                pdfViewer.Visibility = Visibility.Visible;
             }
             else if (pi.Spudes == "0")
             {
-
+                pdfViewer.IsThumbnailViewEnabled = false;
+                pdfViewer.PdfProgressRing.Visibility = Visibility.Collapsed;
+                zero.Visibility = Visibility.Visible;
             }
            
         }
@@ -67,11 +71,17 @@ namespace AuebUnofficial.Viewers
             ((Frame)Window.Current.Content).Navigate(typeof(Viewers.SpoudesViewer), pi);
         }
         private void BackButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
-        {
+        {            
             if (Frame.CanGoBack)
             {
+                pdfViewer.Unload();
                 Frame.GoBack();
             }
+        }
+
+        private async void Maila_Click(object sender, RoutedEventArgs e)
+        {
+            await Windows.System.Launcher.LaunchUriAsync(new Uri("mailto:?to="+pi.Mail+"&subject=Οδηγός Σπουδών"));
         }
     }
 
@@ -81,7 +91,6 @@ namespace AuebUnofficial.Viewers
     {
         private Stream docStream;
         public event PropertyChangedEventHandler PropertyChanged;
-
         public Stream DocumentStream
         {
             get
@@ -94,11 +103,12 @@ namespace AuebUnofficial.Viewers
                 OnPropertyChanged(new PropertyChangedEventArgs("DocumentStream"));
             }
         }
-        public PdfReport(string oditisp)
+
+        public PdfReport()
         {
             //Loads the stream from the embedded resource.
             Assembly assembly = typeof(SpoudesViewer).GetTypeInfo().Assembly;
-            docStream = assembly.GetManifestResourceStream(oditisp);
+            
         }
 
         public void OnPropertyChanged(PropertyChangedEventArgs e)

@@ -16,7 +16,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <SymbolIcon Grid.Column="0" Symbol="{x:Bind Icon, Mode=OneWay}" Foreground="White" />
-                <TextBlock Grid.Column="1" Text="{x:Bind Name, Mode=OneWay}" FontSize="16" VerticalAlignment="Center" Foreground="White"/>
+                <TextBlock Grid.Column="1" Text="{x:Bind Name, Mode=OneWay}" TextWrapping="Wrap" FontSize="16" VerticalAlignment="Center" Foreground="White"/>
             </Grid>
         </DataTemplate>        
     </UserControl.Resources>
