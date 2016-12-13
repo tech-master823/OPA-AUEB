@@ -5,26 +5,31 @@
     xmlns:local="using:AuebUnofficial"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d">
 
     <Grid Background="#762124">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="48"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="48"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Border Background="Black" Grid.Column="1">
-        <TextBlock Text="Απεργίες"
-                   VerticalAlignment="Center"
-                       Style="{ThemeResource TitleTextBlockStyle}"
-                       FontWeight="Bold" Foreground="White" FontStyle="Oblique"/>
+        <Border Background="#762124" Grid.Column="1">
+            <Grid Height="48" Background="White" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="M.M.M." x:Name="mmm" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15"/>
+                <Button Height="48" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Click="Button_Click" 
+                        Content="&#xE8AB;" FontFamily="Segoe MDL2 Assets" x:Name="switching"/>
+            </Grid>
         </Border>
-        <WebView Grid.Row="1" Grid.Column="1" Source="http://www.apergia.gr/q/">            
-        </WebView>
-        <local:Navig x:Name="hamburgerMenuControl" Grid.RowSpan="2" Grid.ColumnSpan="3"/>
+        <WebView x:Name="strikes" Grid.Row="1" Grid.Column="1" Source="https://amoraitis.github.io/Portfolio/auebUnof.html"/>
+        <local:Navig x:Name="hamburgerMenuControl" Grid.RowSpan="3" Grid.ColumnSpan="3"/>
 
     </Grid>
 </Page>

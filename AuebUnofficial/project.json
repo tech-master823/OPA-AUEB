@@ -1,7 +1,9 @@
 ﻿{
   "dependencies": {
-    "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
-    "Microsoft.Toolkit.Uwp.UI.Controls": "1.1.0",
+    "Flurl.Http": "1.1.1",
+    "Microsoft.NETCore.UniversalWindowsPlatform": "5.3.0-beta2",
+    "Microsoft.Toolkit.Uwp.UI.Controls": "1.2.0",
+    "WindowsAppStudio.DataProviders": "1.5.1",
     "WindowsStateTriggers": "1.1.0"
   },
   "frameworks": {

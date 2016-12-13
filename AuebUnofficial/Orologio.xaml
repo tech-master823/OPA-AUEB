@@ -11,7 +11,7 @@
     <Page.DataContext>
         <local:PdfReport/>
     </Page.DataContext>
-    
+
 
     <Grid Background="#762124">
         <Grid.RowDefinitions>
@@ -25,32 +25,44 @@
         </Grid.ColumnDefinitions>
 
 
-        <Border Background="Black" Grid.Column="1">
-            <TextBlock Text="Ωρολόγιο Πρόγραμμα" 
-                       VerticalAlignment="Center"
-                       Style="{ThemeResource TitleTextBlockStyle}"
-                       FontWeight="Bold" Foreground="White" FontStyle="Oblique"/>
+        <Border Background="#762124" Grid.Column="1">
+            <Grid Height="48" Background="White" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Ωρολόγιο Πρόγραμμα" x:Name="orologio" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15"/>
+                <Button Height="48" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" 
+                        Content="&#xE8AB;" FontFamily="Segoe MDL2 Assets" x:Name="switching" Click="Change_Frame"/>
+            </Grid>
         </Border>
+
         <!--Button HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1" Click="Share_Click" Content="Share this page!"
                 Background="Azure" Foreground="#c7c9d6"/-->
-        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Visibility="Collapsed" x:Name="datepick" Background="White" Grid.Row="1" Grid.Column="1">
+            <CalendarDatePicker DateFormat = "{}{dayofweek.full}‎, ‎{month.full}‎ ‎{day.integer}‎, ‎{year.full}" FirstDayOfWeek="Monday" DateChanged="exetastiki_DateChanged" x:Name="exetastiki" HorizontalAlignment="Center"></CalendarDatePicker>
+        </StackPanel>
+        
+        <StackPanel x:Name="combost" Background="White" Visibility="Visible" Grid.Row="1" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                  <TextBlock  x:Name="school" Text="Τμήμα: " Foreground="#c7c9d6" FontWeight="SemiBold"/>
+                <TextBlock  x:Name="school" Text="Τμήμα: " Foreground="Black" FontWeight="SemiBold"/>
                 <ComboBox x:Name="cb1" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                  <TextBlock x:Name="year" Text="Έτος: " Foreground="#c7c9d6" FontWeight="SemiBold"/>
-                  <ComboBox x:Name="cb2"/>
+                <TextBlock x:Name="year" Text="Έτος: " Foreground="Black" FontWeight="SemiBold"/>
+                <ComboBox x:Name="cb2"/>
             </StackPanel>
-            <Button Name="go" Content="Go!" Background="Azure" Tapped="Button_Tapped" HorizontalAlignment="Center"/>            
+            <Button Name="go" Content="Go!" Background="Azure" Tapped="Button_Tapped" HorizontalAlignment="Center"/>
             <Button HorizontalAlignment="Center" Background="Azure" Click="ReportBug">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock x:Name="mail" Text="&#xE715;" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center"/>
                     <TextBlock Text="Πρόβλημα;"/>
                 </StackPanel>
             </Button>
-        </StackPanel>        
-            <syncfusion:SfPdfViewerControl x:Name="pdfViewer" ItemsSource="{Binding DocumentStream}"
+        </StackPanel>
+
+
+        <syncfusion:SfPdfViewerControl Visibility="Visible" x:Name="pdfViewer"
                                            Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2"/>
         <local:Navig x:Name="hamburgerMenuControl" Grid.RowSpan="3" Grid.ColumnSpan="3"/>
 
@@ -77,6 +89,6 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        
+
     </Grid>
 </Page>

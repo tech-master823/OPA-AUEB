@@ -32,6 +32,9 @@ namespace AuebUnofficial
             mail.Text = "\uE8C3";
         }
 
-        
+        private void FBButton_Click(object sender, RoutedEventArgs e)
+        {
+            ((Frame)Window.Current.Content).Navigate(typeof(Viewers.FbPageViewer));
+        }
     }
 }

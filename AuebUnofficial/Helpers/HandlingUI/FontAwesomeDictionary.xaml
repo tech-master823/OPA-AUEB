@@ -1,0 +1,7 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AuebUnofficial.Helpers.HandlingUI">
+    <FontFamily x:Key="FontAwesomeFontFamily">Assets/fonts/FontAwesome.otf#FontAwesome</FontFamily>
+    <x:String x:Key="FontAwesomeFacebookString">&#xf230;</x:String>
+</ResourceDictionary>

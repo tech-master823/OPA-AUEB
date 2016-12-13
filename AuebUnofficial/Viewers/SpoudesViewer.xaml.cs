@@ -35,7 +35,7 @@ namespace AuebUnofficial.Viewers
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-
+            
             pi = (PivotdItem)e.Parameter;
             Title.Text = pi.Header; 
             if (pi.Spudes.StartsWith("http")){

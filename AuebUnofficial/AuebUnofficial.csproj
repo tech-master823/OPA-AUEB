@@ -95,9 +95,9 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <EmbeddedResource Include="Assets\progr.pdf" />
     <EmbeddedResource Include="Assets\LoxriOdhgosSp.pdf" />
     <EmbeddedResource Include="Assets\StatOdhgSpoudwn.pdf" />
+    <Content Include="Assets\fonts\FontAwesome.otf" />
     <None Include="AuebUnofficial_StoreKey.pfx" />
     <None Include="project.json" />
   </ItemGroup>
@@ -134,6 +134,15 @@
     </Compile>
     <Compile Include="Strikes.xaml.cs">
       <DependentUpon>Strikes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Viewers\AnouncementsEclass.xaml.cs">
+      <DependentUpon>AnouncementsEclass.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Viewers\eclass_Nat.xaml.cs">
+      <DependentUpon>eclass_Nat.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Viewers\FbPageViewer.xaml.cs">
+      <DependentUpon>FbPageViewer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Viewers\InfoViewers.xaml.cs">
       <DependentUpon>InfoViewers.xaml</DependentUpon>
@@ -180,6 +189,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Helpers\HandlingUI\FontAwesomeDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -201,6 +215,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Strikes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Viewers\AnouncementsEclass.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Viewers\eclass_Nat.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Viewers\FbPageViewer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -9,7 +9,7 @@
     mc:Ignorable="d">
     <Grid Background="#762124">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="48"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -17,13 +17,19 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Border Background="#762124" Grid.Column="1">
-            <Button HorizontalAlignment="Center" Background="Azure" Click="ReportBug">
-
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock x:Name="mail" Text="&#xE715;" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center"/>
-                    <TextBlock Text="Ανάφερε πρόβλημα!"/>
-                </StackPanel>
-            </Button>
+            <RelativePanel HorizontalAlignment="Center" Background="White">
+                <Button Height="48" x:Name="reportbugbutton" HorizontalAlignment="Center" Background="White" Click="ReportBug">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBlock x:Name="mail" Text="&#xE715;" FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        <TextBlock Text="Ανάφερε πρόβλημα!"/>
+                    </StackPanel>
+                </Button>
+                <Button Height="48" Click="FBButton_Click" RelativePanel.RightOf="reportbugbutton" VerticalAlignment="Center">
+                    <FontIcon FontFamily="{StaticResource FontAwesomeFontFamily}"
+                        Glyph="{StaticResource FontAwesomeFacebookString}"
+                        FontSize="23" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </Button>
+            </RelativePanel>
         </Border>
         <WebView x:Name="auebgr" Grid.Column="1" Grid.Row="1" Source="http://www.aueb.gr"> </WebView>
         <local:Navig x:Name="hamburgerMenuControl" Grid.RowSpan="2" Grid.ColumnSpan="3"/>
