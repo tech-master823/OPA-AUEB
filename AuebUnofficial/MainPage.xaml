@@ -21,17 +21,30 @@
                 <Button Height="48" x:Name="reportbugbutton" HorizontalAlignment="Center" Background="White" Click="ReportBug">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                         <TextBlock x:Name="mail" Text="&#xE715;" FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                        <TextBlock Text="Ανάφερε πρόβλημα!"/>
+                        <TextBlock Text="Ανάφερά προβλήματος!"/>
                     </StackPanel>
                 </Button>
-                <Button Height="48" Click="FBButton_Click" RelativePanel.RightOf="reportbugbutton" VerticalAlignment="Center">
+                <Button Height="48" Click="FBButton_Click" RelativePanel.RightOf="reportbugbutton" x:Name="fb" VerticalAlignment="Center">
                     <FontIcon FontFamily="{StaticResource FontAwesomeFontFamily}"
                         Glyph="{StaticResource FontAwesomeFacebookString}"
                         FontSize="23" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </Button>
+                <Button Height="48" Visibility="Collapsed" Click="LiButton_Click" RelativePanel.RightOf="fb" x:Name="li" VerticalAlignment="Center">
+                    <FontIcon FontFamily="{StaticResource FontAwesomeFontFamily}"
+                        Glyph="{StaticResource FontAwesomeFacebookString}"
+                        FontSize="23" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </Button>
+                <Button Height="48" Visibility="Collapsed" Click="TwiButton_Click" RelativePanel.RightOf="li" VerticalAlignment="Center">
+                    <FontIcon FontFamily="{StaticResource FontAwesomeFontFamily}"
+                        Glyph="{StaticResource FontAwesomeTwitterString}"
+                        FontSize="23" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </Button>
+
             </RelativePanel>
         </Border>
-        <WebView x:Name="auebgr" Grid.Column="1" Grid.Row="1" Source="http://www.aueb.gr"> </WebView>
+        <WebView NavigationFailed="auebgr_NavigationFailed" NavigationCompleted="auebgr_NavigationCompleted" x:Name="auebgr" Grid.Column="1" Grid.Row="1" 
+                 Visibility="Collapsed" Source="http://www.aueb.gr" DefaultBackgroundColor="Transparent"/>
+        <ProgressRing IsActive="True" Grid.Column="1" Grid.Row="1" Visibility="Visible" HorizontalAlignment="Center" VerticalAlignment="Top" x:Name="auebgr_pbar" Height="50" Width="50" Foreground="Black"/>
         <local:Navig x:Name="hamburgerMenuControl" Grid.RowSpan="2" Grid.ColumnSpan="3"/>
 
 
