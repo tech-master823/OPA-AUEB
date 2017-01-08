@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using AppStudio.DataProviders.Facebook;
 using System.Collections.ObjectModel;
 using Windows.UI.Xaml.Navigation;
+using System;
 
 namespace AuebUnofficial.Viewers
 {
@@ -42,7 +36,7 @@ namespace AuebUnofficial.Viewers
             string appId = "248058472262288";
             string appSecret = "d74d68d717ff1a0c45dc3fbad0899d26";
             string FacebookQueryParam = "625038207649339";
-            int MaxRecordsParam = 12;
+            int MaxRecordsParam = 20;
             Items.Clear();
 
             _facebookDataProvider = new FacebookDataProvider(new FacebookOAuthTokens { AppId = appId, AppSecret = appSecret });
@@ -55,14 +49,24 @@ namespace AuebUnofficial.Viewers
 
             foreach (var item in items)
             {
+                if (item.ImageUrl == null || item.ImageUrl=="") item.ImageUrl = "https://eclass.aueb.gr/courses/theme_data/9/eclass_aueb_logo.png";
                 Items.Add(item);
             }
+            pring.IsActive = false;
+            pring.Visibility = Visibility.Collapsed;
+            FeedFb.Visibility = Visibility.Visible;
         }
 
         private void Back_Button_Click(object sender, RoutedEventArgs e)
         {
             if (this.Frame.CanGoBack)
                 Frame.GoBack();
+        }
+
+        private async void FeedFb_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        {
+            FacebookSchema fbitem = (FacebookSchema)FeedFb.SelectedItem;
+            var success=await Windows.System.Launcher.LaunchUriAsync(new Uri(fbitem.FeedUrl));
         }
     }
 }

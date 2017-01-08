@@ -56,12 +56,16 @@ namespace AuebUnofficial
             // Get the PDF document in byte array
             contentBytesx1 = await httpClient.GetByteArrayAsync(x1);
             contentBytesx2 = await httpClient.GetByteArrayAsync(x2);
+            //secures an exception thrown by clicking switchview without the pdf downloaded
+            switching.IsHitTestVisible = true;
             // Load the Byte array
             PdfLoadedDocument loadedDocument = new PdfLoadedDocument(contentBytesx1);
 
             // Display the PDF document in PdfViewer
             pdfViewer.LoadDocument(loadedDocument);
         }
+        //This method changes the Header text when necessary and loading the other pdf in the pdfviewer
+        //this method should unload the documents from memory, will be fixed in the future
         private void Change_Frame(object sender, RoutedEventArgs e)
         {
 
@@ -93,6 +97,8 @@ namespace AuebUnofficial
                 pdfViewer.LoadDocument(loadedDocument);
             }
         }
+
+        //This method adds items in the combobox pasing them through an "array" from CBoxSource class
         public void addCB() {
             for (int i = 0; i < 8; i++)
             {
@@ -107,7 +113,7 @@ namespace AuebUnofficial
 
         }
 
-
+        //This method gets the ComboBoxItem selected from the user and changes the page in the PdfViewer
         private void Button_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
         {
             ComboboxItem car1 = (ComboboxItem)cb1.SelectedItem;
@@ -117,6 +123,7 @@ namespace AuebUnofficial
 
         }
 
+        //This method gets the Date selected from user and going to a page based on the selection
         private void exetastiki_DateChanged(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
         {
             foreach (DatationType dateit in dates)
@@ -126,11 +133,13 @@ namespace AuebUnofficial
             }
         }
 
+
         private async void ReportBug(object sender, RoutedEventArgs e)
         {
             await Windows.System.Launcher.LaunchUriAsync(new Uri("mailto:?to=anas.moraitis@gmail.com&subject=BugAtOrologio"));
             mail.Text = "\uE8C3";
         }
+        //Adding Data of type "DatationType" in array data----adding fates in the table
         private void addDates()
         {
             dates.Insert(0, new DatationType(new DateTime(2017, 1, 16), 1));
@@ -153,9 +162,14 @@ namespace AuebUnofficial
             dates.Insert(17, new DatationType(new DateTime(2017, 2, 9), 18));
         }
     }   
+
+    //This type represents a Date and contains the DateType and the page (in the pdf) 
     class DatationType
     {
+        //Dt for datetime in the calendar
         public DateTime Dt { get; set; }
+
+        //Pa for page int pdf
         public int Pa { get; set; }
         
         public DatationType(DateTime dt, int pa)
@@ -164,6 +178,8 @@ namespace AuebUnofficial
             this.Pa = pa;
         }
     }
+    
+    //This type represents a ComboBox Item with each values
     public class ComboboxItem
     {
         public string Text { get; set; }
@@ -179,6 +195,12 @@ namespace AuebUnofficial
             return Text;
         }
     }
+
+
+    //////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////
+    //This section copied from Syncfusion pdfviewer documentation and used to control the pdfviewer control
+    //////////////////////////////////////////////////////////
     class PdfReport : INotifyPropertyChanged
     {
         private Stream docStream;
@@ -211,6 +233,6 @@ namespace AuebUnofficial
             PropertyChanged(this, e);
         }
     }
-
-   
+    //////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////
 }

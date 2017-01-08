@@ -1,19 +1,20 @@
 ﻿using Flurl.Http;
-using System.Collections.Generic;
+using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
+using System.Text;
+using System.Xml;
 using System.Xml.Linq;
-using Windows.Data.Xml.Dom;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using Windows.Web.Syndication;
 
 namespace AuebUnofficial.Viewers
 {
     public sealed partial class AnouncementsEclass : Page
     {
-        ObservableCollection<Course> mycourses;
         public AnouncementsEclass()
         {
             this.InitializeComponent();
@@ -21,29 +22,26 @@ namespace AuebUnofficial.Viewers
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            anoun.Text = await "https://eclass.aueb.gr/modules/mobile/mcourses.php"
+            string getit = await "https://eclass.aueb.gr/modules/mobile/mcourses.php"
                .PostUrlEncodedAsync(new { token = (string)e.Parameter })
                .ReceiveString();
-
-            var getit = anoun.Text;
             XDocument coursex = XDocument.Load(GenerateStreamFromString(getit));
             var ycourses = coursex.Root
-                  .Elements("course")
+                  .Elements("coursegroup").Elements("course")
                   .Select(x => new Course
                   {
                       Id = (string)x.Attribute("code"),
-                      Name = (string)x.Attribute("title")
-
+                      Name = (string)x.Attribute("title"),
+                      Ans = new EclassRssParser("https://eclass.aueb.gr/modules/announcements/rss.php?c=" + ((string)x.Attribute("code").Value.Replace(@"\", string.Empty)))
                   })
                   .ToArray();
-            foreach (Course course in ycourses)
-            {
-                mycourses.Add(course);
-            }
-            ListView1.ItemsSource = mycourses;
+            CoursesViewer.ItemsSource = ycourses;
+            //////////////////////////////////////////////////////////
             
+            //////////////////////////////////////////////////////////
         }
 
+       
         private static Stream GenerateStreamFromString(string s)
         {
             MemoryStream stream = new MemoryStream();
@@ -58,5 +56,6 @@ namespace AuebUnofficial.Viewers
     {
         public string Id { get; set; }
         public string Name { get; set; }
+        public ObservableCollection<Announcements> Ans { get; set; }
     }
 }

@@ -4,4 +4,5 @@
     xmlns:local="using:AuebUnofficial.Helpers.HandlingUI">
     <FontFamily x:Key="FontAwesomeFontFamily">Assets/fonts/FontAwesome.otf#FontAwesome</FontFamily>
     <x:String x:Key="FontAwesomeFacebookString">&#xf230;</x:String>
+    <x:String x:Key="FontAwesomeTwitterString">&#xf242;</x:String>
 </ResourceDictionary>
