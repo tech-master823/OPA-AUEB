@@ -1,0 +1,6 @@
+language: csharp
+solution: AuebUnofficial.sln
+install:
+  - nuget restore AuebUnofficial.sln
+script:
+  - xbuild /p:Configuration=Release AuebUnofficial.sln
