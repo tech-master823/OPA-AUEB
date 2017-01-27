@@ -3,13 +3,11 @@ using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Xml;
 using System.Xml.Linq;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Windows.Web.Syndication;
 
 namespace AuebUnofficial.Viewers
 {
@@ -18,29 +16,32 @@ namespace AuebUnofficial.Viewers
         public AnouncementsEclass()
         {
             this.InitializeComponent();
+            this.Loaded += An_Loaded;
         }
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        private async void An_Loaded(object sender, RoutedEventArgs d)
         {
-            base.OnNavigatedTo(e);
+            EclassRssParser c;
+            var obj = App.Current as App;
+            UnameTblock.Text = "Username: " + obj.eclassUsername;
             string getit = await "https://eclass.aueb.gr/modules/mobile/mcourses.php"
-               .PostUrlEncodedAsync(new { token = (string)e.Parameter })
+               .PostUrlEncodedAsync(new { token = obj.eclassToken })
                .ReceiveString();
             XDocument coursex = XDocument.Load(GenerateStreamFromString(getit));
-            var ycourses = coursex.Root
-                  .Elements("coursegroup").Elements("course")
-                  .Select(x => new Course
-                  {
-                      Id = (string)x.Attribute("code"),
-                      Name = (string)x.Attribute("title"),
-                      Ans = new EclassRssParser("https://eclass.aueb.gr/modules/announcements/rss.php?c=" + ((string)x.Attribute("code").Value.Replace(@"\", string.Empty)))
-                  })
-                  .ToArray();
-            CoursesViewer.ItemsSource = ycourses;
-            //////////////////////////////////////////////////////////
+            var Ycourses = coursex.Root
+                 .Elements("coursegroup").Elements("course")
+                 .Select(x => new Course
+                 {
+                     Id = ((string)x.Attribute("code").Value.Replace(@"\", string.Empty)),
+                     Name = (string)x.Attribute("title"),
+                     Ans = c = new EclassRssParser("https://eclass.aueb.gr/modules/announcements/rss.php?c=" + ((string)x.Attribute("code").Value.Replace(@"\", string.Empty)))
+                     MyAnnouncements = c.Announcements,
+                     //LU2D=c.Announcements.ElementAt(0).DatePub,
+                     //NoAn=c.Announcements.Count
+                 })
+                 .ToArray();
             
-            //////////////////////////////////////////////////////////
+           CoursesViewer.ItemsSource = Ycourses;
         }
-
        
         private static Stream GenerateStreamFromString(string s)
         {
@@ -52,10 +53,13 @@ namespace AuebUnofficial.Viewers
             return stream;
         }
     }
-    class Course
+    public class Course
     {
         public string Id { get; set; }
         public string Name { get; set; }
-        public ObservableCollection<Announcements> Ans { get; set; }
+        public EclassRssParser Ans { get; set; }
+        public ObservableCollection<Announcement> MyAnnouncements { get; set;}
+        public string LU2D { get; set; }
+        public int NoAn { get; set; }
     }
 }

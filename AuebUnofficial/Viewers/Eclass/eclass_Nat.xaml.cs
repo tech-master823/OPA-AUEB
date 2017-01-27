@@ -23,7 +23,9 @@ namespace AuebUnofficial.Viewers
                 .ReceiveString();
             if (eclassOutput != ("FAILED") && eclassOutput!=("_"))
             {
-                ((Frame)Window.Current.Content).Navigate(typeof(Viewers.AnouncementsEclass),eclassOutput);
+                var obj = App.Current as App;
+                obj.eclassToken = eclassOutput; obj.eclassUsername = login.Text;
+                ((Frame)Window.Current.Content).Navigate(typeof(AnouncementsEclass));
             }else
             {
                 showPopupBtn_Click();
@@ -42,5 +44,12 @@ namespace AuebUnofficial.Viewers
             BlinkPopup.Begin();
             PopupTextBlock.Visibility = Visibility.Visible;
         }
+    }
+    //Object for passing 2 parameters
+    public class Parames
+    {
+        public string uname { get; set; }
+        public string token { get; set; }
+        public Parames() { }
     }
 }
