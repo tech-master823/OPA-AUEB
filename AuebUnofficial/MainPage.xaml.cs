@@ -25,14 +25,7 @@ namespace AuebUnofficial
 
         private void FBButton_Click(object sender, RoutedEventArgs e)
         {
-            if (ConnectionHelper.IsInternetAvailable == true)
-            {
-                ((Frame)Window.Current.Content).Navigate(typeof(Viewers.FbPageViewer));
-            }else if (ConnectionHelper.IsInternetAvailable == false)
-            {
-                ((Frame)Window.Current.Content).Navigate(typeof(RssViewer));
-            }
-
+            ((Frame)Window.Current.Content).Navigate(typeof(Viewers.FbPageViewer));
         }
         private void LiButton_Click(object sender, RoutedEventArgs e)
         {

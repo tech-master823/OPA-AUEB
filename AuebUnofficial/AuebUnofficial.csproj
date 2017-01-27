@@ -18,7 +18,7 @@
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <PackageCertificateKeyFile>AuebUnofficial_StoreKey.pfx</PackageCertificateKeyFile>
     <PackageCertificateThumbprint>430A099BB73C7FB0DBA1D1701FC387CDDEF97648</PackageCertificateThumbprint>
-    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxBundle>Auto</AppxBundle>
     <AppxBundlePlatforms>x86|arm</AppxBundlePlatforms>
     <AppxPackageDir>C:\Users\τασος\Desktop\Screenshots\AppPackages\</AppxPackageDir>
@@ -97,6 +97,7 @@
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <EmbeddedResource Include="Assets\LoxriOdhgosSp.pdf" />
     <EmbeddedResource Include="Assets\StatOdhgSpoudwn.pdf" />
+    <Content Include="Assets\eclass_aueb_logo.png" />
     <Content Include="Assets\fonts\FontAwesome.otf" />
     <None Include="AuebUnofficial_StoreKey.pfx" />
     <None Include="project.json" />

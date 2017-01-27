@@ -41,7 +41,7 @@ namespace AuebUnofficial
             //gettingResponseFromTxtAsString
             var handler = new HttpClientHandler { AllowAutoRedirect = true };
             var client = new HttpClient(handler);
-            var response = await client.GetAsync(new Uri("https://amoraitis.github.io/Portfolio/assets/programma.txt"));
+            var response = await client.GetAsync(new Uri("http://amoraitis.me/assets/programma.txt"));
             response.EnsureSuccessStatusCode();
             mystringtext = await response.Content.ReadAsStringAsync();
             //converts string to an array
@@ -63,6 +63,7 @@ namespace AuebUnofficial
 
             // Display the PDF document in PdfViewer
             pdfViewer.LoadDocument(loadedDocument);
+            httpClient.Dispose();
         }
         //This method changes the Header text when necessary and loading the other pdf in the pdfviewer
         //this method should unload the documents from memory, will be fixed in the future
@@ -132,13 +133,12 @@ namespace AuebUnofficial
                     pdfViewer.GotoPage(dateit.Pa);
             }
         }
-
-
         private async void ReportBug(object sender, RoutedEventArgs e)
         {
             await Windows.System.Launcher.LaunchUriAsync(new Uri("mailto:?to=anas.moraitis@gmail.com&subject=BugAtOrologio"));
             mail.Text = "\uE8C3";
         }
+
         //Adding Data of type "DatationType" in array data----adding fates in the table
         private void addDates()
         {

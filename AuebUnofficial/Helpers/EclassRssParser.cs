@@ -15,15 +15,26 @@ public class EclassRssParser : ObservableCollection<Announcements>
     }
     private async void loada(string struri)
     {
+        var mystringtext = "";
         var handler = new HttpClientHandler { AllowAutoRedirect = true };
         var client = new HttpClient(handler);
         var response = await client.GetAsync(new Uri(struri));
-        response.EnsureSuccessStatusCode();
-        var mystringtext = await response.Content.ReadAsStringAsync();
-        SyndicationFeed feed = new SyndicationFeed();
-        feed.Load(mystringtext);
-        if (feed != null)
+        if (response.IsSuccessStatusCode)
         {
+            response.EnsureSuccessStatusCode();
+            mystringtext = await response.Content.ReadAsStringAsync();
+        }
+
+        if (mystringtext.Equals(""))
+        {
+
+        }
+        else
+        {
+            SyndicationFeed feed = new SyndicationFeed();
+            feed.Load(mystringtext);
+            if (feed != null)
+            {
                 foreach (SyndicationItem item in feed.Items)
                 {
                     Announcements an = new Announcements();
@@ -33,7 +44,8 @@ public class EclassRssParser : ObservableCollection<Announcements>
                     //an.Link = item.Links[0].Uri;
                     this.loadData(an);
                 }
-         }
+            }
+        }
     }   
    
     public void loadData(Announcements announce)

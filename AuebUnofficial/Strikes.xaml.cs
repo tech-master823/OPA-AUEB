@@ -21,7 +21,7 @@ namespace AuebUnofficial
             if (mmm.Text.Equals("Απεργίες"))
             {
                 mmm.Text = "Μ.Μ.Μ.";
-                strikes.Source = new System.Uri("https://amoraitis.github.io/Portfolio/auebUnof.html");
+                strikes.Source = new System.Uri("http://amoraitis.me/auebUnof.html");
             }
             else                 
             {

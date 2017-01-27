@@ -20,15 +20,15 @@
             <RelativePanel HorizontalAlignment="Center" Background="White">
                 <Button Height="48" x:Name="reportbugbutton" HorizontalAlignment="Center" Background="White" Click="ReportBug">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                        <TextBlock x:Name="mail" Text="&#xE715;" FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                        <TextBlock Text="Ανάφερά προβλήματος!"/>
+                        <TextBlock x:Name="mail" Text="&#xE715;" FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Left" FontSize="35" VerticalAlignment="Center"/>
+                        <TextBlock Text="Αναφορά προβλήματος!" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Button>
-                <Button Height="48" Click="FBButton_Click" RelativePanel.RightOf="reportbugbutton" x:Name="fb" VerticalAlignment="Center">
+                <HyperlinkButton Height="48" Click="FBButton_Click" RelativePanel.RightOf="reportbugbutton" x:Name="fb" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <FontIcon FontFamily="{StaticResource FontAwesomeFontFamily}"
                         Glyph="{StaticResource FontAwesomeFacebookString}"
-                        FontSize="23" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                </Button>
+                        FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </HyperlinkButton>
                 <Button Height="48" Visibility="Collapsed" Click="LiButton_Click" RelativePanel.RightOf="fb" x:Name="li" VerticalAlignment="Center">
                     <FontIcon FontFamily="{StaticResource FontAwesomeFontFamily}"
                         Glyph="{StaticResource FontAwesomeFacebookString}"

@@ -5,6 +5,7 @@
     xmlns:local="using:AuebUnofficial"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:xaml="using:Microsoft.Toolkit.Uwp.Helpers"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d">
 
@@ -21,22 +22,22 @@
         </DataTemplate>
         <DataTemplate x:Name="AnnouncementsTemplate">
             <StackPanel Orientation="Vertical">
+                <WebView xaml:WebViewExtensions.Content="{Binding Title}" />
+                <WebView 
                 <TextBlock Text="{Binding Title}"/>
                 <TextBlock Text="{Binding Description}" TextWrapping="Wrap"/>
             </StackPanel>
         </DataTemplate>
     </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="48"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <controls:MasterDetailsView NoSelectionContent="Select an item to view"
                                     x:Name="CoursesViewer"
-                                    Foreground="Black" Grid.Row="1" Grid.Column="1"
+                                    Foreground="Black" Grid.Column="1"
                                     ItemTemplate="{StaticResource CoursesTemplate}">
         <controls:MasterDetailsView.DetailsTemplate>
             <DataTemplate>
