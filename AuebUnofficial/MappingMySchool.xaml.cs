@@ -26,13 +26,47 @@ namespace AuebUnofficial
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             // Specify a known location.
-            BasicGeoposition cityPosition = new BasicGeoposition() { Latitude = 37.994083, Longitude = 23.732421 };
-            Geopoint cityCenter = new Geopoint(cityPosition);
+            BasicGeoposition auebPosition = new BasicGeoposition() { Latitude = 37.994083, Longitude = 23.732421 };
+            Geopoint auebCenter = new Geopoint(auebPosition);
 
             //// Set the map location.
-            MapControl1.Center = cityCenter;
-            MapControl1.ZoomLevel = 15.5;
-            MapControl1.LandmarksVisible = true;
-        }       
+            AuebMap.Center = auebCenter;
+            AuebMap.ZoomLevel = 15.5;
+            AuebMap.LandmarksVisible = true;
+            displayPOI();
+        }
+
+        public void displayPOI()
+        {             
+            Poi myPoi = new Poi(new BasicGeoposition() { Latitude= 37.995912, Longitude= 23.739618 },
+                "Κέντρο Μεταπτυχιακών Σπουδών και Έρευνας");
+            AuebMap.MapElements.Add(myPoi.getMI());
+            myPoi = new Poi(new BasicGeoposition() { Latitude = 37.999265, Longitude = 23.732774 }, "ΕΛΚΕ & ACEin");
+            AuebMap.MapElements.Add(myPoi.getMI());
+            myPoi = new Poi(new BasicGeoposition() { Latitude = 37.995609, Longitude = 23.733104 }, "Κτήριο επί της οδού Κοδριγκτώνος");
+            AuebMap.MapElements.Add(myPoi.getMI());
+            myPoi = new Poi(new BasicGeoposition() { Latitude = 37.996121, Longitude = 23.737238 }, "Κτήριο επί της οδού Ύδρας");
+            AuebMap.MapElements.Add(myPoi.getMI());
+            myPoi = new Poi(new BasicGeoposition() { Latitude = 37.994716, Longitude = 23.732289 }, "Κτήριο επί της οδού Δεριγνύ");
+            AuebMap.MapElements.Add(myPoi.getMI());
+        }
+    }
+    public class Poi {
+        BasicGeoposition SnPosition { set; get; }
+        string Title { get; set; }
+        public Poi(BasicGeoposition snPotision, string title)
+        {
+            SnPosition = snPotision;
+            Title = title;                
+            mapicon.Location = new Geopoint(SnPosition);
+            mapicon.NormalizedAnchorPoint = new Point(0.5, 1.0);
+            mapicon.Title = Title;
+            mapicon.ZIndex = 0;
+        }
+        MapIcon mapicon = new MapIcon();
+        public MapIcon getMI()
+        {
+            return this.mapicon; 
+        }
     }
 }

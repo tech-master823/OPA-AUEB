@@ -16,10 +16,11 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Maps:MapControl
-               x:Name="MapControl1"           
+               x:Name="AuebMap"           
                ZoomInteractionMode="GestureAndControl"
                TiltInteractionMode="GestureAndControl"              
-               MapServiceToken="exwabraOkDmCtrgOa9nN~V5xijbYrAJsFeECSTlMEsw~AsDHnK9GzSuVBZRybOzPiqBKVlyZkRaLXeBnoVjMUBclm6hcuITz8onUfOw5TRPT" Grid.Column="1"/>
+               MapServiceToken="exwabraOkDmCtrgOa9nN~V5xijbYrAJsFeECSTlMEsw~AsDHnK9GzSuVBZRybOzPiqBKVlyZkRaLXeBnoVjMUBclm6hcuITz8onUfOw5TRPT" Grid.Column="1">
+        </Maps:MapControl>
         <local:Navig x:Name="hamburgerMenuControl" Grid.RowSpan="2" Grid.ColumnSpan="3"/>
     </Grid>
 </Page>

@@ -5,44 +5,69 @@
     xmlns:local="using:AuebUnofficial"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:xaml="using:Microsoft.Toolkit.Uwp.UI"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d">
 
     <Page.Resources>
         <DataTemplate x:Name="CoursesTemplate">
             <StackPanel Orientation="Vertical" >
-
-                <TextBlock Text="{Binding Name}" TextWrapping="Wrap" MaxLines="2"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>                   
+                    <TextBlock Text="{Binding Name}" TextWrapping="Wrap" MaxLines="2" FontSize="15" FontWeight="SemiBold"/>
+                    <TextBlock Visibility="Collapsed" Text="{Binding NoAn}" Grid.Column="1" HorizontalAlignment="Right" Foreground="Red" VerticalAlignment="Center"/>
+                </Grid>                
                 <RelativePanel>
                     <TextBlock Text="Κωδικός: " x:Name="code"/>
                     <TextBlock Text="{Binding Id}" RelativePanel.RightOf="code"/>
+                </RelativePanel>
+                <RelativePanel Visibility="Collapsed">
+                    <TextBlock Text="Last modified: " x:Name="LMod"/>
+                    <TextBlock Text="{Binding LU2D}" RelativePanel.RightOf="LMod"/>
                 </RelativePanel>
             </StackPanel>
         </DataTemplate>
         <DataTemplate x:Name="AnnouncementsTemplate">
             <StackPanel Orientation="Vertical">
-                <TextBlock Text="{Binding Title}"/>
+                <RelativePanel>
+                    <TextBlock Text="{Binding Title}" FontSize="19" Name="title" FontWeight="Black"/>
+                    <TextBlock Text="{Binding DatePub}" RelativePanel.Below="title"/>
+                </RelativePanel>
+                
                 <TextBlock Text="{Binding Description}" TextWrapping="Wrap"/>
             </StackPanel>
         </DataTemplate>
     </Page.Resources>
+    
+    
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="48"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <controls:MasterDetailsView NoSelectionContent="Select an item to view"
-                                    x:Name="CoursesViewer"
-                                    Foreground="Black" Grid.Row="1" Grid.Column="1"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="68"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="1">
+            <TextBlock FontSize="30" Text="Οι ανακοινώσεις μου"/>
+            <TextBlock x:Name="UnameTblock" FontSize="20" VerticalAlignment="Top"/>
+        </StackPanel>
+        <controls:MasterDetailsView x:Name="CoursesViewer"
+                                    Foreground="Black" Grid.Column="1" Grid.Row="1"                                    
                                     ItemTemplate="{StaticResource CoursesTemplate}">
+            <controls:MasterDetailsView.NoSelectionContent>
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Select a lesson to view each announcements!!" FontSize="40" FontWeight="Black"/>
+            </controls:MasterDetailsView.NoSelectionContent>
         <controls:MasterDetailsView.DetailsTemplate>
             <DataTemplate>
                 <ScrollViewer >
                     <ItemsControl Name="Display1">
-                        <ListView ItemTemplate="{StaticResource AnnouncementsTemplate}" ItemsSource="{Binding Ans}" x:Name="AnouncList" HorizontalAlignment="Left"/>
+                            <ListView ItemTemplate="{StaticResource AnnouncementsTemplate}" ItemsSource="{Binding MyAnnouncements}" x:Name="AnouncList" HorizontalAlignment="Left"/>
                     </ItemsControl>
                 </ScrollViewer>
             </DataTemplate>

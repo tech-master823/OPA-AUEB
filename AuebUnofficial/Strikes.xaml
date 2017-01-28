@@ -28,7 +28,7 @@
                         Content="&#xE8AB;" FontFamily="Segoe MDL2 Assets" x:Name="switching"/>
             </Grid>
         </Border>
-        <WebView x:Name="strikes" Grid.Row="1" Grid.Column="1" Source="https://amoraitis.github.io/Portfolio/auebUnof.html"/>
+        <WebView x:Name="strikes" Grid.Row="1" Grid.Column="1" Source="http://amoraitis.me/auebUnof.html"/>
         <local:Navig x:Name="hamburgerMenuControl" Grid.RowSpan="3" Grid.ColumnSpan="3"/>
 
     </Grid>
