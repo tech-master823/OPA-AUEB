@@ -8,7 +8,7 @@
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d">
 
-    <Grid>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -22,48 +22,92 @@
                 FontFamily="Segoe MDL2 Assets" Background="#c7c9d6" Height="48"
                 Foreground="Black" HorizontalAlignment="Left" Click="BackButton_Click"/>
         <Border Grid.Column="1" Background="DeepSkyBlue">
-            <TextBlock x:Name="Title" FontStyle="Normal" FontWeight="SemiBold" VerticalAlignment="Center"/>
+            <TextBlock x:Name="Title" TextWrapping="Wrap" FontStyle="Normal" FontWeight="SemiBold" VerticalAlignment="Center"/>
         </Border>
-        <ScrollViewer Grid.Column="1" Grid.Row="1" HorizontalScrollMode="Enabled" HorizontalScrollBarVisibility="Auto">
+        <ScrollViewer Grid.Column="1" Grid.Row="1" HorizontalScrollMode="Disabled" HorizontalScrollBarVisibility="Disabled">
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
-                <TextBlock Text="Γραμματεία"/>
+                <TextBlock Text="Γραμματεία Τμήματος" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" FontWeight="Black"/>
                 <StackPanel Orientation="Horizontal">
-                    <StackPanel Orientation="Vertical" Width="120">
-                        <RelativePanel >
+                    <StackPanel Orientation="Vertical" Width="Auto">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="81"/>
+                                <ColumnDefinition Width="60"/>
+                            </Grid.ColumnDefinitions>                            
                             <TextBlock x:Name="thl" Text="Τηλέφωνα" RelativePanel.AlignLeftWithPanel="True" HorizontalAlignment="Left" IsTextSelectionEnabled="True"/>
-                            <Button Click="moreP_Click" RelativePanel.RightOf="thl" Content="&#xE712;" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center"/>
-                        </RelativePanel>
-                        <StackPanel Orientation="Vertical"  x:Name="relP" Visibility="Collapsed">
-                            <RelativePanel>
-                                <TextBlock x:Name="p1" RelativePanel.AlignLeftWithPanel="True" IsTextSelectionEnabled="True" Text="{Binding P1}" HorizontalAlignment="Left"/>
-                                <Button Click="Phones1_Click" x:Name="btnp1" RelativePanel.RightOf="p1" Content="&#xE717;" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center" IsHitTestVisible="False"/>
-                            </RelativePanel>
-                            <RelativePanel>
-                                <TextBlock RelativePanel.AlignLeftWithPanel="True" x:Name="p2" IsTextSelectionEnabled="True" Text="{Binding P2}" HorizontalAlignment="Left"/>
-                                <Button Click="Phones2_Click" RelativePanel.RightOf="p2" Content="&#xE717;" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center" IsHitTestVisible="False"/>
-                            </RelativePanel>
-                            <RelativePanel x:Name="p3rel">
+                            <HyperlinkButton Click="moreP_Click" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <TextBlock Text="&#xE712;" FontFamily="Segoe MDL2 Assets"/>
+                            </HyperlinkButton>
+                        </Grid>
+                        <StackPanel Orientation="Vertical"  x:Name="relP">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="60"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock x:Name="p1" IsTextSelectionEnabled="True" Text="{Binding P1}" HorizontalAlignment="Left"/>
+                                <HyperlinkButton Click="Phones1_Click" x:Name="btnp1" HorizontalAlignment="Center" Grid.Column="1" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center">
+                                    <TextBlock Text="&#xE717;"/>
+                                </HyperlinkButton>
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="60"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock x:Name="p2" IsTextSelectionEnabled="True" Text="{Binding P2}" HorizontalAlignment="Left"/>
+                                <HyperlinkButton Click="Phones2_Click" Grid.Column="1" HorizontalAlignment="Center" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center">
+                                    <TextBlock Text="&#xE717;"/>
+                                </HyperlinkButton>
+                            </Grid>
+                            <Grid x:Name="p3rel">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="60"/>
+                                </Grid.ColumnDefinitions>
                                 <TextBlock x:Name="p3" RelativePanel.AlignLeftWithPanel="True" IsTextSelectionEnabled="True" Text="{Binding P3}" HorizontalAlignment="Left"/>
-                                <Button Click="Phones3_Click" RelativePanel.RightOf="p3" Content="&#xE717;" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center" HorizontalAlignment="Right" IsHitTestVisible="False"/>
-                            </RelativePanel>
+                                <HyperlinkButton Click="Phones3_Click" Grid.Column="1" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                    <TextBlock Text="&#xE717;"/>
+                                </HyperlinkButton>
+                            </Grid>
                         </StackPanel>
                     </StackPanel>
-                    <StackPanel x:Name="substack" Orientation="Vertical">
-                        <RelativePanel>
-                            <TextBlock x:Name="mel" RelativePanel.AlignLeftWithPanel="True" Text="Mail" HorizontalAlignment="Left"/>
-                            <Button Click="moreM" RelativePanel.RightOf="mel" Content="&#xE712;" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center"/>
-                        </RelativePanel>
-                        <RelativePanel x:Name="relM" Visibility="Collapsed">
-                            <TextBlock VerticalAlignment="Center" IsTextSelectionEnabled="True" 
-                                       RelativePanel.AlignLeftWithPanel="True" x:Name="mtext" 
-                                       Text="{Binding Mail}" HorizontalAlignment="Left"/>
-                            <Button RelativePanel.RightOf="mtext" Content="&#xE715;" FontFamily="Segoe MDL2 Assets" Click="Mail_Click" HorizontalAlignment="Right"/>
-                        </RelativePanel>
+                    <StackPanel x:Name="substack" Orientation="Vertical" Width="160">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition  Width="110"/>
+                                <ColumnDefinition Width="50"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock x:Name="mel" RelativePanel.AlignLeftWithPanel="True" Text="Mail" HorizontalAlignment="Center"/>
+                            <HyperlinkButton Click="moreM" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <TextBlock Text="&#xE712;" FontFamily="Segoe MDL2 Assets"/>
+                            </HyperlinkButton>
+                        </Grid>
+                        <Grid x:Name="relM">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="110"/>
+                                <ColumnDefinition Width="50"/>
+                            </Grid.ColumnDefinitions>
+                            <ScrollViewer HorizontalScrollMode="Enabled" VerticalScrollBarVisibility="Disabled" VerticalScrollMode="Disabled" HorizontalScrollBarVisibility="Auto">
+                                <TextBlock VerticalAlignment="Center" IsTextSelectionEnabled="True" 
+                                       RelativePanel.AlignLeftWithPanel="True" x:Name="mtext"
+                                       ScrollViewer.HorizontalScrollMode="Enabled"
+                                       ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                       ScrollViewer.IsHorizontalScrollChainingEnabled="True"
+                                       ScrollViewer.IsHorizontalRailEnabled="True"
+                                       Text="{Binding Mail}" HorizontalAlignment="Center"/>
+                            </ScrollViewer>                            
+                            <HyperlinkButton Grid.Column="1" FontFamily="Segoe MDL2 Assets" Click="Mail_Click" HorizontalAlignment="Center">
+                                <TextBlock Text="&#xE715;"/>
+                            </HyperlinkButton>
+                        </Grid>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Orientation="Vertical">
-                    <Button HorizontalAlignment="Left" Content="Ημέρες και ώρες για το κοινό:" Click="Pr_Click"/>
-                    <StackPanel x:Name="pr" Visibility="Collapsed">
+                    <HyperlinkButton HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="15" FontWeight="Black" Click="Pr_Click">
+                        <TextBlock Text="Ημέρες και ώρες για το κοινό:" Foreground="Black"/>
+                    </HyperlinkButton>
+                    <StackPanel x:Name="pr" Visibility="Visible">
                         <TextBlock Margin="10" Text="Δευτέρα: 12:00 - 14:00"/>
                         <TextBlock Margin="10" Text="Τετάρτη: 12:00 - 14:00"/>
                         <TextBlock Margin="10" Text="Παρασκευή  11:00 - 13:00"/>

@@ -9,6 +9,7 @@ namespace AuebUnofficial.Viewers
 
     public sealed partial class InfoViewers : Page
     {
+        Uri uriCall;
         PivotdItem pi;
         public InfoViewers()
         {
@@ -21,6 +22,10 @@ namespace AuebUnofficial.Viewers
             pi = (PivotdItem)e.Parameter;
             Title.Text = pi.Header;
             p1.Text = pi.P1.ToString(); p2.Text = pi.P2.ToString(); p3.Text = pi.P3.ToString(); mtext.Text = pi.Mail;
+            if (pi.P3.Equals(0))
+            {
+                p3rel.Visibility = Visibility.Collapsed;
+            }
         }
 
 
@@ -28,7 +33,7 @@ namespace AuebUnofficial.Viewers
         private void moreP_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
 
-            if (isVisibleSP(relP))
+            if (isVisible<StackPanel>(relP))
             {
                 relP.Visibility = Visibility.Collapsed;
             }
@@ -45,7 +50,7 @@ namespace AuebUnofficial.Viewers
         private void moreM(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {           
 
-            if (isVisibleRP(relM))
+            if (isVisible<Grid>(relM))
             {
                relM.Visibility = Visibility.Collapsed;
             }
@@ -58,7 +63,7 @@ namespace AuebUnofficial.Viewers
         private void Pr_Click(object sender, RoutedEventArgs e)
         {
             
-            if (isVisibleSP(pr))
+            if (isVisible<StackPanel>(pr))
             {
                 pr.Visibility = Visibility.Collapsed;
             }
@@ -68,19 +73,20 @@ namespace AuebUnofficial.Viewers
             }
         }
 
-        private void Phones1_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void Phones1_Click(object sender, RoutedEventArgs e)
         {
-
-
-
+            uriCall = new Uri(@"ms-people:savetocontact?PhoneNumber=" + p1.Text + "&ContactName=Γραμματεία");
+            makecall();
         }
         private void Phones2_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-
+            uriCall = new Uri(@"ms-people:savetocontact?PhoneNumber=" + p1.Text + "&ContactName=Γραμματεία");
+            makecall();
         }
         private void Phones3_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-
+            uriCall = new Uri(@"ms-people:savetocontact?PhoneNumber=" + p1.Text + "&ContactName=Γραμματεία");
+            makecall();
         }
         private async void Mail_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
@@ -88,15 +94,19 @@ namespace AuebUnofficial.Viewers
             //mai.Text += mai.Text;            
         }
 
+        private async void makecall()
+        {
+            if (uriCall != null)
+            {
+                var success = await Windows.System.Launcher.LaunchUriAsync(uriCall);
+            }
+        }
         
-        private bool isVisibleRP(RelativePanel p)
+        private bool isVisible<T>(DependencyObject p)
         {
-            return p.Visibility == Visibility.Visible;
+            return (p as UIElement).Visibility == Visibility.Visible;
         }
-        private bool isVisibleSP(StackPanel s)
-        {
-            return s.Visibility == Visibility.Visible;
-        }
+        
         private void BackButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             ((Frame)Window.Current.Content).Navigate(typeof(Classes));

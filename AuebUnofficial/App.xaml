@@ -5,9 +5,9 @@
     xmlns:local="using:AuebUnofficial"
     RequestedTheme="Light">
     <Application.Resources>
-        <ResourceDictionary>
+        <ResourceDictionary x:Name="Rs">
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Helpers\HandlingUI\FontAwesomeDictionary.xaml"/>
+                <ResourceDictionary x:Name="FontAwesome" Source="Helpers\HandlingUI\FontAwesomeDictionary.xaml"/>
                 
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

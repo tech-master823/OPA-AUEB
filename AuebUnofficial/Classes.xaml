@@ -14,7 +14,7 @@
 
     <Page.Resources>
         <DataTemplate x:Key="PhotosTemplate">
-            <Grid Width="205" Height="249" Background="#762124" BorderThickness="5" CornerRadius="25" BorderBrush="Black">
+            <Grid Width="Auto" Height="249" Background="#762124" BorderThickness="5" CornerRadius="25" BorderBrush="Black">
                 <TextBlock
                     Text="{Binding Header}"   
                     Foreground="Azure"
@@ -31,7 +31,7 @@
         </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="48"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <controls:AdaptiveGridView x:Name="control"
                                    ItemHeight="299"       
