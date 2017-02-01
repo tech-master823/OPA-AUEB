@@ -9,4 +9,13 @@
     <x:String x:Key="FontAwesomeForwardString">&#xf105;</x:String>
     <x:String x:Key="FontAwesomeUserString">&#xf0f0;</x:String>
     <x:String x:Key="FontAwesomeLockString">&#xf023;</x:String>
+    <x:String x:Key="FontAwesomeLoginString">&#xf090;</x:String>
+    <x:String x:Key="FontAwesomeAnnouncementString">&#xf0a1;</x:String>
+    <x:String x:Key="FontAwesomeHomeString">&#xf015;</x:String>
+    <x:String x:Key="FontAwesomeTrainString">&#xf207;</x:String>
+    <x:String x:Key="FontAwesomeCalendarString">&#xf073;</x:String>
+    <x:String x:Key="FontAwesomeMapString">&#xf041;</x:String>
+    <x:String x:Key="FontAwesomeContactInfoString">&#xf2bc;</x:String>
+    <x:String x:Key="FontAwesomeInfoString">&#xf05a;</x:String>
+
 </ResourceDictionary>

@@ -35,8 +35,7 @@
                 <RelativePanel>
                     <TextBlock Text="{Binding Title}" FontSize="19" Name="title" FontWeight="Black"/>
                     <TextBlock Text="{Binding DatePub}" RelativePanel.Below="title"/>
-                </RelativePanel>
-                
+                </RelativePanel>                
                 <TextBlock Text="{Binding Description}" TextWrapping="Wrap"/>
             </StackPanel>
         </DataTemplate>

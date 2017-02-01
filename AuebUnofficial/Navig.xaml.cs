@@ -12,14 +12,14 @@ namespace AuebUnofficial
             this.InitializeComponent();
             hamburgerMenuControl.ItemsSource = MenuItem.GetMainItems();
             hamburgerMenuControl.OptionsItemsSource = MenuItem.GetOptionsItems();
-            
+
         }
         private void OnMenuItemClick(object sender, ItemClickEventArgs e)
         {
             var menuItem = e.ClickedItem as MenuItem;
-            ((Frame)Window.Current.Content).Navigate(menuItem.PageType);       
+            ((Frame)Window.Current.Content).Navigate(menuItem.PageType);
         }
-        
+
     }
     public class MenuItem
     {
@@ -31,15 +31,17 @@ namespace AuebUnofficial
         {
             SymbolIcon train = new SymbolIcon();
             train.Symbol = (Symbol)0xE7C0;
-            
+            SymbolIcon login = new SymbolIcon();
+            login.Symbol = (Symbol)0xE8D4;
+
             var items = new List<MenuItem>();
             items.Add(new MenuItem() { Icon = Symbol.Home, Name = "Home", PageType = typeof(MainPage) });
             items.Add(new MenuItem() { Icon = Symbol.Bullets, Name = "Ανακοινώσεις", PageType = typeof(RssViewer) });
             items.Add(new MenuItem() { Icon = train.Symbol, Name = "Μ.Μ.Μ.", PageType = typeof(Strikes) });
-            items.Add(new MenuItem() { Icon = Symbol.Calendar, Name = "Ωρολόγιο", PageType = typeof(Orologio) });           
+            items.Add(new MenuItem() { Icon = Symbol.Calendar, Name = "Ωρολόγιο", PageType = typeof(Orologio) });
             items.Add(new MenuItem() { Icon = Symbol.ContactInfo, Name = "Πληροφορίες τμημάτων", PageType = typeof(Classes) });
-            items.Add(new MenuItem() { Icon = Symbol.Map, Name = "Map", PageType = typeof(MappingMySchool) });
-            items.Add(new MenuItem() { Icon = Symbol.Accept, Name = "Eclass", PageType = typeof(Viewers.eclass_Nat) });
+            //items.Add(new MenuItem() { Icon = Symbol.Map, Name = "Map", PageType = typeof(MappingMySchool) });
+            items.Add(new MenuItem() { Icon = login.Symbol, Name = "Eclass", PageType = typeof(Viewers.eclass_Nat) });
             return items;
         }
         //public static List<MenuItem> GetSubClassItems()

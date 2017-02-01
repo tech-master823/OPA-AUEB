@@ -33,8 +33,8 @@ namespace AuebUnofficial.Viewers
                  {
                      Id = ((string)x.Attribute("code").Value.Replace(@"\", string.Empty)),
                      Name = (string)x.Attribute("title"),
-                     Ans = c = new EclassRssParser("https://eclass.aueb.gr/modules/announcements/rss.php?c=" + ((string)x.Attribute("code").Value.Replace(@"\", string.Empty)))
-                     MyAnnouncements = c.Announcements,
+                     Ans = c = new EclassRssParser("https://eclass.aueb.gr/modules/announcements/rss.php?c=" + ((string)x.Attribute("code").Value.Replace(@"\", string.Empty))),
+                     MyAnnouncements = c.Announcements
                      //LU2D=c.Announcements.ElementAt(0).DatePub,
                      //NoAn=c.Announcements.Count
                  })
