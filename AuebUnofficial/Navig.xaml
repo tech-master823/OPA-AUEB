@@ -8,17 +8,17 @@
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:view="using:AuebUnofficial"
     mc:Ignorable="d">
-    <UserControl.Resources>        
+    <UserControl.Resources>
         <DataTemplate x:Key="DefaultTemplate" x:DataType="local:MenuItem">
             <Grid Width="240" Height="48">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="48" />
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <FontIcon Grid.Column="0" FontFamily="{StaticResource FontAwesomeFontFamily}" Glyph="{StaticResource ResourceKey=}" Foreground="White" />
+                <SymbolIcon Grid.Column="0" Symbol="{x:Bind Icon, Mode=OneWay}" Foreground="White" />
                 <TextBlock Grid.Column="1" Text="{x:Bind Name, Mode=OneWay}" TextWrapping="Wrap" FontSize="16" VerticalAlignment="Center" Foreground="White"/>
             </Grid>
-        </DataTemplate>        
+        </DataTemplate>
     </UserControl.Resources>
     <Grid>
         <controls:HamburgerMenu x:Name="hamburgerMenuControl"

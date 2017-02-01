@@ -12,31 +12,36 @@ namespace AuebUnofficial
             this.InitializeComponent();
             hamburgerMenuControl.ItemsSource = MenuItem.GetMainItems();
             hamburgerMenuControl.OptionsItemsSource = MenuItem.GetOptionsItems();
-            
+
         }
         private void OnMenuItemClick(object sender, ItemClickEventArgs e)
         {
             var menuItem = e.ClickedItem as MenuItem;
-            ((Frame)Window.Current.Content).Navigate(menuItem.PageType);       
+            ((Frame)Window.Current.Content).Navigate(menuItem.PageType);
         }
-        
+
     }
     public class MenuItem
     {
-        public string Icon { get; set; }
+        public Symbol Icon { get; set; }
         public string Name { get; set; }
         public Type PageType { get; set; }
 
         public static List<MenuItem> GetMainItems()
-        {            
+        {
+            SymbolIcon train = new SymbolIcon();
+            train.Symbol = (Symbol)0xE7C0;
+            SymbolIcon login = new SymbolIcon();
+            login.Symbol = (Symbol)0xE8D4;
+
             var items = new List<MenuItem>();
-            items.Add(new MenuItem() { Icon = "FontAwesomeHomeString", Name = "Home", PageType = typeof(MainPage) });
-            items.Add(new MenuItem() { Icon = "FontAwesomeAnnouncementString", Name = "Ανακοινώσεις", PageType = typeof(RssViewer) });
-            items.Add(new MenuItem() { Icon = "FontAwesomeTrainString", Name = "Μ.Μ.Μ.", PageType = typeof(Strikes) });
-            items.Add(new MenuItem() { Icon = "FontAwesomeCalendarString", Name = "Ωρολόγιο", PageType = typeof(Orologio) });           
-            items.Add(new MenuItem() { Icon = "FontAwesomeContactInfoString", Name = "Πληροφορίες τμημάτων", PageType = typeof(Classes) });
-            items.Add(new MenuItem() { Icon = "FontAwesomeMapString", Name = "Map", PageType = typeof(MappingMySchool) });
-            items.Add(new MenuItem() { Icon = "FontAwesomeLoginString", Name = "Eclass", PageType = typeof(Viewers.eclass_Nat) });
+            items.Add(new MenuItem() { Icon = Symbol.Home, Name = "Home", PageType = typeof(MainPage) });
+            items.Add(new MenuItem() { Icon = Symbol.Bullets, Name = "Ανακοινώσεις", PageType = typeof(RssViewer) });
+            items.Add(new MenuItem() { Icon = train.Symbol, Name = "Μ.Μ.Μ.", PageType = typeof(Strikes) });
+            items.Add(new MenuItem() { Icon = Symbol.Calendar, Name = "Ωρολόγιο", PageType = typeof(Orologio) });
+            items.Add(new MenuItem() { Icon = Symbol.ContactInfo, Name = "Πληροφορίες τμημάτων", PageType = typeof(Classes) });
+            //items.Add(new MenuItem() { Icon = Symbol.Map, Name = "Map", PageType = typeof(MappingMySchool) });
+            items.Add(new MenuItem() { Icon = login.Symbol, Name = "Eclass", PageType = typeof(Viewers.eclass_Nat) });
             return items;
         }
         //public static List<MenuItem> GetSubClassItems()
@@ -49,11 +54,10 @@ namespace AuebUnofficial
         //}
         public static List<MenuItem> GetOptionsItems()
         {
-            //<!--Glyph="{StaticResource ResourceKey={x:Bind Icon}}"-->
             SymbolIcon about = new SymbolIcon();
             about.Symbol = (Symbol)0xE946;
             var items = new List<MenuItem>();
-            items.Add(new MenuItem() { Icon = "FontAwesomeInfoString", Name = "About", PageType = typeof(About) });
+            items.Add(new MenuItem() { Icon = about.Symbol, Name = "About", PageType = typeof(About) });
             return items;
         }
     }

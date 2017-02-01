@@ -24,7 +24,7 @@ namespace AuebUnofficial
 
         private async void HyperlinkButton_Click(object sender, RoutedEventArgs e)
         {
-            var uriBing = new Uri("https://amoraitis.github.io/Portfolio/");
+            var uriBing = new Uri("http://amoraitis.me");
 
             // Launch the URI
             var success = await Windows.System.Launcher.LaunchUriAsync(uriBing);
