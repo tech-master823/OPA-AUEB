@@ -1,4 +1,4 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/vmmo9imc98ce57g2?svg=true)](https://ci.appveyor.com/project/amoraitis/auebunofficial)
+[![Build status](https://ci.appveyor.com/api/projects/status/vmmo9imc98ce57g2?svg=true)](https://ci.appveyor.com/project/amoraitis/auebunofficial) [![codecov](https://codecov.io/gh/amoraitis/AuebUnofficial/branch/master/graph/badge.svg)](https://codecov.io/gh/amoraitis/AuebUnofficial)
 # ΟΠΑ-AUEB
 ΟΠΑ-AUEB is a Universal Windows Platform  app for AUEB students
 # Windows 10 Store
