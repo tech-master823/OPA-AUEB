@@ -1,4 +1,5 @@
- # ΟΠΑ-AUEB [![Build status](https://ci.appveyor.com/api/projects/status/vmmo9imc98ce57g2?svg=true)](https://ci.appveyor.com/project/amoraitis/auebunofficial)
+[![Build status](https://ci.appveyor.com/api/projects/status/vmmo9imc98ce57g2?svg=true)](https://ci.appveyor.com/project/amoraitis/auebunofficial)
+# ΟΠΑ-AUEB
 ΟΠΑ-AUEB is a Universal Windows Platform  app for AUEB students
 # Windows 10 Store
 <a href="https://www.microsoft.com/el-gr/store/p/aueb-unofficial/9nblggh5384p" target="_blank"><img src="http://amoraitis.me/img/English_Get_it_Win_10_864X312.png"></a>
