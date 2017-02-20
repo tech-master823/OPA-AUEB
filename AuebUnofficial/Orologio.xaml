@@ -53,7 +53,7 @@
                 <ComboBox x:Name="cb2"/>
             </StackPanel>
             <Button Name="go" Content="Go!" Background="Azure" Tapped="Button_Tapped" HorizontalAlignment="Center"/>
-            <Button HorizontalAlignment="Center" Background="Azure" Click="ReportBug">
+            <Button HorizontalAlignment="Center" IsHitTestVisible="False" Background="Azure" Click="ReportBug">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock x:Name="mail" Text="&#xE715;" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center"/>
                     <TextBlock Text="Πρόβλημα;"/>

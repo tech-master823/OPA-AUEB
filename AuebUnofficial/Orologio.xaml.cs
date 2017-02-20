@@ -56,8 +56,9 @@ namespace AuebUnofficial
             // Get the PDF document in byte array
             contentBytesx1 = await httpClient.GetByteArrayAsync(x1);
             contentBytesx2 = await httpClient.GetByteArrayAsync(x2);
-            //secures an exception thrown by clicking switchview without the pdf downloaded
+            //secures an exception thrown by clicking switchview && go! btn without the pdf downloaded
             switching.IsHitTestVisible = true;
+            go.IsHitTestVisible = true;
             // Load the Byte array
             PdfLoadedDocument loadedDocument = new PdfLoadedDocument(contentBytesx1);
 
