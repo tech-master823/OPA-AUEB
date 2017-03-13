@@ -1,4 +1,6 @@
-﻿public class CBoxSource
+﻿using System;
+
+public class CBoxSource
 {
     string[] cbox1 = new string[8];
     string[] cbox2 = new string[4];
@@ -33,7 +35,17 @@
     }
     public int getTable(int i)
     {
-        return go[i];
+        DateTime now = DateTime.Now;
+        string a = now.Year.ToString();
+        DateTime endSpringSemester = new DateTime(int.Parse(a),08,20);
+        DateTime springSemester = new DateTime(int.Parse(a),02,24);
+        if (now >= springSemester && now <= endSpringSemester&&i>=12)
+        {
+            return go[i]-1;
+        }else
+        {
+            return go[i];
+        }
     }
     public CBoxSource()
     {
