@@ -102,19 +102,18 @@ namespace AuebUnofficial
         private async void InitNotificationsAsync()
         {
             var channel = await PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync();
-
             var hub = new NotificationHub("AuebUnofficial", "Endpoint=sb://auebunofficial.servicebus.windows.net/;SharedAccessKeyName=DefaultListenSharedAccessSignature;SharedAccessKey=uIzQvWCv0QkBvpV9uHS78dObqB40m0BcfA9+6GTPQfM=");
             var result = await hub.RegisterNativeAsync(channel.Uri);
 
-            // Displays the registration ID so you know it was successful
+            /** Displays the registration ID so you know it was successful
             if (result.RegistrationId != null)
             {
                 var dialog = new MessageDialog("Registration successful: " + result.RegistrationId);
                 dialog.Commands.Add(new UICommand("OK"));
                 await dialog.ShowAsync();
-                //TODO: !visible dialog
+                // !visible dialog
             }
-
+            **/
         }
     }
     
