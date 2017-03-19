@@ -1,4 +1,0 @@
-language: csharp
-solution: AuebUnofficial.sln
-install:
-  - nuget restore AuebUnofficial.sln
