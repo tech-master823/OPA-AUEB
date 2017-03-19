@@ -1,19 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.Networking.PushNotifications;
+using Microsoft.WindowsAzure.Messaging;
+using Windows.UI.Popups;
 
 namespace AuebUnofficial
 {
@@ -33,7 +26,7 @@ namespace AuebUnofficial
             this.InitializeComponent();
             this.Suspending += OnSuspending;
         }
-       
+
 
 
         /// <summary>
@@ -41,7 +34,7 @@ namespace AuebUnofficial
         /// will be used such as when the application is launched to open a specific file.
         /// </summary>
         /// <param name="e">Details about the launch request and process.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
@@ -57,7 +50,6 @@ namespace AuebUnofficial
             {
                 // Create a Frame to act as the navigation context and navigate to the first page
                 rootFrame = new Frame();
-
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
@@ -81,6 +73,7 @@ namespace AuebUnofficial
                 // Ensure the current window is active
                 Window.Current.Activate();
             }
+            InitNotificationsAsync();
         }
 
         /// <summary>
@@ -106,7 +99,22 @@ namespace AuebUnofficial
             //TODO: Save application state and stop any background activity
             deferral.Complete();
         }
-        
+        private async void InitNotificationsAsync()
+        {
+            var channel = await PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync();
+            var hub = new NotificationHub("AuebUnofficial", "Endpoint=sb://auebunofficial.servicebus.windows.net/;SharedAccessKeyName=DefaultListenSharedAccessSignature;SharedAccessKey=uIzQvWCv0QkBvpV9uHS78dObqB40m0BcfA9+6GTPQfM=");
+            var result = await hub.RegisterNativeAsync(channel.Uri);
+
+            /** Displays the registration ID so you know it was successful
+            if (result.RegistrationId != null)
+            {
+                var dialog = new MessageDialog("Registration successful: " + result.RegistrationId);
+                dialog.Commands.Add(new UICommand("OK"));
+                await dialog.ShowAsync();
+                // !visible dialog
+            }
+            **/
+        }
     }
     
 }
