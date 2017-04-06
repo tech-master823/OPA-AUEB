@@ -9,7 +9,7 @@ namespace AuebUnofficial.Viewers
     public sealed partial class RSSArtViewer : Page
     {
 
-        Article article;
+        public Article article { get; set; }
         public RSSArtViewer()
         {
             this.InitializeComponent();
@@ -22,7 +22,6 @@ namespace AuebUnofficial.Viewers
             article = (Article)e.Parameter;
             title.Text = article.Title;
             pub.Text = article.PubDate;
-            des.Text = article.Description;
         }
 
         private void BButton_Click(object sender, RoutedEventArgs e)

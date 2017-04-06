@@ -114,6 +114,7 @@
     </Compile>
     <Compile Include="Helpers\AddingInfos.cs" />
     <Compile Include="Helpers\ArticlesDataSource.cs" />
+    <Compile Include="Helpers\BindableBase.cs" />
     <Compile Include="Helpers\CBoxSource.cs" />
     <Compile Include="Helpers\DefPack.cs" />
     <Compile Include="Helpers\DeviceTypeHelper.cs" />
@@ -295,6 +296,9 @@
     <SDKReference Include="Microsoft.VCLibs, Version=14.0">
       <Name>Visual C++ 2015 Runtime for Universal Windows Platform Apps</Name>
     </SDKReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

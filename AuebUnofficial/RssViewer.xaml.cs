@@ -22,12 +22,12 @@ namespace AuebUnofficial
         
         void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
-            articles = new ArticlesDataSource("http://www.aueb.gr/pages/news/RSS/anakoinoseis_akad.xml");
+            articles = new ArticlesDataSource("https://www.aueb.gr/news/rss/neatmimatwn");
             ListView.ItemsSource = articles;
         }
         void MainPage_Loades1(object sender, RoutedEventArgs e)
         {
-            articles1 = new ArticlesDataSource("http://aueb.gr/pages/news/RSS/anakoinoseis_pryt.xml");
+            articles1 = new ArticlesDataSource("https://www.aueb.gr/news/rss/neaprytaneia");
             ListView1.ItemsSource = articles1;
         }
         public void setArt(ListView l)
