@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="16625AnastasiosMoraitis.Auebunofficial" Publisher="CN=9A53872C-F0D7-4BFC-9FD1-FD7917957BC4" Version="3.9.25.0" />
+  <Identity Name="16625AnastasiosMoraitis.Auebunofficial" Publisher="CN=9A53872C-F0D7-4BFC-9FD1-FD7917957BC4" Version="3.9.27.0" />
   <mp:PhoneIdentity PhoneProductId="9d7ba28b-86fa-437c-92a1-9f48ce8f58a8" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>ΟΠΑ-AUEB</DisplayName>
@@ -25,6 +25,13 @@
         </uap:DefaultTile>
         <uap:SplashScreen Image="Assets\Splash620x300.png" BackgroundColor="#000000" />
       </uap:VisualElements>
+      <Extensions>
+        <Extension Category="windows.backgroundTasks" EntryPoint="StartUpTask.AnalyticsTask">
+          <BackgroundTasks>
+            <Task Type="systemEvent" />
+          </BackgroundTasks>
+        </Extension>
+      </Extensions>
     </Application>
   </Applications>
   <Capabilities>

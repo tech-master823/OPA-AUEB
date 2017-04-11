@@ -7,6 +7,7 @@ using Windows.UI.Xaml.Navigation;
 using Windows.Networking.PushNotifications;
 using Microsoft.WindowsAzure.Messaging;
 using Windows.UI.Popups;
+using Windows.ApplicationModel.Background;
 
 namespace AuebUnofficial
 {
@@ -17,6 +18,8 @@ namespace AuebUnofficial
     {
         public string eclassUsername { get; set; }
         public string eclassToken { get; set; }
+        bool taskRegistered = false;
+        string analyticsTask = "AnalyticsTask";
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -34,7 +37,7 @@ namespace AuebUnofficial
         /// will be used such as when the application is launched to open a specific file.
         /// </summary>
         /// <param name="e">Details about the launch request and process.</param>
-        protected override async void OnLaunched(LaunchActivatedEventArgs e)
+        protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
@@ -56,7 +59,7 @@ namespace AuebUnofficial
                 {
                     //TODO: Load state from previously suspended application
                 }
-
+                
                 // Place the frame in the current Window
                 Window.Current.Content = rootFrame;
             }
@@ -74,6 +77,7 @@ namespace AuebUnofficial
                 Window.Current.Activate();
             }
             InitNotificationsAsync();
+            findTask();
         }
 
         /// <summary>
@@ -115,6 +119,26 @@ namespace AuebUnofficial
             }
             **/
         }
+        private void findTask()
+        {
+            foreach (var task in BackgroundTaskRegistration.AllTasks)
+            {
+                if(task.Value.Name == analyticsTask)
+                {
+                    taskRegistered = true;
+                    break;
+                }
+            }
+            if (taskRegistered == false)
+            {
+                var builder = new BackgroundTaskBuilder();
+                builder.Name = analyticsTask;
+                builder.TaskEntryPoint = "StartUpTask.AnalyticsTask";
+                builder.SetTrigger(new SystemTrigger(SystemTriggerType.TimeZoneChange, false));
+                BackgroundTaskRegistration task = builder.Register();
+            }
+        }
+
     }
     
 }
