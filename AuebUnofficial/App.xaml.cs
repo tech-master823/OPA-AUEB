@@ -8,6 +8,7 @@ using Windows.Networking.PushNotifications;
 using Microsoft.WindowsAzure.Messaging;
 using Windows.UI.Popups;
 using Windows.ApplicationModel.Background;
+using Microsoft.HockeyApp;
 
 namespace AuebUnofficial
 {
@@ -18,8 +19,6 @@ namespace AuebUnofficial
     {
         public string eclassUsername { get; set; }
         public string eclassToken { get; set; }
-        bool taskRegistered = false;
-        string analyticsTask = "AnalyticsTask";
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -46,6 +45,8 @@ namespace AuebUnofficial
             }
 #endif
             Frame rootFrame = Window.Current.Content as Frame;
+
+            HockeyClient.Current.Configure("ed13dc112c814fb682ccf3a06864a1e5");
 
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
@@ -77,7 +78,6 @@ namespace AuebUnofficial
                 Window.Current.Activate();
             }
             InitNotificationsAsync();
-            findTask();
         }
 
         /// <summary>
@@ -118,25 +118,6 @@ namespace AuebUnofficial
                 // !visible dialog
             }
             **/
-        }
-        private void findTask()
-        {
-            foreach (var task in BackgroundTaskRegistration.AllTasks)
-            {
-                if(task.Value.Name == analyticsTask)
-                {
-                    taskRegistered = true;
-                    break;
-                }
-            }
-            if (taskRegistered == false)
-            {
-                var builder = new BackgroundTaskBuilder();
-                builder.Name = analyticsTask;
-                builder.TaskEntryPoint = "StartUpTask.AnalyticsTask";
-                builder.SetTrigger(new SystemTrigger(SystemTriggerType.TimeZoneChange, false));
-                BackgroundTaskRegistration task = builder.Register();
-            }
         }
 
     }

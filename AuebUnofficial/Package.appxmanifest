@@ -26,7 +26,7 @@
         <uap:SplashScreen Image="Assets\Splash620x300.png" BackgroundColor="#000000" />
       </uap:VisualElements>
       <Extensions>
-        <Extension Category="windows.backgroundTasks" EntryPoint="StartUpTask.AnalyticsTask">
+        <Extension Category="windows.backgroundTasks" EntryPoint="AuebUnofficial.Tasks.AnalyticsTask">
           <BackgroundTasks>
             <Task Type="systemEvent" />
           </BackgroundTasks>
