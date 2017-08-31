@@ -9,6 +9,8 @@ using Microsoft.WindowsAzure.Messaging;
 using Windows.UI.Popups;
 using Windows.ApplicationModel.Background;
 using Microsoft.HockeyApp;
+using Microsoft.Azure.Mobile;
+using Microsoft.Azure.Mobile.Analytics;
 
 namespace AuebUnofficial
 {
@@ -46,8 +48,9 @@ namespace AuebUnofficial
 #endif
             Frame rootFrame = Window.Current.Content as Frame;
 
+#if (!DEBUG)
             HockeyClient.Current.Configure("ed13dc112c814fb682ccf3a06864a1e5");
-
+#endif
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
             if (rootFrame == null)
@@ -77,6 +80,9 @@ namespace AuebUnofficial
                 // Ensure the current window is active
                 Window.Current.Activate();
             }
+#if (!DEBUG)
+            MobileCenter.Start("bc8e0447-700a-4e68-a274-4cab46a9eac2", typeof(Analytics));
+#endif
             InitNotificationsAsync();
         }
 

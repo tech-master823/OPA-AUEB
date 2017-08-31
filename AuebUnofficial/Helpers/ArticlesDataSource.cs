@@ -2,9 +2,7 @@
 using System;
 using System.Collections.ObjectModel;
 using Windows.Web.Syndication;
-using HtmlAgilityPack;
 using System.Text.RegularExpressions;
-using System.Linq;
 
 public class ArticlesDataSource : ObservableCollection<Article>
 {

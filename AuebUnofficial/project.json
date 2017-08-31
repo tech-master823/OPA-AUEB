@@ -1,10 +1,11 @@
 ﻿{
   "dependencies": {
-    "Flurl.Http": "1.1.2",
+    "Flurl.Http": "1.2.0",
     "HockeySDK.UWP": "4.1.6",
-    "Microsoft.NETCore.UniversalWindowsPlatform": "5.3.2",
-    "Microsoft.Toolkit.Uwp": "1.4.1",
-    "Microsoft.Toolkit.Uwp.UI.Controls": "1.4.1",
+    "Microsoft.Azure.Mobile.Analytics": "0.14.2",
+    "Microsoft.NETCore.UniversalWindowsPlatform": "5.4.0",
+    "Microsoft.Toolkit.Uwp": "2.0.0",
+    "Microsoft.Toolkit.Uwp.UI.Controls": "2.0.0",
     "WindowsAppStudio.DataProviders": "1.5.1",
     "WindowsAzure.Messaging.Managed": "0.1.7.9",
     "WindowsStateTriggers": "1.1.0"

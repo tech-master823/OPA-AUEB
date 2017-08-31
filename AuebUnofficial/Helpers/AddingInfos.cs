@@ -11,7 +11,7 @@ public class AddingInfos
         {2108203314, 2108203315,2108203316},
         { 2108203111,2108203112 ,2108203113 } };
     string[] mails = new string[] { "deossecr@aueb.gr", "econ@aueb.gr","dmst@aueb.gr","ode@aueb.gr","accfin@aueb.gr","secretary.marketing@aueb.gr","infotech@aueb.gr","prosec@aueb.gr" };
-    string[] spoydes = new string[] { "0","0", "http://www.dmst.aueb.gr/Documents/OdSpoud_2015-2016_GR.pdf", "http://www.ode.aueb.gr/images/PROGRAM_2015-16.pdf", "AuebUnofficial.Assets.LoxriOdhgosSp.pdf", "http://www.mbc.aueb.gr/Documents/useful/Odigos_Spoudon_2016_17.pdf", "http://www.cs.aueb.gr/sites/default/files/CSOdigosSpoudon2016-17.pdf", "AuebUnofficial.Assets.StatOdhgSpoudwn.pdf" };
+    string[] spoydes = new string[] { "0","0", "http://195.251.255.130/sites/default/files/dmst/OdSpoud_2015-2016_GR.pdf", "https://www.dept.aueb.gr/odigoi/PROGRAM_2014-15.pdf", "AuebUnofficial.Assets.LoxriOdhgosSp.pdf", "https://www.dept.aueb.gr/sites/default/files/mbc/Odigos_Spoudon_2016_17_IAN2017.pdf", "https://www.dept.aueb.gr/sites/default/files/cs/CS_Manuals/CS_StudyGuide2016-17.pdf", "AuebUnofficial.Assets.StatOdhgSpoudwn.pdf" };
 
     private ObservableCollection<PivotdItem> items;
     public ObservableCollection<PivotdItem> TabControlItems
