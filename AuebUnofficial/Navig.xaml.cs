@@ -7,6 +7,7 @@ namespace AuebUnofficial
 {
     public sealed partial class Navig : UserControl
     {
+        App myapp = App.Current as App;
         public Navig()
         {
             this.InitializeComponent();
@@ -33,7 +34,6 @@ namespace AuebUnofficial
             train.Symbol = (Symbol)0xE7C0;
             SymbolIcon login = new SymbolIcon();
             login.Symbol = (Symbol)0xE8D4;
-
             var items = new List<MenuItem>();
             items.Add(new MenuItem() { Icon = Symbol.Home, Name = "Home", PageType = typeof(MainPage) });
             items.Add(new MenuItem() { Icon = Symbol.Bullets, Name = "Ανακοινώσεις", PageType = typeof(RssViewer) });

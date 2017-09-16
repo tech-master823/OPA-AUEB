@@ -47,7 +47,7 @@ public class EclassRssParser
 
         if (mystringtext.Equals(""))
         {
-            Announcements.Add(new Announcement("Sorry, lesson: not open!", ""));
+            Announcements=null;
         }
         else
         {

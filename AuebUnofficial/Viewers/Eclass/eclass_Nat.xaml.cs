@@ -24,7 +24,7 @@ namespace AuebUnofficial.Viewers
             if (eclassOutput != ("FAILED") && eclassOutput!=("_"))
             {
                 var obj = App.Current as App;
-                obj.eclassToken = eclassOutput; obj.eclassUsername = login.Text;
+                obj.eclassToken = eclassOutput; obj.eclassUsername = login.Text; obj.eclassPass = pass.Password;
                 ((Frame)Window.Current.Content).Navigate(typeof(AnouncementsEclass));
             }else
             {

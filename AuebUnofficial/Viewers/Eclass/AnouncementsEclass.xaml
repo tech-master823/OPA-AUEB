@@ -52,27 +52,36 @@
             <RowDefinition Height="68"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Column="1">
+        <StackPanel Grid.Column="1" HorizontalAlignment="Center">
             <TextBlock FontSize="30" Text="Οι ανακοινώσεις μου"/>
-            <TextBlock x:Name="UnameTblock" FontSize="20" VerticalAlignment="Top"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock x:Name="UnameTblock" Text="Username: p3140138" FontSize="20" VerticalAlignment="Top" Width="Auto"/>
+                <ProgressRing x:Name="ProgressUpdate" IsActive="True" FontSize="20"/>
+            </StackPanel>            
         </StackPanel>
         <controls:MasterDetailsView x:Name="CoursesViewer"
-                                    Foreground="Black" Grid.Column="1" Grid.Row="1"                                    
+                                    IsHitTestVisible="False"
+                                    Visibility="Collapsed"
+                                    Foreground="Black" Grid.Column="1" Grid.Row="1"                             
                                     ItemTemplate="{StaticResource CoursesTemplate}">
             <controls:MasterDetailsView.NoSelectionContent>
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Select a lesson to view each announcements!!" FontSize="40" FontWeight="Black"/>
+                <StackPanel Orientation="Vertical">
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Select a lesson to view each announcements!!" FontSize="40" FontWeight="Black" TextWrapping="WrapWholeWords"/>
+                    
+                </StackPanel>
             </controls:MasterDetailsView.NoSelectionContent>
         <controls:MasterDetailsView.DetailsTemplate>
-            <DataTemplate>
+            <DataTemplate x:DataType="local:Course">
                 <ScrollViewer >
                     <ItemsControl Name="Display1">
-                            <ListView ItemTemplate="{StaticResource AnnouncementsTemplate}" ItemsSource="{Binding MyAnnouncements}" x:Name="AnouncList" HorizontalAlignment="Left"/>
+                            <ListView ItemTemplate="{StaticResource AnnouncementsTemplate}" ItemsSource="{x:Bind MyAnnouncements, Mode=OneWay}" x:Name="AnouncList" HorizontalAlignment="Left"/>
                     </ItemsControl>
                 </ScrollViewer>
             </DataTemplate>
         </controls:MasterDetailsView.DetailsTemplate>       
         </controls:MasterDetailsView>
-
+        <WebView x:Name="ResponceCode" Width="0" Height="0" Visibility="Collapsed" LoadCompleted="ResponceCode_LoadCompleted" ScriptNotify="ResponceCode_ScriptNotify"
+                 />
         <local:Navig x:Name="hamburgerMenuControl" Grid.RowSpan="2" Grid.ColumnSpan="3"/>
     </Grid>
 </Page>
