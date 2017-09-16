@@ -26,11 +26,16 @@ namespace AuebUnofficial.Viewers
         public AnouncementsEclass()
         {
             this.InitializeComponent();
+            this.NavigationCacheMode = NavigationCacheMode.Enabled;
             this.Loaded += An_LoadedAsync;
         }
 
         private async void correctCourses()
         {
+            CoursesViewer.IsHitTestVisible = false;
+            ProgressUpdate.IsActive = true;
+            ProgressUpdate.Visibility = Visibility.Visible;
+            CoursesViewer.Visibility = Visibility.Collapsed;
             if (obj.eclassUID == null)
             {              
                 obj.eclassUID = eclassUID;
@@ -175,11 +180,16 @@ namespace AuebUnofficial.Viewers
                 return "";
             }
         }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            //if(count!=0)correctCourses();
+        }
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             base.OnNavigatedFrom(e);
-            this.Content = null;
         }
+       
     }
     
 

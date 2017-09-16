@@ -9,12 +9,26 @@ namespace AuebUnofficial.Viewers
 
     public sealed partial class eclass_Nat : Page
     {
+        private App obj = App.Current as App;
         private string eclassOutput = "_";
         public eclass_Nat()
         {
-            this.InitializeComponent();            
+            this.InitializeComponent();
+            this.NavigationCacheMode = NavigationCacheMode.Enabled;
+            this.Loaded += Eclass_Nat_Loaded;
         }
 
+        private void Eclass_Nat_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (obj.eclassToken != null)
+            {
+                login.Text = obj.eclassUsername;
+                pass.Password = obj.eclassPass;
+                ((Frame)Window.Current.Content).Navigate(typeof(AnouncementsEclass));
+
+            }
+        }
+        
         private async void ButtonClick(object sender, RoutedEventArgs e)
         {
             Login.IsEnabled = false; back.IsEnabled = false;
@@ -22,8 +36,7 @@ namespace AuebUnofficial.Viewers
                 .PostUrlEncodedAsync(new { uname = login.Text, pass = pass.Password })
                 .ReceiveString();
             if (eclassOutput != ("FAILED") && eclassOutput!=("_"))
-            {
-                var obj = App.Current as App;
+            {                
                 obj.eclassToken = eclassOutput; obj.eclassUsername = login.Text; obj.eclassPass = pass.Password;
                 ((Frame)Window.Current.Content).Navigate(typeof(AnouncementsEclass));
             }else

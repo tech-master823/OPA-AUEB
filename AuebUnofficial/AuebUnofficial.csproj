@@ -132,6 +132,7 @@
       <DependentUpon>MappingMySchool.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\AnnouncementToken.cs" />
+    <Compile Include="Model\Day2Day.cs" />
     <Compile Include="Navig.xaml.cs">
       <DependentUpon>Navig.xaml</DependentUpon>
     </Compile>
