@@ -46,7 +46,7 @@
         <StackPanel x:Name="combost" Background="White" Visibility="Visible" Grid.Row="1" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <TextBlock  x:Name="school" Text="Τμήμα: " Foreground="Black" FontWeight="SemiBold"/>
-                <ComboBox x:Name="cb1" />
+                <ComboBox x:Name="cb1"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <TextBlock x:Name="year" Text="Έτος: " Foreground="Black" FontWeight="SemiBold"/>

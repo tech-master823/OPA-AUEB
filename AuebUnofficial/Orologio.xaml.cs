@@ -67,6 +67,8 @@ namespace AuebUnofficial
             // Display the PDF document in PdfViewer
             pdfViewer.LoadDocument(loadedDocument);
             httpClient.Dispose();
+            cb1.SelectedIndex = 0;
+            cb2.SelectedIndex = 0;
         }
         //This method changes the Header text when necessary and loading the other pdf in the pdfviewer
         //TODO: this method should unload the documents from memory, will be fixed in the future
@@ -79,8 +81,8 @@ namespace AuebUnofficial
                 orologio.Text = "Πρόγραμμα Εξεταστικής";
                 combost.Visibility = Visibility.Collapsed;
                 datepick.Visibility = Visibility.Visible;
-                cb1.SelectedItem = null;
-                cb2.SelectedItem = null;
+                cb1.SelectedIndex = 0;
+                cb2.SelectedIndex = 0;
                 pdfViewer.GotoPage(1);
                 // Load the Byte array
                 PdfLoadedDocument loadedDocument = new PdfLoadedDocument(contentBytesx2);
@@ -123,9 +125,18 @@ namespace AuebUnofficial
         //This method gets the ComboBoxItem selected from the user and changes the page in the PdfViewer
         private void Button_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
         {
+            int x = -1;
             ComboboxItem car1 = (ComboboxItem)cb1.SelectedItem;
             ComboboxItem car2 = (ComboboxItem)cb2.SelectedItem;
-            int x = 4 * (car1.Value) + (car2.Value);
+            //if(car1==null || car2 == null)
+            //{
+            //    x = 0;
+            //}
+            //else
+            //{
+                x = 4 * (car1.Value) + (car2.Value);
+            //}
+            
             pdfViewer.GotoPage(cb.getTable(x));
 
         }
