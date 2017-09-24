@@ -5,8 +5,8 @@
     xmlns:local="using:AuebUnofficial"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:syncfusion="using:Syncfusion.Windows.PdfViewer"
     xmlns:triggers="using:WindowsStateTriggers"
+    xmlns:syncfusion="using:Syncfusion.Windows.PdfViewer"
     mc:Ignorable="d">
     <Page.DataContext>
         <local:PdfReport/>
@@ -61,9 +61,9 @@
             </Button>
         </StackPanel>
 
-
-        <syncfusion:SfPdfViewerControl Visibility="Visible" x:Name="pdfViewer"
-                                           Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2"/>
+        <syncfusion:SfPdfViewerControl Visibility="Visible" x:Name="pdfViewer" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2"/>
+        <!--syncfusion:SfPdfViewerControl Visibility="Visible" x:Name="pdfViewer"
+                                           Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2"/-->
         <local:Navig x:Name="hamburgerMenuControl" Grid.RowSpan="3" Grid.ColumnSpan="3"/>
 
 
