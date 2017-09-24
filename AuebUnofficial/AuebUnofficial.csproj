@@ -103,6 +103,34 @@
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <EmbeddedResource Include="Assets\LoxriOdhgosSp.pdf" />
     <EmbeddedResource Include="Assets\StatOdhgSpoudwn.pdf" />
+    <None Include="..\Packages\Syncfusion.Pdf.UWP.dll">
+      <Link>Syncfusion.Pdf.UWP.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Packages\Syncfusion.SfColorPickers.UWP.dll">
+      <Link>Syncfusion.SfColorPickers.UWP.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Packages\Syncfusion.SfInput.UWP.dll">
+      <Link>Syncfusion.SfInput.UWP.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Packages\Syncfusion.SfPdfViewer.UWP.dll">
+      <Link>Syncfusion.SfPdfViewer.UWP.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Packages\Syncfusion.SfRadialMenu.UWP.dll">
+      <Link>Syncfusion.SfRadialMenu.UWP.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Packages\Syncfusion.SfShared.UWP.dll">
+      <Link>Syncfusion.SfShared.UWP.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Packages\Syncfusion.SfTabControl.UWP.dll">
+      <Link>Syncfusion.SfTabControl.UWP.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="Assets\eclass_aueb_logo.png" />
     <Content Include="Assets\fonts\FontAwesome.otf" />
     <None Include="AuebUnofficial_StoreKey.pfx" />
