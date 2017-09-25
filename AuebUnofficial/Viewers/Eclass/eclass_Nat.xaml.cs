@@ -16,6 +16,7 @@ namespace AuebUnofficial.Viewers
             this.InitializeComponent();
             this.NavigationCacheMode = NavigationCacheMode.Enabled;
             this.Loaded += Eclass_Nat_Loaded;
+            CoreWindow.GetForCurrentThread().KeyDown+= PasswordKeyDown;
         }
 
         private void Eclass_Nat_Loaded(object sender, RoutedEventArgs e)
@@ -28,34 +29,44 @@ namespace AuebUnofficial.Viewers
 
             }
         }
-        
-        private async void ButtonClick(object sender, RoutedEventArgs e)
+
+        private void ButtonClick(object sender, RoutedEventArgs e)
         {
-            Login.IsEnabled = false; back.IsEnabled = false;
-            eclassOutput = await "https://eclass.aueb.gr/modules/mobile/mlogin.php"
-                .PostUrlEncodedAsync(new { uname = login.Text, pass = pass.Password })
-                .ReceiveString();
-            if (eclassOutput != ("FAILED") && eclassOutput!=("_"))
-            {                
-                obj.eclassToken = eclassOutput; obj.eclassUsername = login.Text; obj.eclassPass = pass.Password;
-                ((Frame)Window.Current.Content).Navigate(typeof(AnouncementsEclass));
-            }else
-            {
-                showPopupBtn_Click();
-            }
-            Login.IsEnabled = true; back.IsEnabled = true;
+            Login();
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            Login.IsEnabled = false; back.IsEnabled = false;
+            LoginBtn.IsEnabled = false; back.IsEnabled = false;
             if (this.Frame.CanGoBack) this.Frame.GoBack();
-            Login.IsEnabled = true;  back.IsEnabled = true;
+            LoginBtn.IsEnabled = true;  back.IsEnabled = true;
         }
         private void showPopupBtn_Click()
         {
             BlinkPopup.Begin();
             PopupTextBlock.Visibility = Visibility.Visible;
+        }
+        private async void Login()
+        {
+            LoginBtn.IsEnabled = false; back.IsEnabled = false;
+            eclassOutput = await "https://eclass.aueb.gr/modules/mobile/mlogin.php"
+                .PostUrlEncodedAsync(new { uname = login.Text, pass = pass.Password })
+                .ReceiveString();
+            if (eclassOutput != ("FAILED") && eclassOutput != ("_"))
+            {
+                obj.eclassToken = eclassOutput; obj.eclassUsername = login.Text; obj.eclassPass = pass.Password;
+                ((Frame)Window.Current.Content).Navigate(typeof(AnouncementsEclass));
+            }
+            else
+            {
+                showPopupBtn_Click();
+            }
+            LoginBtn.IsEnabled = true; back.IsEnabled = true;
+        }
+        private void PasswordKeyDown(CoreWindow sender, KeyEventArgs e)
+        {
+            if (e.VirtualKey == Windows.System.VirtualKey.Enter)
+                Login();
         }
     }
     //Object for passing 2 parameters

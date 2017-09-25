@@ -88,7 +88,8 @@
                 </Border>
                 <Border Height="10" Grid.Row="2"/>
                 <Border CornerRadius="5" Grid.Row="3" BorderBrush="#58B957" BorderThickness="1" Background="#58B957">
-                    <HyperlinkButton x:Name="Login" HorizontalAlignment="Stretch" Click="ButtonClick" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" Background="#58B957" Foreground="White">
+                    <HyperlinkButton x:Name="LoginBtn" HorizontalAlignment="Stretch" Click="ButtonClick" VerticalAlignment="Center" 
+                                     FontWeight="Bold" FontSize="14" Background="#58B957" Foreground="White" ToolTipService.ToolTip="Enter">
                         <TextBlock Text="Log in"/>
                     </HyperlinkButton>
                 </Border>           

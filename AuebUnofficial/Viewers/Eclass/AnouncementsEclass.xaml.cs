@@ -19,7 +19,7 @@ namespace AuebUnofficial.Viewers
     {
         private int count = 0;
         Model.AnnouncementToken announcementToken;
-        private Course[] Ycourses;
+        private ObservableCollection<Course> Ycourses;
         private string eclassUID="", courseCodeRequested;
         private App obj = App.Current as App;
         private EclassRssParser c;
@@ -76,6 +76,8 @@ namespace AuebUnofficial.Viewers
          
         private async void An_LoadedAsync(object sender, RoutedEventArgs d)
         {
+            if (Ycourses == null) Ycourses = new ObservableCollection<Course>();
+            else return;
             await FilCoursesAsync();
             ResponceCode.Navigate(new Uri("https://eclass.aueb.gr"));
 
@@ -87,7 +89,7 @@ namespace AuebUnofficial.Viewers
                .PostUrlEncodedAsync(new { token = obj.eclassToken })
                .ReceiveString();
             XDocument coursex = XDocument.Load(GenerateStreamFromString(getit));
-            Ycourses = coursex.Root
+            coursex.Root
                  .Elements("coursegroup").Elements("course")
                  .Select(x => new Course
                  {
@@ -97,8 +99,7 @@ namespace AuebUnofficial.Viewers
                      MyAnnouncements = c.Announcements
                      //LU2D=c.Announcements.ElementAt(0).DatePub,
                      //NoAn=c.Announcements.Count
-                 })
-                 .ToArray();
+                 }).ToList().ForEach(course => this.Ycourses.Add(course));
             courseCodeRequested = Ycourses.Last().Id;
             CoursesViewer.ItemsSource = Ycourses;
         }
