@@ -24,22 +24,21 @@
                         <TextBlock Text="Αναφορά προβλήματος!" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Button>
-                <HyperlinkButton Height="48" Click="FBButton_Click" RelativePanel.RightOf="reportbugbutton" x:Name="fb" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <HyperlinkButton Height="48" Width="48" Click="FBButton_Click" RelativePanel.RightOf="reportbugbutton" x:Name="fb" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <FontIcon FontFamily="{StaticResource FontAwesomeFontFamily}"
                         Glyph="{StaticResource FontAwesomeFacebookString}"
-                        FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#FF043963"/>
                 </HyperlinkButton>
                 <Button Height="48" Visibility="Collapsed" Click="LiButton_Click" RelativePanel.RightOf="fb" x:Name="li" VerticalAlignment="Center">
                     <FontIcon FontFamily="{StaticResource FontAwesomeFontFamily}"
                         Glyph="{StaticResource FontAwesomeFacebookString}"
                         FontSize="23" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </Button>
-                <Button Height="48" Visibility="Collapsed" Click="TwiButton_Click" RelativePanel.RightOf="li" VerticalAlignment="Center">
+                <HyperlinkButton Height="48" Width="48" Visibility="Visible" Click="TwiButton_Click" RelativePanel.RightOf="li" VerticalAlignment="Center">
                     <FontIcon FontFamily="{StaticResource FontAwesomeFontFamily}"
                         Glyph="{StaticResource FontAwesomeTwitterString}"
-                        FontSize="23" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                </Button>
-
+                        FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </HyperlinkButton>
             </RelativePanel>
         </Border>
         <WebView NavigationFailed="auebgr_NavigationFailed" NavigationCompleted="auebgr_NavigationCompleted" x:Name="auebgr" Grid.Column="1" Grid.Row="1" 
@@ -49,5 +48,5 @@
 
 
     </Grid>
-    
+
 </Page>

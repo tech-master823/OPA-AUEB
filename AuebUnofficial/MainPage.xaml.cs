@@ -41,5 +41,6 @@ namespace AuebUnofficial
             auebgr.Visibility = Visibility.Collapsed;      
             auebgr.Navigate(new Uri("http://www.aueb.gr"));
         }
+        
     }
 }

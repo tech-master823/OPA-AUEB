@@ -1,0 +1,34 @@
+﻿<Page
+    x:Class="AuebUnofficial.Viewers.CommonWebView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AuebUnofficial.Viewers"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Border Height="Auto">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <HyperlinkButton Click="Close_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0">
+                    <FontIcon FontFamily="{StaticResource FontAwesomeFontFamily}"
+                                        Glyph="{StaticResource FontAwesomeCancelString}" HorizontalAlignment="Center" VerticalAlignment="Top"
+                                        FontSize="30" Foreground="Black"/>
+                </HyperlinkButton>
+                <StackPanel Orientation="Vertical" Grid.Column="1">
+                    <TextBlock x:Name="Header" FontSize="{StaticResource TextStyleLargeFontSize}"/>
+                    <TextBlock x:Name="Website" FontWeight="ExtraLight"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+        <WebView x:Name="SiteView" Grid.Row="1"/>
+    </Grid>
+</Page>

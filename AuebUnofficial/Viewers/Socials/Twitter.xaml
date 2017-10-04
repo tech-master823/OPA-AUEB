@@ -10,42 +10,65 @@
 
     <Page.Resources>
         <DataTemplate x:Key="PostsTemplate">
-            <Grid
+            <Grid                
                 Background="White"
-                BorderBrush="Black"
-                BorderThickness="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
+                BorderThickness="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <controls:RoundImageEx
+                    Source="{Binding User.ProfileImageUrl}"
+                    Stretch="Fill"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    CornerRadius="25"
+                    Height="50"
+                    Width="50"/>
                 <TextBlock
-                    Text="{Binding Text}"                    
+                    Grid.Column="1"
+                    Text="{Binding Text}" TextWrapping="Wrap"             
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"/>
-                <controls:ImageEx
-                                            Source="{Binding UserProfileImageUrl}"
-                                            Grid.Row="1"
-                                            Stretch="UniformToFill"
-                                            HorizontalAlignment="Center"
-                                            Height="140"
-                                            VerticalAlignment="Center"/>
+                <TextBlock
+                    Grid.Column="2"
+                    Text="{Binding Id}"/>
             </Grid>
         </DataTemplate>
     </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Button Content="back" Width="48" VerticalAlignment="Top" Click="Back_Button_Click"/>
-        <controls:AdaptiveGridView x:Name="control"
-                                   Grid.Column="1"
-                                   OneRowModeEnabled="False"
-                                   ItemsSource="{Binding Items}"
-                                   ItemHeight="230"
-                                   DesiredWidth="257"
-                                   SelectionMode="Single"
-                                   IsItemClickEnabled="False"
-                                   ItemTemplate="{StaticResource PostsTemplate}"/>
+        <ListView x:Name="TwitterFeed"
+                  ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                  SelectionMode="Single"
+                  IsTapEnabled="False"
+                  IsItemClickEnabled="True"
+                  ItemClick="TwitterFeed_ItemClick"
+                  
+                  ItemTemplate="{StaticResource PostsTemplate}">
+            <ListView.Header>
+                <controls:ScrollHeader Mode="Sticky" TargetListViewBase="{x:Bind TwitterFeed}">
+                    <StackPanel Orientation="Vertical" Background="#FF0078D7">
+                        <Grid>
+                            <HyperlinkButton Click="Button_Click" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                <FontIcon FontFamily="{StaticResource FontAwesomeFontFamily}"
+                                        Glyph="{StaticResource FontAwesomeBackString}" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                        FontSize="36" Foreground="Black"/>
+                            </HyperlinkButton>
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Twitter Feed"
+                                       FontSize="{StaticResource ListViewHeaderItemThemeFontSize}" Foreground="White"/>
+                            <HyperlinkButton Click="Button_Click" HorizontalAlignment="Right" VerticalAlignment="Center">
+                                <FontIcon FontFamily="{StaticResource FontAwesomeFontFamily}"
+                                        Glyph="{StaticResource FontAwesomeRefreshString}" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                        FontSize="28" Foreground="Black"/>
+                            </HyperlinkButton>
+                        </Grid>
+                        <TextBlock HorizontalAlignment="Center" Foreground="White" Text="Tag:@aueb  Hashtags:#exetastiki" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </controls:ScrollHeader>
+            </ListView.Header>
+        </ListView>
     </Grid>
 </Page>

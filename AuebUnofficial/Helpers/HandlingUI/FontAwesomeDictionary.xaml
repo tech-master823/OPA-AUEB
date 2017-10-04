@@ -4,7 +4,7 @@
     xmlns:local="using:AuebUnofficial.Helpers.HandlingUI">
     <FontFamily x:Key="FontAwesomeFontFamily">Assets/fonts/FontAwesome.otf#FontAwesome</FontFamily>
     <x:String x:Key="FontAwesomeFacebookString">&#xf230;</x:String>
-    <x:String x:Key="FontAwesomeTwitterString">&#xf242;</x:String>
+    <x:String x:Key="FontAwesomeTwitterString">&#xf081;</x:String>
     <x:String x:Key="FontAwesomeBackString">&#xf104;</x:String>
     <x:String x:Key="FontAwesomeForwardString">&#xf105;</x:String>
     <x:String x:Key="FontAwesomeUserString">&#xf0f0;</x:String>
@@ -17,5 +17,6 @@
     <x:String x:Key="FontAwesomeMapString">&#xf041;</x:String>
     <x:String x:Key="FontAwesomeContactInfoString">&#xf2bc;</x:String>
     <x:String x:Key="FontAwesomeInfoString">&#xf05a;</x:String>
-
+    <x:String x:Key="FontAwesomeRefreshString">&#xf021;</x:String>
+    <x:String x:Key="FontAwesomeCancelString">&#xf00d;</x:String>
 </ResourceDictionary>

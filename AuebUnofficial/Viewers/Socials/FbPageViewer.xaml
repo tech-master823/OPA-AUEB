@@ -27,7 +27,8 @@
                     TextWrapping="Wrap"/>
                 <controls:ImageEx Source="{Binding ImageUrl}"
                                   Grid.Row="1"
-                                  Stretch="UniformToFill"
+                                  Stretch="Uniform"
+                                  Height="Auto"
                                   HorizontalAlignment="Center"
                                   VerticalAlignment="Center"/>
                 <TextBlock Text="{Binding PublishDate}" 

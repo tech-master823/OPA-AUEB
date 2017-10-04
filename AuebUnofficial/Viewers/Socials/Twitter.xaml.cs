@@ -1,81 +1,55 @@
 ﻿using Windows.UI.Xaml.Controls;
-using AppStudio.DataProviders.Twitter;
+using Microsoft.Toolkit.Uwp.Services;
 using System.Collections.ObjectModel;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
+using Microsoft.Toolkit.Uwp.Services.Twitter;
+using Windows.UI.Core;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System;
+using Windows.UI;
 
 namespace AuebUnofficial.Viewers.Socials
 {
-
+    
     public sealed partial class Twitter : Page
     {
-        private TwitterDataProvider _twitterDataProvider;
+        ObservableCollection<Tweet> items = null;
         public Twitter()
         {
-            this.InitializeComponent(); this.DataContext = this;
+            this.InitializeComponent();
+            this.NavigationCacheMode = NavigationCacheMode.Enabled;
+            this.DataContext = this;            
+            this.Loaded += Twitter_LoadedAsync;
         }
 
-        public ObservableCollection<object> Items
+        private async void Twitter_LoadedAsync(object sender, RoutedEventArgs e)
         {
-            get { return (ObservableCollection<object>)GetValue(ItemsProperty); }
-            set { SetValue(ItemsProperty, value); }
-        }
-
-        public static readonly DependencyProperty ItemsProperty = DependencyProperty
-            .Register(nameof(Items), typeof(ObservableCollection<object>), typeof(Twitter), new PropertyMetadata(null));
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            this.Items = new ObservableCollection<object>();
-            GetItems();
-        }
-
-        public async void GetItems()
-        {
-            string consumerKey = "5zcs3Bp2kTlrsDUsMDv5BYfND";
-            string consumerSecret = "oZDbzyY6xmPJVskIUx0pyA4VlB6XdMQHPb4sjHDxUshgCStxzf";
-            string accessToken = "	248216142-jMUS9hvL97gu8fwCpkD7XqkyDBfJypvvogNybchv";
-            string accessTokenSecret = "coDm0ePUoWIXlIH5v46jDJFUYANVG4SvGADrUL5Kf8aSQ";
-            string twitterQueryParam = "WindowsAppStudio";
-            TwitterQueryType queryType = TwitterQueryType.Search;
-            int maxRecordsParam = 12;
-
-            Items.Clear();
-
-            _twitterDataProvider = new TwitterDataProvider(new TwitterOAuthTokens
+            if (items == null)
             {
-                AccessToken = accessToken,
-                AccessTokenSecret = accessTokenSecret,
-                ConsumerKey = consumerKey,
-                ConsumerSecret = consumerSecret
-            });
+                items = new ObservableCollection<Tweet>();
+                // Initialize service
+                TwitterService.Instance.Initialize("5zcs3Bp2kTlrsDUsMDv5BYfND", "oZDbzyY6xmPJVskIUx0pyA4VlB6XdMQHPb4sjHDxUshgCStxzf", "http://auebunofficialapi.azurewebsites.net/");
 
-            var config = new TwitterDataConfig
-            {
-                Query = twitterQueryParam,
-                QueryType = queryType
-            };
-            
-            var items = await _twitterDataProvider.LoadDataAsync(config, maxRecordsParam);
-            foreach (var item in items)
-            {
-                Items.Add(item);
+                // Search for a specific tag
+                (await TwitterService.Instance.SearchAsync("aueb", 50)).ToList().ForEach(i => items.Add(i));
+                (await TwitterService.Instance.SearchAsync("#exetastiki", 50)).ToList().ForEach(i => items.Add(i));
+                items.OrderBy(t => t.CreationDate);
+                TwitterFeed.ItemsSource = items;
             }
         }
 
-        private async void GetMoreItems()
-        {
-            var items = await _twitterDataProvider.LoadMoreDataAsync();
-
-            foreach (var item in items)
-            {
-                Items.Add(item);
-            }
-        }
-        private void Back_Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             if (this.Frame.CanGoBack)
-                Frame.GoBack();
+                Frame.GoBack(); 
         }
+
+        private void TwitterFeed_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            ((Frame)Window.Current.Content).Navigate(typeof(CommonWebView), (Tweet)e.ClickedItem);
+            
     }
 }
