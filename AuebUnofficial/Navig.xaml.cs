@@ -1,5 +1,7 @@
-﻿using System;
+﻿using AuebUnofficial.Viewers;
+using System;
 using System.Collections.Generic;
+using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -15,10 +17,19 @@ namespace AuebUnofficial
             hamburgerMenuControl.OptionsItemsSource = MenuItem.GetOptionsItems();
 
         }
-        private void OnMenuItemClick(object sender, ItemClickEventArgs e)
+        private async void OnMenuItemClick(object sender, ItemClickEventArgs e)
         {
             var menuItem = e.ClickedItem as MenuItem;
-            ((Frame)Window.Current.Content).Navigate(menuItem.PageType);
+            if (menuItem.PageType == typeof(ReviewOnStore))
+            {
+                ReviewOnStore review = new ReviewOnStore();
+                await review.ShowAsync();
+
+            }
+            else
+            {
+                ((Frame)Window.Current.Content).Navigate(menuItem.PageType);
+            }
         }
 
     }
@@ -57,6 +68,7 @@ namespace AuebUnofficial
             SymbolIcon about = new SymbolIcon();
             about.Symbol = (Symbol)0xE946;
             var items = new List<MenuItem>();
+            items.Add(new MenuItem() { Icon = Symbol.Like, Name = "Review", PageType = typeof(ReviewOnStore) });
             items.Add(new MenuItem() { Icon = about.Symbol, Name = "About", PageType = typeof(About) });
             return items;
         }

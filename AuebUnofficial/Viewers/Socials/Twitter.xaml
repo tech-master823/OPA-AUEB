@@ -10,31 +10,33 @@
 
     <Page.Resources>
         <DataTemplate x:Key="PostsTemplate">
-            <Grid                
-                Background="White"
-                BorderThickness="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <controls:RoundImageEx
-                    Source="{Binding User.ProfileImageUrl}"
-                    Stretch="Fill"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    CornerRadius="25"
-                    Height="50"
-                    Width="50"/>
-                <TextBlock
-                    Grid.Column="1"
-                    Text="{Binding Text}" TextWrapping="Wrap"             
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"/>
-                <TextBlock
-                    Grid.Column="2"
-                    Text="{Binding Id}"/>
-            </Grid>
+            <RelativePanel
+                    Background="White"
+                    BorderThickness="0">
+                    
+                    <controls:RoundImageEx
+                        x:Name="ProfileImage"
+                        Source="{Binding User.ProfileImageUrl}"
+                        Stretch="Uniform"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        CornerRadius="150"
+                        Height="50"
+                        Width="50"
+                        Margin="0,20,20,0"/>
+                    <TextBlock
+                        x:Name="Text"
+                        Text="{Binding Text}" TextWrapping="Wrap"             
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        RelativePanel.RightOf="ProfileImage"
+                        Margin="0,20,0,0"/>
+                    <TextBlock                        
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Text="{Binding CreatedAt, Mode=TwoWay}"                        
+                        RelativePanel.Below="Text" RelativePanel.RightOf="ProfileImage"/>
+                </RelativePanel>
         </DataTemplate>
     </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -46,8 +48,8 @@
                   IsTapEnabled="False"
                   IsItemClickEnabled="True"
                   ItemClick="TwitterFeed_ItemClick"
-                  
-                  ItemTemplate="{StaticResource PostsTemplate}">
+                  ItemTemplate="{StaticResource PostsTemplate}"
+                  ItemContainerStyle="{StaticResource ListViewItemExpanded}">
             <ListView.Header>
                 <controls:ScrollHeader Mode="Sticky" TargetListViewBase="{x:Bind TwitterFeed}">
                     <StackPanel Orientation="Vertical" Background="#FF0078D7">
@@ -59,11 +61,11 @@
                             </HyperlinkButton>
                             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Twitter Feed"
                                        FontSize="{StaticResource ListViewHeaderItemThemeFontSize}" Foreground="White"/>
-                            <HyperlinkButton Click="Button_Click" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <!--HyperlinkButton Click="Button_Click" HorizontalAlignment="Right" VerticalAlignment="Center">
                                 <FontIcon FontFamily="{StaticResource FontAwesomeFontFamily}"
                                         Glyph="{StaticResource FontAwesomeRefreshString}" HorizontalAlignment="Center" VerticalAlignment="Center"
                                         FontSize="28" Foreground="Black"/>
-                            </HyperlinkButton>
+                            </-->
                         </Grid>
                         <TextBlock HorizontalAlignment="Center" Foreground="White" Text="Tag:@aueb  Hashtags:#exetastiki" TextWrapping="Wrap"/>
                     </StackPanel>

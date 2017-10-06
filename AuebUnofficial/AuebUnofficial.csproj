@@ -183,6 +183,9 @@
     <Compile Include="Viewers\Eclass\eclass_Nat.xaml.cs">
       <DependentUpon>eclass_Nat.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Viewers\ReviewOnStore.xaml.cs">
+      <DependentUpon>ReviewOnStore.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Viewers\Socials\FbPageViewer.xaml.cs">
       <DependentUpon>FbPageViewer.xaml</DependentUpon>
     </Compile>
@@ -275,6 +278,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Viewers\Eclass\eclass_Nat.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Viewers\ReviewOnStore.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

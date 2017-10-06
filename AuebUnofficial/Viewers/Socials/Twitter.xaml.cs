@@ -13,7 +13,7 @@ using Windows.UI;
 
 namespace AuebUnofficial.Viewers.Socials
 {
-    
+
     public sealed partial class Twitter : Page
     {
         ObservableCollection<Tweet> items = null;
@@ -21,7 +21,7 @@ namespace AuebUnofficial.Viewers.Socials
         {
             this.InitializeComponent();
             this.NavigationCacheMode = NavigationCacheMode.Enabled;
-            this.DataContext = this;            
+            this.DataContext = this;
             this.Loaded += Twitter_LoadedAsync;
         }
 
@@ -34,9 +34,10 @@ namespace AuebUnofficial.Viewers.Socials
                 TwitterService.Instance.Initialize("5zcs3Bp2kTlrsDUsMDv5BYfND", "oZDbzyY6xmPJVskIUx0pyA4VlB6XdMQHPb4sjHDxUshgCStxzf", "http://auebunofficialapi.azurewebsites.net/");
 
                 // Search for a specific tag
-                (await TwitterService.Instance.SearchAsync("aueb", 50)).ToList().ForEach(i => items.Add(i));
-                (await TwitterService.Instance.SearchAsync("#exetastiki", 50)).ToList().ForEach(i => items.Add(i));
+                (await TwitterService.Instance.SearchAsync("#exetastiki", 20)).ToList().ForEach(i => items.Add(i));
+                (await TwitterService.Instance.SearchAsync("@aueb", 50)).ToList().ForEach(i => items.Add(i));
                 items.OrderBy(t => t.CreationDate);
+                items.ToList().ForEach(t => t.CreatedAt = "Published at " + t.CreationDate.ToString("dd/MM/yyyy HH:mm"));
                 TwitterFeed.ItemsSource = items;
             }
         }
@@ -44,12 +45,12 @@ namespace AuebUnofficial.Viewers.Socials
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             if (this.Frame.CanGoBack)
-                Frame.GoBack(); 
+                Frame.GoBack();
         }
 
         private void TwitterFeed_ItemClick(object sender, ItemClickEventArgs e)
         {
             ((Frame)Window.Current.Content).Navigate(typeof(CommonWebView), (Tweet)e.ClickedItem);
-            
+        }
     }
 }
