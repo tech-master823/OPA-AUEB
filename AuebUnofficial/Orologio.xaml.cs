@@ -12,14 +12,23 @@ using Flurl.Http;
 using System.Linq;
 using Newtonsoft.Json;
 using AuebUnofficial.Model;
+using System.Diagnostics;
+using Syncfusion.UI.Xaml.Controls.Navigation;
+using AuebUnofficial.Viewers;
+using System.Drawing;
+using Windows.UI.Xaml.Media.Imaging;
+using Windows.ApplicationModel.DataTransfer;
 
 namespace AuebUnofficial
 {
 
     public sealed partial class Orologio : Page
     {
-        CBoxSource cb = new CBoxSource();
-        string x1 = "", x2 = "";
+        private CBoxSource _cb = new CBoxSource();
+        private string x1 = "", x2 = "";
+        private int _PdfCurrentPage { get; set; }
+        public Stream CurrentPageStream { get; private set; }
+        public Image CurrentPageImage { get; set; }
         public Orologio()
         {
             this.InitializeComponent();
@@ -58,9 +67,6 @@ namespace AuebUnofficial
             // Get the PDF document in byte array
             contentBytesx1 = await httpClient.GetByteArrayAsync(x1);
             contentBytesx2 = await httpClient.GetByteArrayAsync(x2);
-            //secures an exception thrown by clicking switchview && go! btn without the pdf downloaded
-            switching.IsHitTestVisible = true;
-            go.IsHitTestVisible = true;
             // Load the Byte array
             PdfLoadedDocument loadedDocument = new PdfLoadedDocument(contentBytesx1);
 
@@ -69,6 +75,12 @@ namespace AuebUnofficial
             httpClient.Dispose();
             cb1.SelectedIndex = 0;
             cb2.SelectedIndex = 0;
+            _PdfCurrentPage = 0;
+            CurrentPageStream = await pdfViewer.ExportAsImage(0);
+            //secures an exception thrown by clicking switchview && go! btn without the pdf downloaded
+            switching.IsEnabled = true;
+            go.IsEnabled = true;
+            cb1.IsEnabled = true; cb2.IsEnabled = true;
         }
         //This method changes the Header text when necessary and loading the other pdf in the pdfviewer
         //TODO: this method should unload the documents from memory, will be fixed in the future
@@ -111,12 +123,12 @@ namespace AuebUnofficial
         public void addCB() {
             for (int i = 0; i < 8; i++)
             {
-                ComboboxItem i1 = new ComboboxItem(cb.getCBox1(i), i);
+                ComboboxItem i1 = new ComboboxItem(_cb.getCBox1(i), i);
                 cb1.Items.Add(i1);
             }
             for (int i = 0; i < 4; i++)
             {
-                ComboboxItem i2 = new ComboboxItem(cb.getCBox2(i), i);
+                ComboboxItem i2 = new ComboboxItem(_cb.getCBox2(i), i);
                 cb2.Items.Add(i2);
             }
 
@@ -137,7 +149,7 @@ namespace AuebUnofficial
                 x = 4 * (car1.Value) + (car2.Value);
             //}
             
-            pdfViewer.GotoPage(cb.getTable(x));
+            pdfViewer.GotoPage(_cb.getTable(x));
 
         }
 
@@ -156,7 +168,21 @@ namespace AuebUnofficial
             mail.Text = "\uE8C3";
         }
 
-        //Adding Data of type "DatationType" in array data----adding fates in the table
+        private void pdfViewer_RightTapped(object sender, Windows.UI.Xaml.Input.RightTappedRoutedEventArgs e)
+        {
+            
+        }
+
+
+        private async void pdfViewer_PageChanged(object sender, Syncfusion.Windows.PdfViewer.PageChangedEventArgs e)
+        {
+            _PdfCurrentPage = e.NewPageNumber;
+            CurrentPageStream = await pdfViewer.ExportAsImage(_PdfCurrentPage);
+            CurrentPageImage = pdfViewer.GetPage(_PdfCurrentPage-1);
+            
+        }
+
+        //Adding Data of type "DatationType" in array data----adding dates in the table
         private void addDates()
         {
             dates.Insert(0, new DatationType(new DateTime(2017, 1, 16), 1));
@@ -247,7 +273,7 @@ namespace AuebUnofficial
 
         public void OnPropertyChanged(PropertyChangedEventArgs e)
         {
-            PropertyChanged(this, e);
+            
         }
     }
     //////////////////////////////////////////////////////////

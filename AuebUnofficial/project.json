@@ -9,6 +9,7 @@
     "Microsoft.Toolkit.Uwp.Services": "1.5.1",
     "Microsoft.Toolkit.Uwp.UI.Controls": "1.5.1",
     "Newtonsoft.Json": "10.0.3",
+    "RadialMenuControl": "0.2.1",
     "WindowsAppStudio.DataProviders": "1.5.1",
     "WindowsStateTriggers": "1.1.0"
   },

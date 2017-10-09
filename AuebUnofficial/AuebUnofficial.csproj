@@ -150,6 +150,7 @@
     <Compile Include="Helpers\ArticlesDataSource.cs" />
     <Compile Include="Helpers\BindableBase.cs" />
     <Compile Include="Helpers\CBoxSource.cs" />
+    <Compile Include="Helpers\Command.cs" />
     <Compile Include="Helpers\DefPack.cs" />
     <Compile Include="Helpers\DeviceTypeHelper.cs" />
     <Compile Include="Helpers\EclassRssParser.cs" />
@@ -161,6 +162,7 @@
     </Compile>
     <Compile Include="Model\AnnouncementToken.cs" />
     <Compile Include="Model\Day2Day.cs" />
+    <Compile Include="Model\RadialMenuOption.cs" />
     <Compile Include="Navig.xaml.cs">
       <DependentUpon>Navig.xaml</DependentUpon>
     </Compile>
@@ -182,6 +184,9 @@
     </Compile>
     <Compile Include="Viewers\Eclass\eclass_Nat.xaml.cs">
       <DependentUpon>eclass_Nat.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Viewers\PdfMenuControl.xaml.cs">
+      <DependentUpon>PdfMenuControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Viewers\ReviewOnStore.xaml.cs">
       <DependentUpon>ReviewOnStore.xaml</DependentUpon>
@@ -278,6 +283,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Viewers\Eclass\eclass_Nat.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Viewers\PdfMenuControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
