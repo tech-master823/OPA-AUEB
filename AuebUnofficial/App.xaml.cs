@@ -9,6 +9,9 @@ using Microsoft.Azure.Mobile.Analytics;
 using Microsoft.Azure.Mobile.Push;
 using System.Threading.Tasks;
 using Windows.Storage;
+using AuebUnofficial.Model;
+using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace AuebUnofficial
 {
@@ -17,9 +20,7 @@ namespace AuebUnofficial
     /// </summary>
     sealed partial class App : Application
     {
-        public string eclassUsername { get; set; }
-        public string eclassPass { get; set; }
-        public string eclassUID { get; set; }
+        public EclassUser CurrentEclassUser { get; set; }
         public string eclassToken { get; set; }
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -28,6 +29,10 @@ namespace AuebUnofficial
         public App()
         {
             this.InitializeComponent();
+            Suspending += async (s, a) =>
+            {
+                await SaveChanges(); // "I really like my data and want it for later too"
+            };
             this.Suspending += OnSuspending;
         }
 
@@ -78,9 +83,7 @@ namespace AuebUnofficial
             }
             MobileCenter.Start("bc8e0447-700a-4e68-a274-4cab46a9eac2", typeof(Analytics), typeof(Push));
             Push.CheckLaunchedFromNotification(e);
-            eclassUID = await GetUserIdAsync();
-            if (eclassUID==null) eclassUID = null;
-            
+            CurrentEclassUser = await GetUserIdAsync();
         }
 
         /// <summary>
@@ -102,24 +105,44 @@ namespace AuebUnofficial
         /// <param name="e">Details about the suspend request.</param>
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
+            //await SaveChanges();
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
+            
             deferral.Complete();
         }
-        public async Task<string> GetUserIdAsync()
+
+        private async Task<string> SaveChanges()
         {
-            var fileName = "user_id";
+            var fileName = "eclass_user";
+            var folder = ApplicationData.Current.RoamingFolder;
+            var file = await folder.TryGetItemAsync(fileName);
+                if (!CurrentEclassUser.IsRememberEnabled)
+                {
+                    CurrentEclassUser.Username = null;
+                    CurrentEclassUser.Password = null;
+                }
+                //if file does not exist we create a new guid
+                var storageFile = await folder.CreateFileAsync(fileName,CreationCollisionOption.ReplaceExisting);
+                await FileIO.WriteTextAsync(storageFile, JsonConvert.SerializeObject(CurrentEclassUser));
+                return CurrentEclassUser.Uid;
+        }
+
+        public async Task<EclassUser> GetUserIdAsync()
+        {
+            var fileName = "eclass_user";
             var folder = ApplicationData.Current.RoamingFolder;
             var file = await folder.TryGetItemAsync(fileName);
             if (file == null)
-            {                
-                return null;
+            {
+                return new EclassUser();
             }
             else
             {
                 //else we return the already exising uid
                 var storageFile = await folder.GetFileAsync(fileName);
-                return await FileIO.ReadTextAsync(storageFile);
+                var readText = await FileIO.ReadTextAsync(storageFile);
+                return JsonConvert.DeserializeObject<EclassUser>(readText);
             }
         }
     }

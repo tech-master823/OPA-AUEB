@@ -162,6 +162,7 @@
     </Compile>
     <Compile Include="Model\AnnouncementToken.cs" />
     <Compile Include="Model\Day2Day.cs" />
+    <Compile Include="Model\EclassUser.cs" />
     <Compile Include="Model\RadialMenuOption.cs" />
     <Compile Include="Navig.xaml.cs">
       <DependentUpon>Navig.xaml</DependentUpon>

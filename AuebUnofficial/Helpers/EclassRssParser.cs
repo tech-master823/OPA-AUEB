@@ -62,7 +62,7 @@ public class EclassRssParser
                     an.Title = StripHTML(item.Title.Text);
                     an.Description = StripHTML(item.Summary.Text);
                     an.DatePub = item.PublishedDate.DateTime.ToString("MM/dd/yyyy HH:mm");
-                    //an.Link = item.Links[0].Uri;
+                    an.Link = item.Links[0].Uri;
                     this.loadData(an);
                 }
                 this.RangeOCourses = items.Count;

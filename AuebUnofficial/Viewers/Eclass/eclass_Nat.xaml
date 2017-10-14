@@ -72,8 +72,16 @@
                     <PasswordBox Grid.Column="2" BorderThickness="0" x:Name="pass" PlaceholderText="Password"/>
                 </Grid>
             </Border>
-            
-            <Grid>
+            <Grid x:Name="CheckGrid" Margin="2,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <CheckBox x:Name="ForeverCheckbox" Content="Remember me" HorizontalAlignment="Left" 
+                          Grid.Row="1" Checked="ForeverCheckbox_Checked" Unchecked="ForeverCheckbox_Unchecked"
+                          ToolTipService.ToolTip="Remember the login data even if the app close"/>
+            </Grid>
+            <Grid x:Name="ButtonsGrid">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>

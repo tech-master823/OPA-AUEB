@@ -55,13 +55,17 @@
         <StackPanel Grid.Column="1" HorizontalAlignment="Center">
             <TextBlock FontSize="30" Text="Οι ανακοινώσεις μου"/>
             <StackPanel Orientation="Horizontal">
-                <TextBlock x:Name="UnameTblock" Text="Username: p3140138" FontSize="20" VerticalAlignment="Top" Width="Auto"/>
-                <ProgressRing x:Name="ProgressUpdate" IsActive="True" FontSize="20"/>
+                <TextBlock x:Name="UnameTblock" Text="Username: p3140138" FontSize="22" VerticalAlignment="Top" Width="Auto"/>
+                <ProgressRing x:Name="ProgressUpdate" IsActive="True" FontSize="22" Margin="5,0,5,0"/>
+                <HyperlinkButton ClickMode="Release" x:Name="Logout" Margin="5,-3,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" Click="Logout_Click" ToolTipService.ToolTip="Logout">
+                    <FontIcon FontFamily="{StaticResource FontAwesomeFontFamily}" FontSize="22" Glyph="{StaticResource FontAwesomeLogoutString}" Foreground="#D9534F" VerticalAlignment="Top"/>
+                </HyperlinkButton>
             </StackPanel>            
         </StackPanel>
         <controls:MasterDetailsView x:Name="CoursesViewer"
                                     IsHitTestVisible="False"
                                     Visibility="Collapsed"
+                                    
                                     Foreground="Black" Grid.Column="1" Grid.Row="1"                             
                                     ItemTemplate="{StaticResource CoursesTemplate}">
             <controls:MasterDetailsView.NoSelectionContent>
@@ -74,7 +78,8 @@
             <DataTemplate x:DataType="local:Course">
                 <ScrollViewer >
                     <ItemsControl Name="Display1">
-                            <ListView ItemTemplate="{StaticResource AnnouncementsTemplate}" ItemsSource="{x:Bind MyAnnouncements, Mode=OneWay}" x:Name="AnouncList" HorizontalAlignment="Left"/>
+                            <ListView RightTapped="AnouncList_RightTapped" Tapped="AnouncList_Tapped"
+                                ItemTemplate="{StaticResource AnnouncementsTemplate}" ItemsSource="{x:Bind MyAnnouncements, Mode=OneWay}" x:Name="AnouncList" HorizontalAlignment="Left"/>
                     </ItemsControl>
                 </ScrollViewer>
             </DataTemplate>
