@@ -66,8 +66,8 @@
                                        PageChanged="pdfViewer_PageChanged"
                                        Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" RightTapped="pdfViewer_RightTapped"/>
         
-            <viwers:PdfMenuControl x:Name="menu" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" Visibility="Visible" HorizontalAlignment="Right" VerticalAlignment="Top"/>
-        <Image x:Name="PageAsImg" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <!--viwers:PdfMenuControl x:Name="menu" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" Visibility="Visible" HorizontalAlignment="Right" VerticalAlignment="Top"/-->
+        <!--Image x:Name="PageAsImg" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Top"/-->
         <!--syncfusion:SfPdfViewerControl Visibility="Visible" x:Name="pdfViewer"
                                            Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2"/-->
         <local:Navig x:Name="hamburgerMenuControl" Grid.RowSpan="3" Grid.ColumnSpan="3"/>

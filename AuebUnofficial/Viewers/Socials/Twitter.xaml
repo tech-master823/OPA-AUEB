@@ -9,12 +9,12 @@
     mc:Ignorable="d">
 
     <Page.Resources>
+
         <DataTemplate x:Key="PostsTemplate">
             <RelativePanel
                     Background="White"
                     BorderThickness="0">
-                    
-                    <controls:RoundImageEx
+                <controls:RoundImageEx
                         x:Name="ProfileImage"
                         Source="{Binding User.ProfileImageUrl}"
                         Stretch="Uniform"
@@ -24,19 +24,19 @@
                         Height="50"
                         Width="50"
                         Margin="0,20,20,0"/>
-                    <TextBlock
+                <TextBlock
                         x:Name="Text"
                         Text="{Binding Text}" TextWrapping="Wrap"             
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         RelativePanel.RightOf="ProfileImage"
                         Margin="0,20,0,0"/>
-                    <TextBlock                        
+                <TextBlock                        
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center"
                         Text="{Binding CreatedAt, Mode=TwoWay}"                        
                         RelativePanel.Below="Text" RelativePanel.RightOf="ProfileImage"/>
-                </RelativePanel>
+            </RelativePanel>
         </DataTemplate>
     </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -45,7 +45,9 @@
         <ListView x:Name="TwitterFeed"
                   ScrollViewer.VerticalScrollBarVisibility="Hidden"
                   SelectionMode="Single"
+                  SelectionChanged="TwitterFeed_SelectionChanged"
                   IsTapEnabled="False"
+                  RightTapped="TwitterFeed_RightTapped"
                   IsItemClickEnabled="True"
                   ItemClick="TwitterFeed_ItemClick"
                   ItemTemplate="{StaticResource PostsTemplate}"
@@ -71,6 +73,7 @@
                     </StackPanel>
                 </controls:ScrollHeader>
             </ListView.Header>
+            
         </ListView>
     </Grid>
 </Page>

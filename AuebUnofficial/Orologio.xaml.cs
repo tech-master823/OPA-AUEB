@@ -32,7 +32,7 @@ namespace AuebUnofficial
         public Orologio()
         {
             this.InitializeComponent();
-            addCB();
+            AddCB();
             addDates();
         }
         List<DatationType> dates = new List<DatationType>();
@@ -69,7 +69,6 @@ namespace AuebUnofficial
             contentBytesx2 = await httpClient.GetByteArrayAsync(x2);
             // Load the Byte array
             PdfLoadedDocument loadedDocument = new PdfLoadedDocument(contentBytesx1);
-
             // Display the PDF document in PdfViewer
             pdfViewer.LoadDocument(loadedDocument);
             httpClient.Dispose();
@@ -120,7 +119,7 @@ namespace AuebUnofficial
         }
 
         //This method adds items in the combobox pasing them through an "array" from CBoxSource class
-        public void addCB() {
+        public void AddCB() {
             for (int i = 0; i < 8; i++)
             {
                 ComboboxItem i1 = new ComboboxItem(_cb.getCBox1(i), i);
@@ -140,16 +139,14 @@ namespace AuebUnofficial
             int x = -1;
             ComboboxItem car1 = (ComboboxItem)cb1.SelectedItem;
             ComboboxItem car2 = (ComboboxItem)cb2.SelectedItem;
-            //if(car1==null || car2 == null)
-            //{
-            //    x = 0;
-            //}
-            //else
-            //{
-                x = 4 * (car1.Value) + (car2.Value);
-            //}
+            x = 4 * (car1.Value) + (car2.Value);
+            if (pdfViewer.SearchText("ΑΝΑΚΟΙΝΩΣΗ"))
+            {
+                pdfViewer.GotoPage(_cb.getTable(x, true));
+            }
             
-            pdfViewer.GotoPage(_cb.getTable(x));
+            
+            pdfViewer.GotoPage(_cb.getTable(x,false));
 
         }
 

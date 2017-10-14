@@ -33,12 +33,13 @@ public class CBoxSource
     {
         return cbox2[i];
     }
-    public int getTable(int i)
+    public int getTable(int i, Boolean hasAnnouncement)
     {
         DateTime now = DateTime.Now;
         string a = now.Year.ToString();
         DateTime endSpringSemester = new DateTime(int.Parse(a),08,20);
         DateTime springSemester = new DateTime(int.Parse(a),02,24);
+        if (hasAnnouncement == true) go[i] = go[i] + 1;
         if (now >= springSemester && now <= endSpringSemester&&i>=12)
         {
             return go[i]-1;
