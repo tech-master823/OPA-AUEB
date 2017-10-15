@@ -22,7 +22,7 @@
             </CommandBar.PrimaryCommands>
             <CommandBar.SecondaryCommands>
                 <AppBarButton x:Name="CopyLink" Icon="Link" Label="Copy PDF Link" Tapped="CopyLink_Tapped"/>
-                <AppBarButton x:Name="Print" Label="Print this Page" Tapped="Print_Tapped">
+                <AppBarButton x:Name="Print" Label="Print PDF" Tapped="Print_Tapped">
                     <AppBarButton.Icon>
                         <FontIcon Glyph="{StaticResource FontAwesomePrintString}" FontFamily="{StaticResource FontAwesomeFontFamily}"/>
                     </AppBarButton.Icon>

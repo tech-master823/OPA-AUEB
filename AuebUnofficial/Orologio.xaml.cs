@@ -280,40 +280,10 @@ namespace AuebUnofficial
             Clipboard.SetContent(dataPackage);
         }
 
-        private async void Print_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        private void Print_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
         {
-            if (Windows.Graphics.Printing.PrintManager.IsSupported())
-            {
-                try
-                {
-
-                    // Show print UI
-                    await Windows.Graphics.Printing.PrintManager.ShowPrintUIAsync();
-
-                }
-                catch
-                {
-                    // Printing cannot proceed at this time
-                    ContentDialog noPrintingDialog = new ContentDialog()
-                    {
-                        Title = "Printing error",
-                        Content = "\nSorry, printing can' t proceed at this time.",
-                        PrimaryButtonText = "OK"
-                    };
-                    await noPrintingDialog.ShowAsync();
-                }
-            }
-            else
-            {
-                // Printing is not supported on this device
-                ContentDialog noPrintingDialog = new ContentDialog()
-                {
-                    Title = "Printing not supported",
-                    Content = "\nSorry, printing is not supported on this device.",
-                    PrimaryButtonText = "OK"
-                };
-                await noPrintingDialog.ShowAsync();
-            }
+            pdfViewer.Print();
+            
         }
 
         private void ExecuteCancelCommand(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
