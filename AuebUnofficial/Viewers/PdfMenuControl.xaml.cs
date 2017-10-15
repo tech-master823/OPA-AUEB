@@ -28,6 +28,7 @@ namespace AuebUnofficial.Viewers
             this.InitializeComponent();
             this.Loaded += PdfMenuControl_Loaded;
         }
+        
         private void PdfMenuControl_Loaded(object sender, RoutedEventArgs e)
         {
             SaveName = "Save Page";

@@ -12,6 +12,7 @@ using Windows.Storage;
 using AuebUnofficial.Model;
 using Newtonsoft.Json;
 using System.Diagnostics;
+using System.Threading;
 
 namespace AuebUnofficial
 {
@@ -31,7 +32,11 @@ namespace AuebUnofficial
             this.InitializeComponent();
             Suspending += async (s, a) =>
             {
-                await SaveChanges(); // "I really like my data and want it for later too"
+                //When user navigated at Eclass client page in this session, save the data!
+                if (CurrentEclassUser != null)
+                {
+                    await SaveChanges(); // "I really like my data and want it for later too"
+                }                
             };
             this.Suspending += OnSuspending;
         }
@@ -83,7 +88,7 @@ namespace AuebUnofficial
             }
             MobileCenter.Start("bc8e0447-700a-4e68-a274-4cab46a9eac2", typeof(Analytics), typeof(Push));
             Push.CheckLaunchedFromNotification(e);
-            CurrentEclassUser = await GetUserIdAsync();
+            CurrentEclassUser = await GetUserAsync();
         }
 
         /// <summary>
@@ -124,11 +129,18 @@ namespace AuebUnofficial
                 }
                 //if file does not exist we create a new guid
                 var storageFile = await folder.CreateFileAsync(fileName,CreationCollisionOption.ReplaceExisting);
+            try
+            {
                 await FileIO.WriteTextAsync(storageFile, JsonConvert.SerializeObject(CurrentEclassUser));
-                return CurrentEclassUser.Uid;
+            }
+            catch(Exception e)
+            {
+                Debug.WriteLine(e.Message);
+            }
+            return CurrentEclassUser.Uid;
         }
 
-        public async Task<EclassUser> GetUserIdAsync()
+        public async Task<EclassUser> GetUserAsync()
         {
             var fileName = "eclass_user";
             var folder = ApplicationData.Current.RoamingFolder;

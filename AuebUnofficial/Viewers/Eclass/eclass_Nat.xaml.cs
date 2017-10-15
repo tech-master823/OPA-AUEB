@@ -22,11 +22,18 @@ namespace AuebUnofficial.Viewers
 
         private void Eclass_Nat_Loaded(object sender, RoutedEventArgs e)
         {
-            if (obj.CurrentEclassUser.IsRememberEnabled || obj.eclassToken != null)
+            if (obj.CurrentEclassUser != null)
             {
-                ForeverCheckbox.IsChecked = true;
-                login.Text = obj.CurrentEclassUser.Username;
-                pass.Password = obj.CurrentEclassUser.Password;
+                if (obj.CurrentEclassUser.IsRememberEnabled || obj.eclassToken != null)
+                {
+                    ForeverCheckbox.IsChecked = true;
+                    login.Text = obj.CurrentEclassUser.Username;
+                    pass.Password = obj.CurrentEclassUser.Password;
+                }
+            }
+            else
+            {
+                obj.CurrentEclassUser = new Model.EclassUser();
             }
             
         }

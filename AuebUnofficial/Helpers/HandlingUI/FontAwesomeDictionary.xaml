@@ -20,4 +20,5 @@
     <x:String x:Key="FontAwesomeRefreshString">&#xf021;</x:String>
     <x:String x:Key="FontAwesomeCancelString">&#xf00d;</x:String>
     <x:String x:Key="FontAwesomeLogoutString">&#xf08b;</x:String>
+    <x:String x:Key="FontAwesomePrintString">&#xf02f;</x:String>
 </ResourceDictionary>

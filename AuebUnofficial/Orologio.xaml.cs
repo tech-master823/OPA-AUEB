@@ -13,11 +13,17 @@ using System.Linq;
 using Newtonsoft.Json;
 using AuebUnofficial.Model;
 using System.Diagnostics;
-using Syncfusion.UI.Xaml.Controls.Navigation;
-using AuebUnofficial.Viewers;
-using System.Drawing;
-using Windows.UI.Xaml.Media.Imaging;
 using Windows.ApplicationModel.DataTransfer;
+using SixLabors.ImageSharp;
+using Windows.Storage;
+using SixLabors.ImageSharp.Formats;
+using SixLabors.ImageSharp.Formats.Png;
+using Windows.UI.Xaml.Media.Imaging;
+using Windows.Graphics.Display;
+using Windows.Graphics.Imaging;
+using System.Threading.Tasks;
+using Windows.Storage.Streams;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace AuebUnofficial
 {
@@ -28,7 +34,7 @@ namespace AuebUnofficial
         private string x1 = "", x2 = "";
         private int _PdfCurrentPage { get; set; }
         public Stream CurrentPageStream { get; private set; }
-        public Image CurrentPageImage { get; set; }
+        public Windows.UI.Xaml.Controls.Image CurrentPageImage { get; private set; }
         public Orologio()
         {
             this.InitializeComponent();
@@ -79,8 +85,11 @@ namespace AuebUnofficial
             //secures an exception thrown by clicking switchview && go! btn without the pdf downloaded
             switching.IsEnabled = true;
             go.IsEnabled = true;
-            cb1.IsEnabled = true; cb2.IsEnabled = true;
+            cb1.IsEnabled = true; cb2.IsEnabled = true; CommandBar.Width = pdfViewer.Width - 48;
         }
+
+        
+
         //This method changes the Header text when necessary and loading the other pdf in the pdfviewer
         //TODO: this method should unload the documents from memory, will be fixed in the future
         private void Change_Frame(object sender, RoutedEventArgs e)
@@ -174,8 +183,15 @@ namespace AuebUnofficial
         private async void pdfViewer_PageChanged(object sender, Syncfusion.Windows.PdfViewer.PageChangedEventArgs e)
         {
             _PdfCurrentPage = e.NewPageNumber;
-            CurrentPageStream = await pdfViewer.ExportAsImage(_PdfCurrentPage);
-            CurrentPageImage = pdfViewer.GetPage(_PdfCurrentPage-1);
+            if (_PdfCurrentPage == 0)
+            {
+
+            }
+            else
+            {
+                CurrentPageStream = await pdfViewer.ExportAsImage(_PdfCurrentPage - 1);
+                CurrentPageImage = pdfViewer.GetPage(_PdfCurrentPage - 1);
+            }
             
         }
 
@@ -200,6 +216,109 @@ namespace AuebUnofficial
             dates.Insert(15, new DatationType(new DateTime(2017, 2, 7), 16));
             dates.Insert(16, new DatationType(new DateTime(2017, 2, 8), 17));
             dates.Insert(17, new DatationType(new DateTime(2017, 2, 9), 18));
+        }
+        private async void ExecuteCopyCommand(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        {
+            StorageFile storageFile = await SaveImageAsync(ApplicationData.Current.LocalCacheFolder);
+            List<IStorageItem> list = new List<IStorageItem>();
+            list.Add(storageFile);
+            DataPackage dataPackage = new DataPackage();
+            dataPackage.RequestedOperation = DataPackageOperation.Copy;
+            dataPackage.SetStorageItems(list);
+            Clipboard.SetContent(dataPackage);
+            Debug.WriteLine("Copy button pressed!");
+
+        }
+        private void ExecuteShareCommand(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        {
+
+            DataTransferManager.GetForCurrentView().DataRequested += MainPage_DataRequested;
+            DataTransferManager.ShowShareUI();
+        }
+        private async void MainPage_DataRequested(DataTransferManager sender, DataRequestedEventArgs args)
+        {
+            args.Request.Data.Properties.Title = "asdada";
+            DataRequestDeferral deferral = args.Request.GetDeferral();
+            try
+            {
+                StorageFile storageFile = await SaveImageAsync(ApplicationData.Current.LocalCacheFolder);
+                List<IStorageItem> list = new List<IStorageItem>();
+                list.Add(storageFile);
+                args.Request.Data.SetStorageItems(list);
+            }
+            finally
+            {
+                deferral.Complete();
+            }
+            
+            
+        }
+        private async void ExecuteSaveCommand(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        {
+            await SaveImageAsync(KnownFolders.PicturesLibrary);
+        }
+        async Task<StorageFile> SaveImageAsync(StorageFolder storageFolder)
+        {
+            var fileName = "Program.png";
+            var folder = storageFolder;
+            var file = await folder.TryGetItemAsync(fileName);
+            
+            var storageFile = await folder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
+            await FileIO.WriteBytesAsync(storageFile, ((MemoryStream)CurrentPageStream).GetWindowsRuntimeBuffer().ToArray());
+            return storageFile;
+        }
+        private void CopyLink_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        {
+            Copy(x1);
+        }
+        private void Copy(string text)
+        {
+            DataPackage dataPackage = new DataPackage();
+            dataPackage.RequestedOperation = DataPackageOperation.Copy;
+            if (text.Contains("http")) dataPackage.SetWebLink(new Uri(text));
+            dataPackage.SetText(text);
+            Clipboard.SetContent(dataPackage);
+        }
+
+        private async void Print_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        {
+            if (Windows.Graphics.Printing.PrintManager.IsSupported())
+            {
+                try
+                {
+
+                    // Show print UI
+                    await Windows.Graphics.Printing.PrintManager.ShowPrintUIAsync();
+
+                }
+                catch
+                {
+                    // Printing cannot proceed at this time
+                    ContentDialog noPrintingDialog = new ContentDialog()
+                    {
+                        Title = "Printing error",
+                        Content = "\nSorry, printing can' t proceed at this time.",
+                        PrimaryButtonText = "OK"
+                    };
+                    await noPrintingDialog.ShowAsync();
+                }
+            }
+            else
+            {
+                // Printing is not supported on this device
+                ContentDialog noPrintingDialog = new ContentDialog()
+                {
+                    Title = "Printing not supported",
+                    Content = "\nSorry, printing is not supported on this device.",
+                    PrimaryButtonText = "OK"
+                };
+                await noPrintingDialog.ShowAsync();
+            }
+        }
+
+        private void ExecuteCancelCommand(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        {
+            Debug.WriteLine("Cancel button pressed!");
         }
     }   
 

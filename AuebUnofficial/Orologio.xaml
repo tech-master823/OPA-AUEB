@@ -12,7 +12,24 @@
     <Page.DataContext>
         <local:PdfReport/>
     </Page.DataContext>
-
+    <Page.BottomAppBar>
+        <CommandBar x:Name="CommandBar" HorizontalAlignment="Right">            
+            <CommandBar.PrimaryCommands>
+                <AppBarButton x:Name="CopyPage" Icon="Copy" Label="Copy this Page" Tapped="ExecuteCopyCommand"/>
+                <AppBarButton x:Name="Save" Icon="Save" Label="Save this Page" Tapped="ExecuteSaveCommand"/>
+                <AppBarSeparator/>
+                <AppBarButton x:Name="Share" Icon="Send" Label="Share this page" Tapped="ExecuteShareCommand"/>
+            </CommandBar.PrimaryCommands>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton x:Name="CopyLink" Icon="Link" Label="Copy PDF Link" Tapped="CopyLink_Tapped"/>
+                <AppBarButton x:Name="Print" Label="Print this Page" Tapped="Print_Tapped">
+                    <AppBarButton.Icon>
+                        <FontIcon Glyph="{StaticResource FontAwesomePrintString}" FontFamily="{StaticResource FontAwesomeFontFamily}"/>
+                    </AppBarButton.Icon>
+                </AppBarButton>
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
 
     <Grid Background="#762124">
         <Grid.RowDefinitions>

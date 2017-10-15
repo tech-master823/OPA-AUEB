@@ -10,6 +10,7 @@
     "Microsoft.Toolkit.Uwp.UI.Controls": "1.5.1",
     "Newtonsoft.Json": "10.0.3",
     "RadialMenuControl": "0.2.1",
+    "SixLabors.ImageSharp": "1.0.0-beta0001",
     "WindowsAppStudio.DataProviders": "1.5.1",
     "WindowsStateTriggers": "1.1.0"
   },
