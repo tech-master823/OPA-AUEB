@@ -8,6 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:triggers="using:WindowsStateTriggers"
     xmlns:syncfusion="using:Syncfusion.Windows.PdfViewer"
+    xmlns:controlstoolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d">
     <Page.DataContext>
         <local:PdfReport/>
@@ -24,7 +25,13 @@
                 <AppBarButton x:Name="CopyLink" Icon="Link" Label="Copy PDF Link" Tapped="CopyLink_Tapped"/>
                 <AppBarButton x:Name="Print" Label="Print PDF" Tapped="Print_Tapped">
                     <AppBarButton.Icon>
-                        <FontIcon Glyph="{StaticResource FontAwesomePrintString}" FontFamily="{StaticResource FontAwesomeFontFamily}"/>
+                        <FontIcon Glyph="&#xE2F6;" FontFamily="Segoe MDL2 Assets"/>
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarSeparator/>
+                <AppBarButton x:Name="PrintPage" Tapped="PrintPage_Tapped" Label="Print this Page">
+                    <AppBarButton.Icon>
+                        <FontIcon Glyph="&#xE956;" FontFamily="Segoe MDL2 Assets"/>
                     </AppBarButton.Icon>
                 </AppBarButton>
             </CommandBar.SecondaryCommands>
@@ -41,7 +48,6 @@
             <ColumnDefinition Width="48"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-
 
         <Border Background="#762124" Grid.Column="1">
             <Grid Height="48" Background="White" VerticalAlignment="Center" HorizontalAlignment="Center">
@@ -89,7 +95,8 @@
                                            Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2"/-->
         <local:Navig x:Name="hamburgerMenuControl" Grid.RowSpan="3" Grid.ColumnSpan="3"/>
         <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup >
+            
+            <VisualStateGroup>
                 <VisualState x:Name="desktop">
                     <VisualState.StateTriggers>
                         <triggers:DeviceFamilyStateTrigger DeviceFamily="Desktop" />

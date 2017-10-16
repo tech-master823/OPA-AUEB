@@ -12,34 +12,36 @@ using Flurl.Http;
 using System.Linq;
 using Newtonsoft.Json;
 using AuebUnofficial.Model;
-using System.Diagnostics;
 using Windows.ApplicationModel.DataTransfer;
-using SixLabors.ImageSharp;
 using Windows.Storage;
-using SixLabors.ImageSharp.Formats;
-using SixLabors.ImageSharp.Formats.Png;
-using Windows.UI.Xaml.Media.Imaging;
-using Windows.Graphics.Display;
-using Windows.Graphics.Imaging;
 using System.Threading.Tasks;
-using Windows.Storage.Streams;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.Graphics.Printing;
+using Windows.UI.Xaml.Printing;
+using Windows.ApplicationModel.Core;
+using Windows.UI.Core;
+using Windows.Storage.Streams;
 
 namespace AuebUnofficial
 {
 
     public sealed partial class Orologio : Page
     {
+        private PrintManager printMan;
+        private PrintDocument printDoc;
+        private IPrintDocumentSource printDocSource;
         private CBoxSource _cb = new CBoxSource();
         private string x1 = "", x2 = "";
         private int _PdfCurrentPage { get; set; }
         public Stream CurrentPageStream { get; private set; }
         public Windows.UI.Xaml.Controls.Image CurrentPageImage { get; private set; }
+        
         public Orologio()
         {
             this.InitializeComponent();
             AddCB();
             addDates();
+
         }
         List<DatationType> dates = new List<DatationType>();
         // Create an instance of HttpClient
@@ -219,15 +221,21 @@ namespace AuebUnofficial
         }
         private async void ExecuteCopyCommand(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
         {
-            StorageFile storageFile = await SaveImageAsync(ApplicationData.Current.LocalCacheFolder);
-            List<IStorageItem> list = new List<IStorageItem>();
-            list.Add(storageFile);
-            DataPackage dataPackage = new DataPackage();
-            dataPackage.RequestedOperation = DataPackageOperation.Copy;
-            dataPackage.SetStorageItems(list);
-            Clipboard.SetContent(dataPackage);
-            Debug.WriteLine("Copy button pressed!");
-
+            CopyBitmap(await SaveImageAsync(ApplicationData.Current.TemporaryFolder));
+        }
+        private void CopyBitmap(StorageFile imageFile)
+        {
+            
+                var dataPackage = new DataPackage();                
+                dataPackage.SetBitmap(RandomAccessStreamReference.CreateFromFile(imageFile));
+                try
+                {
+                    Clipboard.SetContent(dataPackage);
+                }
+                catch (Exception ex)
+                {
+                    // Copying data to Clipboard can potentially fail - for example, if another application is holding Clipboard open
+                }
         }
         private void ExecuteShareCommand(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
         {
@@ -269,7 +277,10 @@ namespace AuebUnofficial
         }
         private void CopyLink_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
         {
-            Copy(x1);
+            
+            Copy(x1);            
+            
+            
         }
         private void Copy(string text)
         {
@@ -286,11 +297,105 @@ namespace AuebUnofficial
             
         }
 
-        private void ExecuteCancelCommand(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        private async void PrintPage_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
         {
-            Debug.WriteLine("Cancel button pressed!");
+            // Register for PrintTaskRequested event
+            printMan = PrintManager.GetForCurrentView();
+            printMan.PrintTaskRequested += PrintTaskRequested;
+
+            // Build a PrintDocument and register for callbacks
+            printDoc = new PrintDocument();
+            printDocSource = printDoc.DocumentSource;
+            printDoc.Paginate += Paginate;
+            printDoc.GetPreviewPage += GetPreviewPage;
+            printDoc.AddPages += AddPages;
+
+            if (PrintManager.IsSupported())
+            {
+                try
+                {
+                    // Show print UI
+                    await PrintManager.ShowPrintUIAsync();
+                }
+                catch
+                {
+                    // Printing cannot proceed at this time
+                    ContentDialog noPrintingDialog = new ContentDialog()
+                    {
+                        Title = "Printing error",
+                        Content = "\nSorry, printing can' t proceed at this time.",
+                        PrimaryButtonText = "OK"
+                    };
+                    await noPrintingDialog.ShowAsync();
+                }
+            }
+            else
+            {
+                // Printing is not supported on this device
+                ContentDialog noPrintingDialog = new ContentDialog()
+                {
+                    Title = "Printing not supported",
+                    Content = "\nSorry, printing is not supported on this device.",
+                    PrimaryButtonText = "OK"
+                };
+                await noPrintingDialog.ShowAsync();
+            }
         }
-    }   
+
+        private void PrintTaskRequested(PrintManager sender, PrintTaskRequestedEventArgs args)
+        {
+            // Create the PrintTask.
+            // Defines the title and delegate for PrintTaskSourceRequested
+            var printTask = args.Request.CreatePrintTask("Print", PrintTaskSourceRequrested);
+
+            // Handle PrintTask.Completed to catch failed print jobs
+            printTask.Completed += PrintTaskCompleted;
+        }
+
+        private void PrintTaskSourceRequrested(PrintTaskSourceRequestedArgs args)
+        {
+            // Set the document source.
+            args.SetSource(printDocSource);
+        }
+
+        private void Paginate(object sender, PaginateEventArgs e)
+        {
+            // As I only want to print one Rectangle, so I set the count to 1
+            printDoc.SetPreviewPageCount(1, PreviewPageCountType.Final);
+        }
+
+        private void GetPreviewPage(object sender, GetPreviewPageEventArgs e)
+        {
+            // Provide a UIElement as the print preview.
+            printDoc.SetPreviewPage(e.PageNumber, CurrentPageImage);
+        }
+
+        private void AddPages(object sender, AddPagesEventArgs e)
+        {
+            printDoc.AddPage(CurrentPageImage);
+
+            // Indicate that all of the print pages have been provided
+            printDoc.AddPagesComplete();
+        }
+
+        private async void PrintTaskCompleted(PrintTask sender, PrintTaskCompletedEventArgs args)
+        {
+            // Notify the user when the print operation fails.
+            if (args.Completion == PrintTaskCompletion.Failed)
+            {
+                await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+                {
+                    ContentDialog noPrintingDialog = new ContentDialog()
+                    {
+                        Title = "Printing error",
+                        Content = "\nSorry, failed to print.",
+                        PrimaryButtonText = "OK"
+                    };
+                    await noPrintingDialog.ShowAsync();
+                });
+            }
+        }
+    }
 
     //This type represents a Date and contains the DateType and the page (in the pdf) 
     class DatationType
