@@ -1,21 +1,20 @@
 ﻿{
   "dependencies": {
     "Flurl.Http": "1.2.0",
-    "HtmlAgilityPack": "1.5.1",
+    "HtmlAgilityPack": "1.5.5",
     "Microsoft.Azure.Mobile.Analytics": "0.16.0",
     "Microsoft.Azure.Mobile.Push": "0.16.0",
-    "Microsoft.NETCore.UniversalWindowsPlatform": "6.0.1",
+    "Microsoft.NETCore.UniversalWindowsPlatform": "5.4.0",
     "Microsoft.Toolkit.Uwp": "2.0.0",
     "Microsoft.Toolkit.Uwp.Services": "2.0.0",
     "Microsoft.Toolkit.Uwp.UI.Controls": "2.0.0",
     "Newtonsoft.Json": "10.0.3",
-    "RadialMenuControl": "0.2.1",
     "RavinduL.LocalNotifications": "2.0.0",
     "WindowsAppStudio.DataProviders": "1.5.1",
     "WindowsStateTriggers": "1.1.0"
   },
   "frameworks": {
-    "uap10.0.10586": {}
+    "uap10.0.14393": {}
   },
   "runtimes": {
     "win10-arm": {},

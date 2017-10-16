@@ -87,7 +87,7 @@ namespace AuebUnofficial
             //secures an exception thrown by clicking switchview && go! btn without the pdf downloaded
             switching.IsEnabled = true;
             go.IsEnabled = true;
-            cb1.IsEnabled = true; cb2.IsEnabled = true; CommandBar.Width = pdfViewer.Width - 48;
+            cb1.IsEnabled = true; cb2.IsEnabled = true; CommandBar.IsEnabled = true; CommandBar.Width = pdfViewer.Width - 48;
         }
 
         
@@ -245,7 +245,7 @@ namespace AuebUnofficial
         }
         private async void MainPage_DataRequested(DataTransferManager sender, DataRequestedEventArgs args)
         {
-            args.Request.Data.Properties.Title = "asdada";
+            args.Request.Data.Properties.Title = "Program";
             DataRequestDeferral deferral = args.Request.GetDeferral();
             try
             {

@@ -14,7 +14,7 @@
         <local:PdfReport/>
     </Page.DataContext>
     <Page.BottomAppBar>
-        <CommandBar x:Name="CommandBar" HorizontalAlignment="Right">            
+        <CommandBar x:Name="CommandBar" HorizontalAlignment="Right" IsEnabled="False">            
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Name="CopyPage" Icon="Copy" Label="Copy this Page" Tapped="ExecuteCopyCommand"/>
                 <AppBarButton x:Name="Save" Icon="Save" Label="Save this Page" Tapped="ExecuteSaveCommand"/>

@@ -49,6 +49,7 @@
     <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
     <UseDotNetNativeSharedAssemblyFrameworkPackage>false</UseDotNetNativeSharedAssemblyFrameworkPackage>
     <TargetFrameworkMonikerAssemblyAttributesPath>$(IntermediateOutputPath)AssemblyTFMAttribute.cs</TargetFrameworkMonikerAssemblyAttributesPath>
+    <EnableGatekeeperAnalysis>true</EnableGatekeeperAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <DebugSymbols>true</DebugSymbols>
@@ -187,9 +188,6 @@
     <Compile Include="Viewers\Eclass\eclass_Nat.xaml.cs">
       <DependentUpon>eclass_Nat.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Viewers\PdfMenuControl.xaml.cs">
-      <DependentUpon>PdfMenuControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Viewers\ReviewOnStore.xaml.cs">
       <DependentUpon>ReviewOnStore.xaml</DependentUpon>
     </Compile>
@@ -285,10 +283,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Viewers\Eclass\eclass_Nat.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Viewers\PdfMenuControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
