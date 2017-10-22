@@ -100,11 +100,5 @@ namespace AuebUnofficial.Viewers
             obj.eclassToken = null;
         }
     }
-    //Object for passing 2 parameters
-    public class Parames
-    {
-        public string uname { get; set; }
-        public string token { get; set; }
-        public Parames() { }
-    }
+    
 }

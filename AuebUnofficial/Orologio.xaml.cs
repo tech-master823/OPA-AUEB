@@ -21,6 +21,7 @@ using Windows.UI.Xaml.Printing;
 using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
 using Windows.Storage.Streams;
+using System.Diagnostics;
 
 namespace AuebUnofficial
 {
@@ -45,11 +46,10 @@ namespace AuebUnofficial
         }
         List<DatationType> dates = new List<DatationType>();
         // Create an instance of HttpClient
-        HttpClient httpClient = new HttpClient();
-
+        
         // Get the PDF document in byte array
-        Byte[] contentBytesx1;
-        Byte[] contentBytesx2;
+        List<Byte> contentBytesx1;
+        List<Byte> contentBytesx2;
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             string mystringtext = "";
@@ -58,28 +58,25 @@ namespace AuebUnofficial
             exetastiki.MaxDate = new DateTime(2017, 2, 09);
             ///////////////////////////////////////////////////////////////////////
             //gettingResponseFromTxtAsString
-            var handler = new HttpClientHandler { AllowAutoRedirect = true };
-            var client = new HttpClient(handler);
-            var response = await client.GetAsync(new Uri("http://amoraitis.me/assets/programma.txt"));
-            response.EnsureSuccessStatusCode();
-            mystringtext = await response.Content.ReadAsStringAsync();
-            //converts string to an array
-            List<string> parts = mystringtext.Split('\n').Select(p => p.Trim()).ToList();
-            //sets the urls
-            x1 = JsonConvert.DeserializeObject<Day2Day>(await "http://auebunofficialapi.azurewebsites.net/Day2Day/Details/fall".GetAsync().ReceiveString()).Link;
-            x2 = parts[1];            
-            /////////////////////////////////////////////////////////////////////
-            // Create an instance of HttpClient
-            HttpClient httpClient = new HttpClient();
+            
+                var response = await "http://amoraitis.me/assets/programma.txt".GetStringAsync();
+                mystringtext = response;
+                //converts string to an array
+                List<string> parts = mystringtext.Split('\n').Select(p => p.Trim()).ToList();
+                //sets the urls
+                x1 = JsonConvert.DeserializeObject<Day2Day>(await "http://auebunofficialapi.azurewebsites.net/Day2Day/Details/fall".GetAsync().ReceiveString()).Link;
+                x2 = parts[1];
+                /////////////////////////////////////////////////////////////////////
 
-            // Get the PDF document in byte array
-            contentBytesx1 = await httpClient.GetByteArrayAsync(x1);
-            contentBytesx2 = await httpClient.GetByteArrayAsync(x2);
+                // Get the PDF document in byte array
+                var firstBytes = await x1.WithTimeout(10).GetBytesAsync();
+                contentBytesx1 = new List<byte> (firstBytes);
+                var secondBytes = await x2.WithTimeout(10).GetBytesAsync();
+                contentBytesx2 = new List<byte>(secondBytes);
             // Load the Byte array
-            PdfLoadedDocument loadedDocument = new PdfLoadedDocument(contentBytesx1);
+            PdfLoadedDocument loadedDocument = new PdfLoadedDocument(contentBytesx1.ToArray());
             // Display the PDF document in PdfViewer
             pdfViewer.LoadDocument(loadedDocument);
-            httpClient.Dispose();
             cb1.SelectedIndex = 0;
             cb2.SelectedIndex = 0;
             _PdfCurrentPage = 0;
@@ -107,7 +104,7 @@ namespace AuebUnofficial
                 cb2.SelectedIndex = 0;
                 pdfViewer.GotoPage(1);
                 // Load the Byte array
-                PdfLoadedDocument loadedDocument = new PdfLoadedDocument(contentBytesx2);
+                PdfLoadedDocument loadedDocument = new PdfLoadedDocument(contentBytesx2.ToArray());
 
                 // Display the PDF document in PdfViewer
                 pdfViewer.LoadDocument(loadedDocument);
@@ -121,7 +118,7 @@ namespace AuebUnofficial
                 exetastiki.Date = null;
                 pdfViewer.GotoPage(1);
                 // Load the Byte array
-                PdfLoadedDocument loadedDocument = new PdfLoadedDocument(contentBytesx1);
+                PdfLoadedDocument loadedDocument = new PdfLoadedDocument(contentBytesx1.ToArray());
 
                 // Display the PDF document in PdfViewer
                 pdfViewer.LoadDocument(loadedDocument);
@@ -151,16 +148,32 @@ namespace AuebUnofficial
             ComboboxItem car1 = (ComboboxItem)cb1.SelectedItem;
             ComboboxItem car2 = (ComboboxItem)cb2.SelectedItem;
             x = 4 * (car1.Value) + (car2.Value);
-            if (pdfViewer.SearchText("ΑΝΑΚΟΙΝΩΣΗ"))
-            {
-                pdfViewer.GotoPage(_cb.getTable(x, true));
-            }
-            
-            
-            pdfViewer.GotoPage(_cb.getTable(x,false));
+            int pagesTotal = pdfViewer.PageCount;
+            Boolean HasAnnouncements = (pagesTotal == 50);
+            getTable(x, HasAnnouncements);
+            pdfViewer.GotoPage(_cb.PageToGo);
 
         }
+        public void getTable(int i, Boolean HasAnnouncements)
+        {
+            DateTime now = DateTime.Now;
+            string a = now.Year.ToString();
+            DateTime endSpringSemester = new DateTime(int.Parse(a), 08, 20);
+            DateTime springSemester = new DateTime(int.Parse(a), 02, 24);
 
+            if (now >= springSemester && now <= endSpringSemester && i >= 12)
+            {
+                _cb.PageToGo = _cb.go.ToArray()[i] - 1;
+            }
+            else if (HasAnnouncements == true)
+            {
+                _cb.PageToGo = _cb.go.ToArray()[i] + 1;
+            }
+            else
+            {
+                _cb.PageToGo = _cb.go.ToArray()[i];
+            }
+        }
         //This method gets the Date selected from user and going to a page based on the selection
         private void exetastiki_DateChanged(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
         {
