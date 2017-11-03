@@ -14,8 +14,9 @@ And you are ready: Clone->Build->Run
 # Chat with me on Gitter
 Help me By reporting bugs or requesting features: </br> [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/%CE%9F%CE%A0%CE%91-AUEB/Lobby)
 
-#Based on the packages
+# Based on the packages
 - [Flurl.Http](https://www.nuget.org/packages/Flurl.Http/1.1.1)
 - [UWP Community Toolkit](https://www.nuget.org/packages/Microsoft.Toolkit.Uwp/)
 - [Windows App Studio.DataProviders](https://www.nuget.org/packages/WindowsAppStudio.DataProviders)
 - [WindowsStateTriggers](https://github.com/dotMorten/WindowsStateTriggers)
+- [Eclass Mobile Api](https://dev.openeclass.org/projects/openeclass/wiki/%CE%A7%CF%81%CE%AE%CF%83%CE%B7_%CF%84%CE%BF%CF%85_Mobile_API)

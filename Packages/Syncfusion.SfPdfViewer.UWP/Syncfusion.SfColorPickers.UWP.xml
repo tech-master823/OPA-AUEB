@@ -1,0 +1,663 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Syncfusion.SfColorPickers.UWP</name>
+    </assembly>
+    <members>
+        <member name="T:Syncfusion.UI.Xaml.Controls.Media.ResourceWrapper">
+            <summary>
+            Represents a class for storing the available resources
+            </summary>
+        </member>
+        <member name="P:Syncfusion.UI.Xaml.Controls.Media.ResourceWrapper.R">
+            <summary>
+            Gets and sets a string for Red value
+            </summary>
+        </member>
+        <member name="P:Syncfusion.UI.Xaml.Controls.Media.ResourceWrapper.G">
+            <summary>
+            Gets and sets a string for Green value
+            </summary>
+        </member>
+        <member name="P:Syncfusion.UI.Xaml.Controls.Media.ResourceWrapper.B">
+            <summary>
+            Gets and sets a string for Blue value
+            </summary>
+        </member>
+        <member name="P:Syncfusion.UI.Xaml.Controls.Media.ResourceWrapper.Colors">
+            <summary>
+            Gets and sets a string for the colors available
+            </summary>
+        </member>
+        <member name="P:Syncfusion.UI.Xaml.Controls.Media.ResourceWrapper.Swatches">
+            <summary>
+            Gets and sets a string for the swatches
+            </summary>
+        </member>
+        <member name="P:Syncfusion.UI.Xaml.Controls.Media.ResourceWrapper.RGB">
+            <summary>
+            Gets and sets a string for RGB value
+            </summary>
+        </member>
+        <member name="M:Syncfusion.UI.Xaml.Controls.Media.ResourceWrapper.#ctor">
+            <summary>
+            Initializes a new instance of the <see
+            cref="T:Syncfusion.UI.Xaml.Controls.Media.ResourceWrapper"/> class.
+            </summary>  
+            <seealso
+            cref="N:Syncfusion.UI.Xaml.Controls.Media">Syncfusion.UI.Xaml.Controls.Media
+            Namespace</seealso>
+        </member>
+        <member name="T:Syncfusion.UI.Xaml.Controls.Media.ColorItem">
+            <summary>
+            Represents a color item in the
+            <see cref="T:Syncfusion.UI.Xaml.Controls.Media.SfColorPalette"/> control.
+            </summary>
+            <seealso cref="T:Syncfusion.UI.Xaml.Controls.Media.ColorSwatches"/>    
+        </member>
+        <member name="M:Syncfusion.UI.Xaml.Controls.Media.ColorItem.#ctor">
+            <summary>
+            Initializes a new instance of the <see
+            cref="T:Syncfusion.UI.Xaml.Controls.Media.ColorItem"/> class.
+            </summary>  
+            <seealso
+            cref="N:Syncfusion.UI.Xaml.Controls.Media">Syncfusion.UI.Xaml.Controls.Media
+            Namespace</seealso>
+        </member>
+        <member name="M:Syncfusion.UI.Xaml.Controls.Media.ColorItem.Dispose">
+            <summary>
+            Called when control unloaded
+            </summary>
+        </member>
+        <member name="M:Syncfusion.UI.Xaml.Controls.Media.ColorItem.Dispose(System.Boolean)">
+            <summary>
+            Called when control unloaded
+            </summary>
+        </member>
+        <member name="P:Syncfusion.UI.Xaml.Controls.Media.ColorItem.TooltipVisibility">
+            <summary>
+            Returns the visibility status of the Tool Tip
+            </summary>
+        </member>
+        <member name="F:Syncfusion.UI.Xaml.Controls.Media.ColorItem.TooltipVisibilityProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for TooltipVisibility.  This enables animation, styling, binding, etc...
+            </summary>
+        </member>
+        <member name="T:Syncfusion.UI.Xaml.Controls.Media.ColorPaletteButton">
+            <summary>
+            Represents a control that enables the user to select values by clicking it in the
+            <see cref="T:Syncfusion.UI.Xaml.Controls.Media.SfColorPalette"/> control.
+            </summary>
+            <seealso cref="T:Syncfusion.UI.Xaml.Controls.Media.ColorSwatches"/>
+        </member>
+        <member name="M:Syncfusion.UI.Xaml.Controls.Media.ColorPaletteButton.#ctor">
+            <summary>
+            Initializes a new instance of the <see
+            cref="T:Syncfusion.UI.Xaml.Controls.Media.ColorPaletteButton"/> class.
+            </summary>  
+            <seealso
+            cref="N:Syncfusion.UI.Xaml.Controls.Media">Syncfusion.UI.Xaml.Controls.Media
+            Namespace</seealso>
+        </member>
+        <member name="M:Syncfusion.UI.Xaml.Controls.Media.ColorPaletteButton.OnApplyTemplate">
+            <summary>
+            Initializes all the child elements of the
+            <see cref="T:Syncfusion.UI.Xaml.Controls.Media.ColorPaletteButton"/> control.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.UI.Xaml.Controls.Media.ColorPaletteButton.Dispose">
+            <summary>
+            Called when control unloaded
+            </summary>
+        </member>
+        <member name="M:Syncfusion.UI.Xaml.Controls.Media.ColorPaletteButton.Dispose(System.Boolean)">
+            <summary>
+            Called when control unloaded
+            </summary>
+        </member>
+        <member name="T:Syncfusion.UI.Xaml.Controls.Media.ColorSwatches">
+            <summary>
+            Represents a set of swatches to allow the user to select colors from <see 
+            cref="T:Syncfusion.UI.Xaml.Controls.Media.SfColorPalette"/>
+            </summary>
+            <seealso cref="T:Syncfusion.UI.Xaml.Controls.Media.SwatchesBase"/>
+        </member>
+        <member name="M:Syncfusion.UI.Xaml.Controls.Media.ColorSwatches.#ctor">
+            <summary>
+            Initializes a new instance of the <see
+            cref="T:Syncfusion.UI.Xaml.Controls.Media.ColorSwatches"/> class.
+            </summary>  
+            <seealso
+            cref="N:Syncfusion.UI.Xaml.Controls.Media">Syncfusion.UI.Xaml.Controls.Media
+            Namespace</seealso>
+        </member>
+        <member name="M:Syncfusion.UI.Xaml.Controls.Media.ColorSwatches.OnApplyTemplate">
+            <summary>
+            Initializes all the child elements of the <see 
+            cref="T:Syncfusion.UI.Xaml.Controls.Media.ColorSwatches"/> control.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.UI.Xaml.Controls.Media.ColorSwatches.ColorItemWidthProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for ColorItemWidth.  This enables animation, styling, binding, etc...
+            </summary>
+        </member>
+        <member name="F:Syncfusion.UI.Xaml.Controls.Media.ColorSwatches.ColorItemMarginProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for ColorItemWidth.  This enables animation, styling, binding, etc...
+            </summary>
+        </member>
+        <member name="M:Syncfusion.UI.Xaml.Controls.Media.ColorSwatches.MeasureOverride(Windows.Foundation.Size)">
+            <summary>
+            Reeturns a value regrding the size of the swatches buttons.
+            </summary>
+            <param name="availableSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Syncfusion.UI.Xaml.Controls.Media.ColorSwatches.Dispose">
+            <summary>
+            Called when control unloaded
+            </summary>
+        </member>
+        <member name="M:Syncfusion.UI.Xaml.Controls.Media.ColorSwatches.Dispose(System.Boolean)">
+            <summary>
+            Called when control unloaded
+            </summary>
+        </member>
+        <member name="T:Syncfusion.UI.Xaml.Controls.Media.SfColorPalette">
+            <summary>
+            Represents a control that provides a set of colors in different <see 
+            cref="T:Syncfusion.UI.Xaml.Controls.Media.ColorSwatches"/> swatches.
+            </summary>
+            <seealso cref="T:Syncfusion.UI.Xaml.Controls.Media.SfColorPalette"/>
+        </member>
+        <member name="M:Syncfusion.UI.Xaml.Controls.Media.SfColorPalette.#ctor">
+            <summary>
+            Initializes a new instance of the <see
+            cref="T:Syncfusion.UI.Xaml.Controls.Media.SfColorPalette"/> class.
+            </summary>  
+            <seealso
+            cref="N:Syncfusion.UI.Xaml.Controls.Media">Syncfusion.UI.Xaml.Controls.Media
+            Namespace</seealso>
+        </member>
+        <member name="E:Syncfusion.UI.Xaml.Controls.Media.SfColorPalette.SelectedColorChanged">
+            <summary>
+            Invoke's an event when the <see 
+            cref="T:Syncfusion.UI.Xaml.Controls.Media.SfColorPalette"/> conntrol's 
+            selected color has changed.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.UI.Xaml.Controls.Media.SfColorPalette.OnApplyTemplate">
+            <summary>
+            Initializes all the child elements of the <see 
+            cref="T:Syncfusion.UI.Xaml.Controls.Media.SfColorPalette"/> control.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.UI.Xaml.Controls.Media.SfColorPalette.OnGotFocus(Windows.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Invoked when the ColorPalette gets the focus
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Syncfusion.UI.Xaml.Controls.Media.SfColorPalette.OnLostFocus(Windows.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Invoked when the focus is gone to another control
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="P:Syncfusion.UI.Xaml.Controls.Media.SfColorPalette.SelectedColor">
+            <summary>
+            Returns a color from the <see 
+            cref="T:Syncfusion.UI.Xaml.Controls.Media.SfColorPalette"/> control that has been selected.
+            </summary>
+            <remarks>
+            The color can be selected from the
+            <seealso cref="T:Syncfusion.UI.Xaml.Controls.Media.ColorSwatches"/>
+            </remarks>
+        </member>
+        <member name="F:Syncfusion.UI.Xaml.Controls.Media.SfColorPalette.SelectedColorProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for SelectedColor.  This enables animation, styling, binding, etc...
+            </summary>
+        </member>
+        <member name="M:Syncfusion.UI.Xaml.Controls.Media.SfColorPalette.GoBack">
+            <summary>
+            Returns the focus to the color palette from the Swatches
+            </summary>
+        </member>
+        <member name="F:Syncfusion.UI.Xaml.Controls.Media.SfColorPalette.CanGoBack">
+            <summary>
+            Represents a variable to determine whether the control can navigate back.
+            </summary>
+            <value>
+            <c>true</c> if can navigate back; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:Syncfusion.UI.Xaml.Controls.Media.SfColorPalette.Dispose">
+            <summary>
+            Called when control unloaded
+            </summary>
+        </member>
+        <member name="M:Syncfusion.UI.Xaml.Controls.Media.SfColorPalette.Dispose(System.Boolean)">
+            <summary>
+            Called when control unloaded
+            </summary>
+        </member>
+        <member name="T:Syncfusion.UI.Xaml.Controls.Media.Apex">
+            <summary>
+            Represents a set of colors with Apex theme
+            </summary>
+        </member>
+        <member name="M:Syncfusion.UI.Xaml.Controls.Media.Apex.#ctor">
+            <summary>
+            Initializes a new instance of the <see
+            cref="T:Syncfusion.UI.Xaml.Controls.Media.Apex"/> class.
+            </summary>
+            <seealso
+            cref="N:Syncfusion.UI.Xaml.Controls.Media">Syncfusion.UI.Xaml.Controls.Media
+            Namespace</seealso>
+        </member>
+        <member name="T:Syncfusion.UI.Xaml.Controls.Media.Hardcover">
+            <summary>
+            Represents a set of colors with Hardcover theme
+            </summary>
+        </member>
+        <member name="M:Syncfusion.UI.Xaml.Controls.Media.Hardcover.#ctor">
+            <summary>
+            Initializes a new instance of the <see
+            cref="T:Syncfusion.UI.Xaml.Controls.Media.Hardcover"/> class.
+            </summary>
+            <seealso
+            cref="N:Syncfusion.UI.Xaml.Controls.Media">Syncfusion.UI.Xaml.Controls.Media
+            Namespace</seealso>
+        </member>
+        <member name="T:Syncfusion.UI.Xaml.Controls.Media.Metro">
+            <summary>
+            Represents a set of colors with Metro theme
+            </summary>
+        </member>
+        <member name="M:Syncfusion.UI.Xaml.Controls.Media.Metro.#ctor">
+            <summary>
+            Initializes a new instance of the <see
+            cref="T:Syncfusion.UI.Xaml.Controls.Media.Metro"/> class.
+            </summary>
+            <seealso
+            cref="N:Syncfusion.UI.Xaml.Controls.Media">Syncfusion.UI.Xaml.Controls.Media
+            Namespace</seealso>
+        </member>
+        <member name="T:Syncfusion.UI.Xaml.Controls.Media.Module">
+            <summary>
+            Represents a set of colors with Module theme
+            </summary>
+        </member>
+        <member name="M:Syncfusion.UI.Xaml.Controls.Media.Module.#ctor">
+            <summary>
+            Initializes a new instance of the <see
+            cref="T:Syncfusion.UI.Xaml.Controls.Media.Metro"/> class.
+            </summary>
+            <seealso
+            cref="N:Syncfusion.UI.Xaml.Controls.Module">Syncfusion.UI.Xaml.Controls.Media
+            Namespace</seealso>
+        </member>
+        <member name="T:Syncfusion.UI.Xaml.Controls.Media.Office">
+            <summary>
+            Represents a set of colors with Office theme
+            </summary>
+        </member>
+        <member name="M:Syncfusion.UI.Xaml.Controls.Media.Office.#ctor">
+            <summary>
+            Initializes a new instance of the <see
+            cref="T:Syncfusion.UI.Xaml.Controls.Media.Office"/> class.
+            </summary>
+            <seealso
+            cref="N:Syncfusion.UI.Xaml.Controls.Media">Syncfusion.UI.Xaml.Controls.Media
+            Namespace</seealso>
+        </member>
+        <member name="T:Syncfusion.UI.Xaml.Controls.Media.Paper">
+            <summary>
+            Represents a set of colors with Paper theme
+            </summary>
+        </member>
+        <member name="M:Syncfusion.UI.Xaml.Controls.Media.Paper.#ctor">
+            <summary>
+            Initializes a new instance of the <see
+            cref="T:Syncfusion.UI.Xaml.Controls.Media.Paper"/> class.
+            </summary>
+            <seealso
+            cref="N:Syncfusion.UI.Xaml.Controls.Media">Syncfusion.UI.Xaml.Controls.Media
+            Namespace</seealso>
+        </member>
+        <member name="T:Syncfusion.UI.Xaml.Controls.Media.Pushpin">
+            <summary>
+            Represents a set of colors with Pushpin theme
+            </summary>
+        </member>
+        <member name="M:Syncfusion.UI.Xaml.Controls.Media.Pushpin.#ctor">
+            <summary>
+            Initializes a new instance of the <see
+            cref="T:Syncfusion.UI.Xaml.Controls.Media.Pushpin"/> class.
+            </summary>
+            <seealso
+            cref="N:Syncfusion.UI.Xaml.Controls.Media">Syncfusion.UI.Xaml.Controls.Media
+            Namespace</seealso>
+        </member>
+        <member name="T:Syncfusion.UI.Xaml.Controls.Media.Solstice">
+            <summary>
+            Represents a set of colors with Solstice theme
+            </summary>
+        </member>
+        <member name="M:Syncfusion.UI.Xaml.Controls.Media.Solstice.#ctor">
+            <summary>
+            Initializes a new instance of the <see
+            cref="T:Syncfusion.UI.Xaml.Controls.Media.Solstice"/> class.
+            </summary>
+            <seealso
+            cref="N:Syncfusion.UI.Xaml.Controls.Media">Syncfusion.UI.Xaml.Controls.Media
+            Namespace</seealso>
+        </member>
+        <member name="T:Syncfusion.UI.Xaml.Controls.Media.SwatchesBase">
+            <summary>
+            Represents a base class for defining the swatches properties.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.UI.Xaml.Controls.Media.SwatchesBase.ColorItemWidth">
+            <summary>
+            Gets or Sets the ColorItemWidth
+            </summary>
+        </member>
+        <member name="F:Syncfusion.UI.Xaml.Controls.Media.SwatchesBase.ColorItemWidthProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for ColorItemWidth.  This enables animation, styling, binding, etc...
+            </summary> 
+        </member>
+        <member name="P:Syncfusion.UI.Xaml.Controls.Media.SwatchesBase.ColorItemMargin">
+            <summary>
+            Gets or Sets the ColorItemMargin
+            </summary>
+        </member>
+        <member name="F:Syncfusion.UI.Xaml.Controls.Media.SwatchesBase.ColorItemMarginProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for ColorItemMargin.  This enables animation, styling, binding, etc...
+            </summary> 
+        </member>
+        <member name="M:Syncfusion.UI.Xaml.Controls.Media.SwatchesBase.MeasureOverride(Windows.Foundation.Size)">
+            <summary>
+            Measures the size for overriding
+            </summary>
+            <param name="availableSize"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Syncfusion.UI.Xaml.Controls.Media.Urban">
+            <summary>
+            Represents a set of colors with Urban theme
+            </summary>
+        </member>
+        <member name="M:Syncfusion.UI.Xaml.Controls.Media.Urban.#ctor">
+            <summary>
+            Initializes a new instance of the <see
+            cref="T:Syncfusion.UI.Xaml.Controls.Media.Urban"/> class.
+            </summary>
+            <seealso
+            cref="N:Syncfusion.UI.Xaml.Controls.Media">Syncfusion.UI.Xaml.Controls.Media
+            Namespace</seealso>
+        </member>
+        <member name="T:Syncfusion.UI.Xaml.Controls.Media.Waveform">
+            <summary>
+            Represents a set of colors with Waveform theme
+            </summary>
+        </member>
+        <member name="M:Syncfusion.UI.Xaml.Controls.Media.Waveform.#ctor">
+            <summary>
+            Initializes a new instance of the <see
+            cref="T:Syncfusion.UI.Xaml.Controls.Media.Waveform"/> class.
+            </summary>
+            <seealso
+            cref="N:Syncfusion.UI.Xaml.Controls.Media">Syncfusion.UI.Xaml.Controls.Media
+            Namespace</seealso>
+        </member>
+        <member name="T:Syncfusion.UI.Xaml.Controls.Media.ColorSelectionBox">
+            <summary>
+            Represents a control that enables the user to select values by moving the thumb
+            </summary>
+            <remarks>
+            The selected color is highlighted by the <see 
+            cref="T:Syncfusion.UI.Xaml.Controls.Media.ColorToolTip"/>
+            </remarks>
+        </member>
+        <member name="M:Syncfusion.UI.Xaml.Controls.Media.ColorSelectionBox.#ctor">
+            <summary>
+            Initializes a new instance of the class.
+            </summary>  
+            <seealso
+            cref="N:Syncfusion.UI.Xaml.Controls.Media">Syncfusion.UI.Xaml.Controls.Media
+            Namespace</seealso>
+        </member>
+        <member name="P:Syncfusion.UI.Xaml.Controls.Media.ColorSelectionBox.SelectedColor">
+            <summary>
+            Returns a color that has been selected by the user in the 
+            <see cref="T:Syncfusion.UI.Xaml.Controls.Media.ColorSelectionBox"/> control.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.UI.Xaml.Controls.Media.ColorSelectionBox.SelectedColorProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for TargetColor.  This enables animation, styling, binding, etc...
+            </summary>
+        </member>
+        <member name="P:Syncfusion.UI.Xaml.Controls.Media.ColorSelectionBox.Hue">
+            <summary>
+            Returns the corresponding hue of the color that has been selected by the user in the 
+            <see cref="T:Syncfusion.UI.Xaml.Controls.Media.ColorSelectionBox"/> control.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.UI.Xaml.Controls.Media.ColorSelectionBox.HueProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for Hue.  This enables animation, styling, binding, etc...
+            </summary>
+        </member>
+        <member name="M:Syncfusion.UI.Xaml.Controls.Media.ColorSelectionBox.OnApplyTemplate">
+            <summary>
+            Initializes all the child elements of the
+            <see cref="T:Syncfusion.UI.Xaml.Controls.Media.ColorSelectionBox"/> control.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.UI.Xaml.Controls.Media.ColorSelectionBox.Dispose">
+            <summary>
+            Called when control unloaded
+            </summary>
+        </member>
+        <member name="M:Syncfusion.UI.Xaml.Controls.Media.ColorSelectionBox.Dispose(System.Boolean)">
+            <summary>
+            Called when control unloaded
+            </summary>
+        </member>
+        <member name="E:Syncfusion.UI.Xaml.Controls.Media.ColorSelectionBox.SelectionChanged">
+            <summary>
+            Invokes an event when the <see 
+            cref="T:Syncfusion.UI.Xaml.Controls.Media.ColorSelectionBox"/> selected color has changed
+            </summary>
+        </member>
+        <member name="T:Syncfusion.UI.Xaml.Controls.Media.ColorSlider">
+            <summary>
+            Represents a control that enables the user to select values by moving the slider
+            </summary>
+            <remarks>
+            The selected color is highlighted by the <see 
+            cref="T:Syncfusion.UI.Xaml.Controls.Media.ColorToolTip"/>
+            </remarks>
+        </member>
+        <member name="M:Syncfusion.UI.Xaml.Controls.Media.ColorSlider.#ctor">
+            <summary>
+            Initializes a new instance of the class.
+            </summary>  
+            <seealso
+            cref="N:Syncfusion.UI.Xaml.Controls.Media">Syncfusion.UI.Xaml.Controls.Media
+            Namespace</seealso>
+        </member>
+        <member name="M:Syncfusion.UI.Xaml.Controls.Media.ColorSlider.OnApplyTemplate">
+            <summary>
+            Initializes the child elements of the <see 
+            cref="T:Syncfusion.UI.Xaml.Controls.Media.ColorSlider"/> control.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.UI.Xaml.Controls.Media.ColorSlider.Value">
+            <summary>
+            Returns a value on moving the slider in the <see 
+            cref="T:Syncfusion.UI.Xaml.Controls.Media.ColorSlider"/> control.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.UI.Xaml.Controls.Media.ColorSlider.ValueProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for Value.  This enables animation, styling, binding, etc...
+            </summary>
+        </member>
+        <member name="M:Syncfusion.UI.Xaml.Controls.Media.ColorSlider.UpdateSliderPosition(Windows.UI.Color)">
+            <summary>
+            Updates the position of the thumb on moving the slider
+            </summary>
+            <param name="color"></param>
+        </member>
+        <member name="M:Syncfusion.UI.Xaml.Controls.Media.ColorSlider.UpdateSliderPosition(System.Double)">
+            <summary>
+            Updates the position of the thumb based on the value on moving the slider
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Syncfusion.UI.Xaml.Controls.Media.ColorSlider.Dispose">
+            <summary>
+            Called when control unloaded
+            </summary>
+        </member>
+        <member name="M:Syncfusion.UI.Xaml.Controls.Media.ColorSlider.Dispose(System.Boolean)">
+            <summary>
+            Called when control unloaded
+            </summary>
+        </member>
+        <member name="E:Syncfusion.UI.Xaml.Controls.Media.ColorSlider.ValueChanged">
+            <summary>
+            Invokes an event when the <see 
+            cref="T:Syncfusion.UI.Xaml.Controls.Media.ColorSlider"/> value has changed
+            </summary>
+        </member>
+        <member name="T:Syncfusion.UI.Xaml.Controls.Media.ColorTooltip">
+            <summary>
+            Represents a control that highlights the color selected by the user in the <see 
+            cref="T:Syncfusion.UI.Xaml.Controls.Media.ColorSelectionBox"/> control or the 
+            <see cref="T:Syncfusion.UI.Xaml.Controls.Media.ColorSlider"/>
+            </summary>
+            <seealso cref="T:Syncfusion.UI.Xaml.Controls.Media.SfColorPicker"/>
+        </member>
+        <member name="M:Syncfusion.UI.Xaml.Controls.Media.ColorTooltip.#ctor">
+            <summary>
+            Initializes a new instance of the class.
+            </summary>  
+            <seealso
+            cref="N:Syncfusion.UI.Xaml.Controls.Media">Syncfusion.UI.Xaml.Controls.Media
+            Namespace</seealso>
+        </member>
+        <member name="P:Syncfusion.UI.Xaml.Controls.Media.ColorTooltip.SelectedColor">
+            <summary>
+            Returns a color from the <see 
+            cref="T:Syncfusion.UI.Xaml.Controls.Media.SfColorPicker"/> control that has been selected.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.UI.Xaml.Controls.Media.ColorTooltip.SelectedColorProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
+            </summary>
+        </member>
+        <member name="P:Syncfusion.UI.Xaml.Controls.Media.ColorTooltip.Angle">
+            <summary>
+            Sets the angle for RotateTransform
+            </summary>
+        </member>
+        <member name="F:Syncfusion.UI.Xaml.Controls.Media.ColorTooltip.AngleProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for Angle.  This enables animation, styling, binding, etc...
+            </summary>
+        </member>
+        <member name="T:Syncfusion.UI.Xaml.Controls.Media.SfColorPicker">
+            <summary>
+            Represents a control for enabling the user to select colors from
+            a selection box or slider
+            <see cref="T:Syncfusion.UI.Xaml.Controls.Media.SfColorPicker"/>
+            </summary>
+            <seealso cref="T:Syncfusion.UI.Xaml.Controls.Media.ColorSelectionBox"/>
+            <seealso cref="T:Syncfusion.UI.Xaml.Controls.Media.ColorSlider"/>
+            <seealso cref="T:Syncfusion.UI.Xaml.Controls.Media.ColorTooltip"/>
+        </member>
+        <member name="M:Syncfusion.UI.Xaml.Controls.Media.SfColorPicker.#ctor">
+            <summary>
+            Initializes a new instance of the class.
+            </summary>  
+            <seealso
+            cref="N:Syncfusion.UI.Xaml.Controls.Media">Syncfusion.UI.Xaml.Controls.Media
+            Namespace</seealso>
+        </member>
+        <member name="P:Syncfusion.UI.Xaml.Controls.Media.SfColorPicker.SelectedColor">
+            <summary>
+            Returns a color from the <see 
+            cref="T:Syncfusion.UI.Xaml.Controls.Media.SfColorPicker"/> control that has been selected.
+            </summary>
+            <remarks>
+            The color can be selected from the
+            <seealso cref="T:Syncfusion.UI.Xaml.Controls.Media.ColorSelectionBox"/>
+            <seealso cref="T:Syncfusion.UI.Xaml.Controls.Media.ColorSlider"/>
+            </remarks>
+        </member>
+        <member name="F:Syncfusion.UI.Xaml.Controls.Media.SfColorPicker.SelectedColorProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
+            </summary>
+        </member>
+        <member name="P:Syncfusion.UI.Xaml.Controls.Media.SfColorPicker.PreviousColor">
+            <summary>
+            Returns the previous color that has been selected from the <see 
+            cref="T:Syncfusion.UI.Xaml.Controls.Media.SfColorPicker"/> control.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.UI.Xaml.Controls.Media.SfColorPicker.PreviousColorProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
+            </summary>
+        </member>
+        <member name="M:Syncfusion.UI.Xaml.Controls.Media.SfColorPicker.OnApplyTemplate">
+            <summary>
+            Initializes all the child elements of the <see 
+            cref="T:Syncfusion.UI.Xaml.Controls.Media.SfColorPicker"/> control.
+            </summary>
+        </member>
+        <member name="E:Syncfusion.UI.Xaml.Controls.Media.SfColorPicker.SelectedColorChanged">
+            <summary>
+            Invokes an event when the <see 
+            cref="T:Syncfusion.UI.Xaml.Controls.Media.SfColorPicker"/> conntrol's 
+            selected color has changed.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.UI.Xaml.Controls.Media.SfColorPicker.Dispose">
+            <summary>
+            Called when control unloaded
+            </summary>
+        </member>
+        <member name="M:Syncfusion.UI.Xaml.Controls.Media.SfColorPicker.Dispose(System.Boolean)">
+            <summary>
+            Called when control unloaded
+            </summary>
+        </member>
+        <member name="M:Syncfusion.UI.Xaml.Controls.Media.Syncfusion_SfColorPickers_UWP_2015_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.Type)">
+            <summary>
+            GetXamlType(Type)
+            </summary>
+        </member>
+        <member name="M:Syncfusion.UI.Xaml.Controls.Media.Syncfusion_SfColorPickers_UWP_2015_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.String)">
+            <summary>
+            GetXamlType(String)
+            </summary>
+        </member>
+        <member name="M:Syncfusion.UI.Xaml.Controls.Media.Syncfusion_SfColorPickers_UWP_2015_XamlTypeInfo.XamlMetaDataProvider.GetXmlnsDefinitions">
+            <summary>
+            GetXmlnsDefinitions()
+            </summary>
+        </member>
+    </members>
+</doc>
