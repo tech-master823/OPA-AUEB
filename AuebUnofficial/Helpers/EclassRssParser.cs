@@ -5,12 +5,13 @@ using System.Net.Http;
 using System.Text.RegularExpressions;
 using Windows.Web.Syndication;
 using AuebUnofficial;
+using Flurl.Http;
 
 public class EclassRssParser
 {
     const string HTML_TAG_PATTERN = "<.*?>";
     public string LastU2Date { get; set;}
-    public int RangeOCourses { get; set; }//Number of Announcements in the course
+    public int RangeOfCourses { get; set; }//Number of Announcements in the course
 
     private ObservableCollection<Announcement> items;
     public ObservableCollection<Announcement> Announcements
@@ -34,23 +35,12 @@ public class EclassRssParser
     }
     private async void loada(string struri)
     {
-        this.RangeOCourses = 0;
+        this.RangeOfCourses = 0;
         var mystringtext = "";
-        var handler = new HttpClientHandler { AllowAutoRedirect = true };
-        var client = new HttpClient(handler);
-        var response = await client.GetAsync(new Uri(struri));
-        if (response.IsSuccessStatusCode)
-        {
-            response.EnsureSuccessStatusCode();
-            mystringtext = await response.Content.ReadAsStringAsync();
-        }
 
-        if (mystringtext.Equals(""))
+        try
         {
-            Announcements=null;
-        }
-        else
-        {
+            mystringtext = await struri.GetAsync().ReceiveString();
             SyndicationFeed feed = new SyndicationFeed();
             feed.Load(mystringtext);
             if (feed != null)
@@ -65,8 +55,12 @@ public class EclassRssParser
                     an.Link = item.Links[0].Uri;
                     this.loadData(an);
                 }
-                this.RangeOCourses = items.Count;
+                this.RangeOfCourses = items.Count;
             }
+        }
+        catch(FlurlHttpException)
+        {
+            Announcements = null;
         }
     }   
    

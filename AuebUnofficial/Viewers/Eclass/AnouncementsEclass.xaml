@@ -85,7 +85,7 @@
             </DataTemplate>
         </controls:MasterDetailsView.DetailsTemplate>       
         </controls:MasterDetailsView>
-        <WebView x:Name="ResponceCode" Width="0" Height="0" Visibility="Collapsed" LoadCompleted="ResponceCode_LoadCompleted" ScriptNotify="ResponceCode_ScriptNotify"
+        <WebView x:Name="ResponceCode" Width="0" Height="0" Grid.Column="1" Grid.Row="1" Visibility="Visible" LoadCompleted="ResponceCode_LoadCompleted" ScriptNotify="ResponceCode_ScriptNotify"
                  />
         <local:Navig x:Name="hamburgerMenuControl" Grid.RowSpan="2" Grid.ColumnSpan="3"/>
     </Grid>
