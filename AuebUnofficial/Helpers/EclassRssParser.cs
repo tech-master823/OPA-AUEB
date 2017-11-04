@@ -31,9 +31,9 @@ public class EclassRssParser
     public EclassRssParser(string struri)
     {
         Announcements = new ObservableCollection<Announcement>();
-        loada(struri);
+        LoadAnnouncements(struri);
     }
-    private async void loada(string struri)
+    private async void LoadAnnouncements(string struri)
     {
         this.RangeOfCourses = 0;
         var mystringtext = "";
@@ -48,12 +48,14 @@ public class EclassRssParser
                 this.LastU2Date = feed.LastUpdatedTime.DateTime.ToString("MM/dd/yyyy HH:mm");
                 foreach (SyndicationItem item in feed.Items)
                 {
-                    Announcement an = new Announcement();
-                    an.Title = StripHTML(item.Title.Text);
-                    an.Description = StripHTML(item.Summary.Text);
-                    an.DatePub = item.PublishedDate.DateTime.ToString("MM/dd/yyyy HH:mm");
-                    an.Link = item.Links[0].Uri;
-                    this.loadData(an);
+                    Announcement an = new Announcement
+                    {
+                        Title = StripHTML(item.Title.Text),
+                        Description = StripHTML(item.Summary.Text),
+                        DatePub = item.PublishedDate.DateTime.ToString("MM/dd/yyyy HH:mm"),
+                        Link = item.Links[0].Uri
+                    };
+                    this.AddAnnouncement(an);
                 }
                 this.RangeOfCourses = items.Count;
             }
@@ -64,7 +66,7 @@ public class EclassRssParser
         }
     }   
    
-    public void loadData(Announcement announce)
+    public void AddAnnouncement(Announcement announce)
     {
         Announcements.Add(announce);
     }

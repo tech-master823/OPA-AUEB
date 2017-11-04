@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26403.0
+VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuebUnofficial", "AuebUnofficial\AuebUnofficial.csproj", "{E6F78F77-E605-4287-B072-539DE7C2DF9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuebUnofficial.Tests", "AuebUnofficial.Tests\AuebUnofficial.Tests.csproj", "{C3AA7126-03B5-4863-8308-20ED45904602}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,8 +39,31 @@ Global
 		{E6F78F77-E605-4287-B072-539DE7C2DF9A}.Release|x86.ActiveCfg = Release|x86
 		{E6F78F77-E605-4287-B072-539DE7C2DF9A}.Release|x86.Build.0 = Release|x86
 		{E6F78F77-E605-4287-B072-539DE7C2DF9A}.Release|x86.Deploy.0 = Release|x86
+		{C3AA7126-03B5-4863-8308-20ED45904602}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{C3AA7126-03B5-4863-8308-20ED45904602}.Debug|ARM.ActiveCfg = Debug|ARM
+		{C3AA7126-03B5-4863-8308-20ED45904602}.Debug|ARM.Build.0 = Debug|ARM
+		{C3AA7126-03B5-4863-8308-20ED45904602}.Debug|ARM.Deploy.0 = Debug|ARM
+		{C3AA7126-03B5-4863-8308-20ED45904602}.Debug|x64.ActiveCfg = Debug|x64
+		{C3AA7126-03B5-4863-8308-20ED45904602}.Debug|x64.Build.0 = Debug|x64
+		{C3AA7126-03B5-4863-8308-20ED45904602}.Debug|x64.Deploy.0 = Debug|x64
+		{C3AA7126-03B5-4863-8308-20ED45904602}.Debug|x86.ActiveCfg = Debug|x86
+		{C3AA7126-03B5-4863-8308-20ED45904602}.Debug|x86.Build.0 = Debug|x86
+		{C3AA7126-03B5-4863-8308-20ED45904602}.Debug|x86.Deploy.0 = Debug|x86
+		{C3AA7126-03B5-4863-8308-20ED45904602}.Release|Any CPU.ActiveCfg = Release|x86
+		{C3AA7126-03B5-4863-8308-20ED45904602}.Release|ARM.ActiveCfg = Release|ARM
+		{C3AA7126-03B5-4863-8308-20ED45904602}.Release|ARM.Build.0 = Release|ARM
+		{C3AA7126-03B5-4863-8308-20ED45904602}.Release|ARM.Deploy.0 = Release|ARM
+		{C3AA7126-03B5-4863-8308-20ED45904602}.Release|x64.ActiveCfg = Release|x64
+		{C3AA7126-03B5-4863-8308-20ED45904602}.Release|x64.Build.0 = Release|x64
+		{C3AA7126-03B5-4863-8308-20ED45904602}.Release|x64.Deploy.0 = Release|x64
+		{C3AA7126-03B5-4863-8308-20ED45904602}.Release|x86.ActiveCfg = Release|x86
+		{C3AA7126-03B5-4863-8308-20ED45904602}.Release|x86.Build.0 = Release|x86
+		{C3AA7126-03B5-4863-8308-20ED45904602}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E101CE3F-57DB-4F00-8ACC-C25697CA383D}
 	EndGlobalSection
 EndGlobal

@@ -3,6 +3,7 @@ using Flurl.Http;
 using HtmlAgilityPack;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
@@ -25,6 +26,7 @@ namespace AuebUnofficial.Viewers
         private App _CurrentApp = App.Current as App;
         private EclassRssParser c;
         private MenuFlyout menuFlyout;
+        private object p;
 
         public AnouncementsEclass()
         {
@@ -32,6 +34,12 @@ namespace AuebUnofficial.Viewers
             this.NavigationCacheMode = NavigationCacheMode.Enabled;
             this.Loaded += An_LoadedAsync;
         }
+
+        public AnouncementsEclass(object p)
+        {
+            this.p = p;
+        }
+
         private async void An_LoadedAsync(object sender, RoutedEventArgs d)
         {
             AddFlyoutMenu();
@@ -39,17 +47,21 @@ namespace AuebUnofficial.Viewers
             if (Ycourses == null) Ycourses = new ObservableCollection<Course>();
             else return;
             //
-            await FilCoursesAsync();
-            ResponceCode.Navigate(new Uri("https://eclass.aueb.gr"));
+            await FilCoursesAsync(_CurrentApp.eclassToken);
+            if (_CurrentApp.CurrentEclassUser.Uid == null)
+            {
+                _CurrentApp.CurrentEclassUser.Uid = eclassUID = GetUid(_CurrentApp.eclassToken);
+            }
+            CorrectClosedCourses();
         }
-        private async Task FilCoursesAsync()
+        private async Task FilCoursesAsync(string tokenSeq)
         {
             UnameTblock.Text = "Username: " + _CurrentApp.CurrentEclassUser.Username;
-            string getit = await "https://eclass.aueb.gr/modules/mobile/mcourses.php"
-               .PostUrlEncodedAsync(new { token = _CurrentApp.eclassToken })
+            string coursesXML = await "https://eclass.aueb.gr/modules/mobile/mcourses.php"
+               .PostUrlEncodedAsync(new { token = tokenSeq })
                .ReceiveString();
-            XDocument coursex = XDocument.Load(GenerateStreamFromString(getit));
-            coursex.Root
+            XDocument coursesXDocument = XDocument.Load(GenerateStreamFromString(coursesXML));
+            coursesXDocument.Root
                  .Elements("coursegroup").Elements("course")
                  .Select(x => new Course
                  {
@@ -60,20 +72,15 @@ namespace AuebUnofficial.Viewers
                      //LU2D=c.Announcements.ElementAt(0).DatePub,
                      //NoAn=c.Announcements.Count
                  }).ToList().ForEach(course => this.Ycourses.Add(course));
-            courseCodeRequested = Ycourses.Last().Id;
             CoursesViewer.ItemsSource = Ycourses;
         }
-
-        private void correctCourses()
+        
+        private void CorrectClosedCourses()
         {
             CoursesViewer.IsHitTestVisible = false;
             ProgressUpdate.IsActive = true;
             ProgressUpdate.Visibility = Visibility.Visible;
             CoursesViewer.Visibility = Visibility.Collapsed;
-            if (_CurrentApp.CurrentEclassUser.Uid == null)
-            {
-                _CurrentApp.CurrentEclassUser.Uid = eclassUID;
-            }
             Ycourses.ToList().ForEach(async course =>
             {
                 if (course.MyAnnouncements.Count == 0)
@@ -92,9 +99,8 @@ namespace AuebUnofficial.Viewers
                     {
                         courseCodeRequested = course.Id;
                         var url = "https://eclass.aueb.gr/modules/announcements/?course=" + course.Id;
-                        count = 2;
-                        ResponceCode.Navigate(new Uri(url));
-                        await Task.Delay(1400);
+                        await Task.Delay(400);
+                        announcementToken = GetToken(_CurrentApp.eclassToken);
                         course.Ans = c = new EclassRssParser("https://eclass.aueb.gr/modules/announcements/rss.php?c=" + announcementToken.ID + "&uid=" + _CurrentApp.CurrentEclassUser.Uid + "&token=" + announcementToken.Token);
                         course.MyAnnouncements = c.Announcements;
                         var urlCreate = "http://auebunofficialapi.azurewebsites.net/Announcements/Create/";
@@ -106,57 +112,8 @@ namespace AuebUnofficial.Viewers
             ProgressUpdate.IsActive = false;
             ProgressUpdate.Visibility = Visibility.Collapsed;
             CoursesViewer.Visibility = Visibility.Visible;
-        }
-        
-        private async void ResponceCode_LoadCompleted(object sender, NavigationEventArgs e)
-        {
-            if (count == 0)
-            {
-                string functionString = String.Format("document.getElementById('uname').innerText = '{0}';", _CurrentApp.CurrentEclassUser.Username);
-                await ResponceCode.InvokeScriptAsync("eval", new string[] { functionString });
-                functionString = String.Format("document.getElementById('password').innerText = '{0}';", _CurrentApp.CurrentEclassUser.Password);
-                await ResponceCode.InvokeScriptAsync("eval", new string[] { functionString });
-                functionString = String.Format("document.getElementsByTagName('button')[document.getElementsByTagName('button').length-1].click();");
-                await ResponceCode.InvokeScriptAsync("eval", new[] { functionString });
-                count++;
-            }
-            else if (count == 1)
-            {
-                var scode = await ResponceCode.InvokeScriptAsync("eval", new string[] { "document.documentElement.outerHTML;" });
-                var doc = new HtmlDocument(); doc.LoadHtml(scode);
-                var value = doc.DocumentNode.Descendants("a").Where(x => x.Attributes.Contains("href"));
-                var urlWithUid = value.Where(href => href.Attributes["href"].Value.Contains("uid")).First().ToString();
-                eclassUID = urlWithUid.Split("&amp;".ToCharArray()).Last().ToString().Split('=').Last().ToString();
-                count++;
-            }
-            else if (count == 2)
-            {
-                var scode = await ResponceCode.InvokeScriptAsync("eval", new string[] { "document.documentElement.outerHTML;" });
-                var doc = new HtmlDocument();
-                doc.LoadHtml(scode);
-                var value = doc.DocumentNode.Descendants("a").Where(x => x.Attributes.Contains("href"));
-                var myval = value.Where(y => y.Attributes["href"].Value.Contains("/modules/announcements/rss.php"));
-                announcementToken = new Model.AnnouncementToken() { ID = courseCodeRequested, Token = (myval.First().Attributes["href"].Value.Split('&').GetValue(2).ToString()).Split('=').Last().ToString() };
-                count++;
-                ResponceCode.Navigate(new Uri("https://eclass.aueb.gr/"));
-            }
-            else if(count==3)
-            {
-                if(!eclassUID.Equals(""))correctCourses();
-                
-                count++;
-            }
-        }
-
-        private void ResponceCode_ScriptNotify(object sender, NotifyEventArgs e)
-        {
-            var url = e.Value;
-        }
-
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
-        {
-            base.OnNavigatedFrom(e);
-        }
+        }    
+    
         #region Buttons
         private async void Logout_Click(object sender, RoutedEventArgs e)
         {
@@ -184,8 +141,10 @@ namespace AuebUnofficial.Viewers
         }
         private void Copy(string text)
         {
-            DataPackage dataPackage = new DataPackage();
-            dataPackage.RequestedOperation = DataPackageOperation.Copy;
+            DataPackage dataPackage = new DataPackage
+            {
+                RequestedOperation = DataPackageOperation.Copy
+            };
             if (text.Contains("http")) dataPackage.SetWebLink(new Uri(text));
             dataPackage.SetText(text);
             Clipboard.SetContent(dataPackage);
@@ -233,6 +192,29 @@ namespace AuebUnofficial.Viewers
             menuFlyout.Items.Add(copyLink);
         }
         #endregion Utilities
+        #region Helpers(Scrappers)
+        public Model.AnnouncementToken GetToken(string tokenSeq)
+        {
+            var CourseAnnouncementsHtml = "";
+            Task.Run(async () => { CourseAnnouncementsHtml = await ("https://eclass.aueb.gr/modules/announcements/?course="+courseCodeRequested).PostUrlEncodedAsync(new { token = tokenSeq }).ReceiveString(); }).GetAwaiter().GetResult();
+            var doc = new HtmlDocument(); doc.LoadHtml(CourseAnnouncementsHtml);
+            
+
+            var value = doc.DocumentNode.Descendants("a").Where(x => x.Attributes.Contains("href"));
+            var myval = value.Where(y => y.Attributes["href"].Value.Contains("/modules/announcements/rss.php"));
+            announcementToken = new Model.AnnouncementToken() { ID = courseCodeRequested, Token = (myval.First().Attributes["href"].Value.Split('&').GetValue(2).ToString()).Split('=').Last().ToString() };
+            return announcementToken;
+        }
+        public string GetUid(string tokenSeq)
+        {
+            string portfolioHTML = "";
+            List<string> hrefs = new List<string>();
+            Task.Run(async () => { portfolioHTML = await "https://eclass.aueb.gr/main/portfolio.php".PostUrlEncodedAsync(new { token = tokenSeq }).ReceiveString(); }).GetAwaiter().GetResult();
+            HtmlDocument portfolioDocumentPage = new HtmlDocument(); portfolioDocumentPage.LoadHtml(portfolioHTML);
+            portfolioDocumentPage.DocumentNode.SelectNodes("//a[@href]").ToList().ForEach(node => hrefs.Add(node.Attributes["href"].Value));
+            return hrefs.Where(href => href.Contains("uid")).ToList().First().Split("&amp;".ToCharArray()).Last().Split('=').Last();
+        }
+        #endregion Helpers(Scrappers)
     }    
 }
 namespace AuebUnofficial
