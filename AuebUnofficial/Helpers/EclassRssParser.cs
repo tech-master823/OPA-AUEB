@@ -5,12 +5,13 @@ using System.Net.Http;
 using System.Text.RegularExpressions;
 using Windows.Web.Syndication;
 using AuebUnofficial;
+using Flurl.Http;
 
 public class EclassRssParser
 {
     const string HTML_TAG_PATTERN = "<.*?>";
     public string LastU2Date { get; set;}
-    public int RangeOCourses { get; set; }//Number of Announcements in the course
+    public int RangeOfCourses { get; set; }//Number of Announcements in the course
 
     private ObservableCollection<Announcement> items;
     public ObservableCollection<Announcement> Announcements
@@ -30,27 +31,16 @@ public class EclassRssParser
     public EclassRssParser(string struri)
     {
         Announcements = new ObservableCollection<Announcement>();
-        loada(struri);
+        LoadAnnouncements(struri);
     }
-    private async void loada(string struri)
+    private async void LoadAnnouncements(string struri)
     {
-        this.RangeOCourses = 0;
+        this.RangeOfCourses = 0;
         var mystringtext = "";
-        var handler = new HttpClientHandler { AllowAutoRedirect = true };
-        var client = new HttpClient(handler);
-        var response = await client.GetAsync(new Uri(struri));
-        if (response.IsSuccessStatusCode)
-        {
-            response.EnsureSuccessStatusCode();
-            mystringtext = await response.Content.ReadAsStringAsync();
-        }
 
-        if (mystringtext.Equals(""))
+        try
         {
-            Announcements=null;
-        }
-        else
-        {
+            mystringtext = await struri.GetAsync().ReceiveString();
             SyndicationFeed feed = new SyndicationFeed();
             feed.Load(mystringtext);
             if (feed != null)
@@ -58,19 +48,25 @@ public class EclassRssParser
                 this.LastU2Date = feed.LastUpdatedTime.DateTime.ToString("MM/dd/yyyy HH:mm");
                 foreach (SyndicationItem item in feed.Items)
                 {
-                    Announcement an = new Announcement();
-                    an.Title = StripHTML(item.Title.Text);
-                    an.Description = StripHTML(item.Summary.Text);
-                    an.DatePub = item.PublishedDate.DateTime.ToString("MM/dd/yyyy HH:mm");
-                    an.Link = item.Links[0].Uri;
-                    this.loadData(an);
+                    Announcement an = new Announcement
+                    {
+                        Title = StripHTML(item.Title.Text),
+                        Description = StripHTML(item.Summary.Text),
+                        DatePub = item.PublishedDate.DateTime.ToString("MM/dd/yyyy HH:mm"),
+                        Link = item.Links[0].Uri
+                    };
+                    this.AddAnnouncement(an);
                 }
-                this.RangeOCourses = items.Count;
+                this.RangeOfCourses = items.Count;
             }
+        }
+        catch(FlurlHttpException)
+        {
+            Announcements = null;
         }
     }   
    
-    public void loadData(Announcement announce)
+    public void AddAnnouncement(Announcement announce)
     {
         Announcements.Add(announce);
     }
