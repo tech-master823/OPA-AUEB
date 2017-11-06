@@ -1,6 +1,7 @@
 ﻿using AuebUnofficial.Helpers;
 using Flurl.Http;
 using HtmlAgilityPack;
+using Microsoft.Azure.Mobile.Analytics;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -98,16 +99,21 @@ namespace AuebUnofficial.Viewers
                     catch (FlurlHttpException)
                     {
                         courseCodeRequested = course.Id;
-                        var url = "https://eclass.aueb.gr/modules/announcements/?course=" + course.Id;
-                        await Task.Delay(400);
+                        var url = "https://eclass.aueb.gr/modules/announcements/?course=" + course.Id;                        
                         announcementToken = GetToken(_CurrentApp.eclassToken);
                         course.Ans = c = new EclassRssParser("https://eclass.aueb.gr/modules/announcements/rss.php?c=" + announcementToken.ID + "&uid=" + _CurrentApp.CurrentEclassUser.Uid + "&token=" + announcementToken.Token);
                         course.MyAnnouncements = c.Announcements;
                         var urlCreate = "http://auebunofficialapi.azurewebsites.net/Announcements/Create/";
-                        var response = await urlCreate.PostUrlEncodedAsync(new { ID = announcementToken.ID, Token = announcementToken.Token });
+                        try
+                        {
+                            var response = await urlCreate.PostUrlEncodedAsync(new { ID = announcementToken.ID, Token = announcementToken.Token });
+                        }
+                        catch (Exception) { Analytics.TrackEvent("Cannot upload to API"); }
+                        
                     }
                 }
             });
+            //await Task.Delay(400);
             CoursesViewer.IsHitTestVisible = true;
             ProgressUpdate.IsActive = false;
             ProgressUpdate.Visibility = Visibility.Collapsed;
