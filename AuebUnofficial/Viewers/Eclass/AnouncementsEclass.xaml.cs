@@ -113,7 +113,6 @@ namespace AuebUnofficial.Viewers
                     }
                 }
             });
-            //await Task.Delay(400);
             CoursesViewer.IsHitTestVisible = true;
             ProgressUpdate.IsActive = false;
             ProgressUpdate.Visibility = Visibility.Collapsed;
