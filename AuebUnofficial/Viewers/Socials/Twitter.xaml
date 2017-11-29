@@ -16,7 +16,7 @@
                     BorderThickness="0">
                 <controls:RoundImageEx
                         x:Name="ProfileImage"
-                        Source="{Binding User.ProfileImageUrl}"
+                        Source="{Binding UserProfileImageUrl}"
                         Stretch="Uniform"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
@@ -34,7 +34,7 @@
                 <TextBlock                        
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center"
-                        Text="{Binding CreatedAt, Mode=TwoWay}"                        
+                        Text="{Binding CreationDateTime, Mode=TwoWay}"                        
                         RelativePanel.Below="Text" RelativePanel.RightOf="ProfileImage"/>
             </RelativePanel>
         </DataTemplate>

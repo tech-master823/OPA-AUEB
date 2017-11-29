@@ -1,4 +1,4 @@
-﻿using Microsoft.Toolkit.Uwp.Services.Twitter;
+﻿using AppStudio.DataProviders.Twitter;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -26,7 +26,7 @@ namespace AuebUnofficial.Viewers
         string baseurl = "";
         Uri uri;
         Announcement announcementParam = null;
-        Tweet tweetparam = null;
+        TwitterSchema tweetparam = null;
         public CommonWebView()
         {
             this.InitializeComponent();
@@ -41,10 +41,10 @@ namespace AuebUnofficial.Viewers
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             var baseurl = "";
-            if (e.Parameter.GetType() == typeof(Tweet))
+            if (e.Parameter.GetType() == typeof(TwitterSchema))
             {
-                tweetparam = (Tweet)e.Parameter; baseurl="twitter.com"; Website.Text = baseurl;
-                uri = new Uri("https://"+baseurl+"/" + tweetparam.User.Id + "/status/" + tweetparam.Id);
+                tweetparam = (TwitterSchema)e.Parameter; baseurl="twitter.com"; Website.Text = baseurl;
+                uri = new Uri(tweetparam.Url);
             }else if (e.Parameter.GetType() == typeof(Announcement))
             {
                 announcementParam = (Announcement)e.Parameter; baseurl = "eclass.aueb.gr"; Website.Text = baseurl; Header.Text = announcementParam.Title;

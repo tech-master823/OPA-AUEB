@@ -1,7 +1,7 @@
 ﻿using AuebUnofficial.Helpers;
 using Flurl.Http;
 using HtmlAgilityPack;
-using Microsoft.Azure.Mobile.Analytics;
+using Microsoft.AppCenter.Analytics;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

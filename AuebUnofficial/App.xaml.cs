@@ -4,9 +4,9 @@ using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using Microsoft.Azure.Mobile;
-using Microsoft.Azure.Mobile.Analytics;
-using Microsoft.Azure.Mobile.Push;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Push;
 using System.Threading.Tasks;
 using Windows.Storage;
 using AuebUnofficial.Model;
@@ -86,7 +86,7 @@ namespace AuebUnofficial
                 // Ensure the current window is active
                 Window.Current.Activate();
             }
-            MobileCenter.Start("bc8e0447-700a-4e68-a274-4cab46a9eac2", typeof(Analytics), typeof(Push));
+            AppCenter.Start("bc8e0447-700a-4e68-a274-4cab46a9eac2", typeof(Analytics), typeof(Push));
             Push.CheckLaunchedFromNotification(e);
             CurrentEclassUser = await GetUserAsync();
         }
