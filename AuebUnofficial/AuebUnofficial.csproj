@@ -324,7 +324,6 @@
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Services\CommunutyToolkit\" />
     <Folder Include="Tasks\" />
   </ItemGroup>
   <ItemGroup>

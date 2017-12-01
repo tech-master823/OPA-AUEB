@@ -43,10 +43,25 @@ namespace AuebUnofficial.Viewers
 
         private async void An_LoadedAsync(object sender, RoutedEventArgs d)
         {
+            
             AddFlyoutMenu();
             //If this page is in the NavigationStack return, else go
-            if (Ycourses == null) Ycourses = new ObservableCollection<Course>();
-            else return;
+            if (Ycourses == null)
+            {
+                CoursesViewer.Visibility = Visibility.Collapsed;
+                CoursesViewer.IsHitTestVisible = false;
+                ProgressUpdate.IsActive = true;
+                ProgressUpdate.Visibility = Visibility.Visible;
+                Ycourses = new ObservableCollection<Course>();
+            }
+            else
+            {
+                CoursesViewer.IsHitTestVisible = true;
+                ProgressUpdate.IsActive = false;
+                ProgressUpdate.Visibility = Visibility.Collapsed;
+                CoursesViewer.Visibility = Visibility.Visible;
+                return;
+            }
             //
             await FilCoursesAsync(_CurrentApp.eclassToken);
             if (_CurrentApp.CurrentEclassUser.Uid == null)
@@ -54,6 +69,7 @@ namespace AuebUnofficial.Viewers
                 _CurrentApp.CurrentEclassUser.Uid = eclassUID = GetUid(_CurrentApp.eclassToken);
             }
             CorrectClosedCourses();
+            
         }
         private async Task FilCoursesAsync(string tokenSeq)
         {
@@ -78,10 +94,8 @@ namespace AuebUnofficial.Viewers
         
         private void CorrectClosedCourses()
         {
-            CoursesViewer.IsHitTestVisible = false;
-            ProgressUpdate.IsActive = true;
-            ProgressUpdate.Visibility = Visibility.Visible;
-            CoursesViewer.Visibility = Visibility.Collapsed;
+           
+            
             Ycourses.ToList().ForEach(async course =>
             {
                 if (course.MyAnnouncements.Count == 0)
@@ -117,6 +131,7 @@ namespace AuebUnofficial.Viewers
             ProgressUpdate.IsActive = false;
             ProgressUpdate.Visibility = Visibility.Collapsed;
             CoursesViewer.Visibility = Visibility.Visible;
+            DoneNotification.Show("Done loading Announcements");
         }    
     
         #region Buttons
