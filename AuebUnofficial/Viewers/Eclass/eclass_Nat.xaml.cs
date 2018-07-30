@@ -1,8 +1,12 @@
 ﻿using Flurl.Http;
+using System.Threading.Tasks;
+using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using RavinduL.LocalNotifications;
 
 namespace AuebUnofficial.Viewers
 {
@@ -11,6 +15,10 @@ namespace AuebUnofficial.Viewers
     {
         private App obj;
         private string eclassOutput = "_";
+        private Notifications.LNotifications localNotifications =
+            new Notifications.LNotifications("Logged in successfully!", "Wrong Username or Password!");
+        private LocalNotificationManager manager;
+        private bool isGridCheckFocused=false;
         public eclass_Nat()
         {
             this.InitializeComponent();
@@ -35,7 +43,7 @@ namespace AuebUnofficial.Viewers
             {
                 obj.CurrentEclassUser = new Model.EclassUser();
             }
-            
+            manager = new LocalNotificationManager(popup);
         }
 
         private void ButtonClick(object sender, RoutedEventArgs e)
@@ -56,11 +64,6 @@ namespace AuebUnofficial.Viewers
             if (this.Frame.CanGoBack) this.Frame.GoBack();
             LoginBtn.IsEnabled = true;  back.IsEnabled = true;
         }
-        private void showPopupBtn_Click()
-        {
-            BlinkPopup.Begin();
-            PopupTextBlock.Visibility = Visibility.Visible;
-        }
         private async void Login()
         {
             LoginBtn.IsEnabled = false; back.IsEnabled = false;
@@ -70,19 +73,27 @@ namespace AuebUnofficial.Viewers
             if (eclassOutput != ("FAILED") && eclassOutput != ("_"))
             {
                 obj.eclassToken = eclassOutput; obj.CurrentEclassUser.Username = login.Text; obj.CurrentEclassUser.Password = pass.Password;
-                 
+                manager.Show(localNotifications.GetPositiveNotification(), LocalNotificationCollisionBehaviour.Replace);
+                await Task.Delay(1500);
                 ((Frame)Window.Current.Content).Navigate(typeof(AnouncementsEclass));
             }
             else
             {
-                showPopupBtn_Click();
+                manager.Show(localNotifications.GetNegativeNotification(), LocalNotificationCollisionBehaviour.Replace);
             }
             LoginBtn.IsEnabled = true; back.IsEnabled = true;
         }
         private void PasswordKeyDown(CoreWindow sender, KeyEventArgs e)
         {
+            
             if (e.VirtualKey == Windows.System.VirtualKey.Enter)
-                Login();
+            {
+                if (LoginBtn.IsFocusEngaged || pass.IsFocusEngaged)
+                {
+                    Login();
+                }
+            }
+                
         }
 
         private void ForeverCheckbox_Checked(object sender, RoutedEventArgs e)
@@ -98,6 +109,16 @@ namespace AuebUnofficial.Viewers
         private void login_TextChanged(object sender, TextChangedEventArgs e)
         {
             obj.eclassToken = null;
+        }
+
+        private void ForeverCheckbox_FocusEngaged(Control sender, FocusEngagedEventArgs args)
+        {
+            isGridCheckFocused = true;
+        }
+
+        private void ForeverCheckbox_FocusDisengaged(Control sender, FocusDisengagedEventArgs args)
+        {
+            isGridCheckFocused = false;
         }
     }
     

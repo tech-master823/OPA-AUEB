@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.IO;
-using System.Net.Http;
 using System.Text.RegularExpressions;
 using Windows.Web.Syndication;
 using AuebUnofficial;

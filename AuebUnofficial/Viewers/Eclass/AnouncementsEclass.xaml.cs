@@ -1,8 +1,10 @@
 ﻿using AuebUnofficial.Helpers;
+using AuebUnofficial.Viewers.Notifications;
 using Flurl.Http;
 using HtmlAgilityPack;
 using Microsoft.AppCenter.Analytics;
 using Newtonsoft.Json;
+using RavinduL.LocalNotifications;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -20,7 +22,6 @@ namespace AuebUnofficial.Viewers
     public sealed partial class AnouncementsEclass : Page
     {
         private Announcement _CurrentAnnouncement;
-        private int count = 0;
         Model.AnnouncementToken announcementToken;
         private ObservableCollection<Course> Ycourses;
         private string eclassUID="", courseCodeRequested;
@@ -28,6 +29,8 @@ namespace AuebUnofficial.Viewers
         private EclassRssParser c;
         private MenuFlyout menuFlyout;
         private object p;
+        private LocalNotificationManager notificationManager;
+        private LNotifications lNotifications = new LNotifications("Courses loaded succedfully!", "Logged out succesfully!");
 
         public AnouncementsEclass()
         {
@@ -92,11 +95,11 @@ namespace AuebUnofficial.Viewers
             CoursesViewer.ItemsSource = Ycourses;
         }
         
-        private void CorrectClosedCourses()
+        private async void CorrectClosedCourses()
         {
            
             
-            Ycourses.ToList().ForEach(async course =>
+            foreach(Course course in Ycourses)
             {
                 if (course.MyAnnouncements.Count == 0)
                 {
@@ -126,22 +129,28 @@ namespace AuebUnofficial.Viewers
                         
                     }
                 }
-            });
+            }
             CoursesViewer.IsHitTestVisible = true;
             ProgressUpdate.IsActive = false;
             ProgressUpdate.Visibility = Visibility.Collapsed;
             CoursesViewer.Visibility = Visibility.Visible;
-            DoneNotification.Show("Done loading Announcements");
-        }    
+            notificationManager = new LocalNotificationManager(DoneNotification);
+            notificationManager.Show(lNotifications.GetPositiveNotification(),LocalNotificationCollisionBehaviour.Replace);
+        }
     
         #region Buttons
         private async void Logout_Click(object sender, RoutedEventArgs e)
         {
+            notificationManager = new LocalNotificationManager(DoneNotification);
+            notificationManager.Show(lNotifications.GetNegativeNotification(), LocalNotificationCollisionBehaviour.Replace); 
             var logout = await "https://eclass.aueb.gr/modules/mobile/mlogin.php?logout"
                 .PostUrlEncodedAsync(new { token = _CurrentApp.eclassToken })
                 .ReceiveString();
+            await Task.Delay(1000);
             _CurrentApp.eclassToken = null;
-            if (this.Frame.CanGoBack) this.Frame.GoBack();
+            Ycourses = null;            
+            ((Frame)Window.Current.Content).Navigate(typeof(eclass_Nat));
+
         }
 
         private void AnouncList_RightTapped(object sender, Windows.UI.Xaml.Input.RightTappedRoutedEventArgs e)
@@ -158,6 +167,8 @@ namespace AuebUnofficial.Viewers
         private void CopyLink_Click(object sender, RoutedEventArgs e)
         {
             Copy(_CurrentAnnouncement.Link.ToString());
+            lNotifications = new LNotifications("Link copied succesfully!");
+            notificationManager.Show(lNotifications.GetPositiveNotification());
         }
         private void Copy(string text)
         {
@@ -167,11 +178,13 @@ namespace AuebUnofficial.Viewers
             };
             if (text.Contains("http")) dataPackage.SetWebLink(new Uri(text));
             dataPackage.SetText(text);
-            Clipboard.SetContent(dataPackage);
+            Clipboard.SetContent(dataPackage);            
         }
         private void Copy_Click(object sender, RoutedEventArgs e)
         {
             Copy(_CurrentAnnouncement.Title + Environment.NewLine + _CurrentAnnouncement.Description);
+            lNotifications = new LNotifications("Announcement copied succesfully!");
+            notificationManager.Show(lNotifications.GetPositiveNotification());
         }
 
         private void Share_Click(object sender, RoutedEventArgs e)

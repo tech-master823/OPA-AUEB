@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-using System.Net.Http;
 using System.Reflection;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -21,7 +20,6 @@ using Windows.UI.Xaml.Printing;
 using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
 using Windows.Storage.Streams;
-using System.Diagnostics;
 
 namespace AuebUnofficial
 {
