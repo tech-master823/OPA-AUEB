@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:AuebUnofficial"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"    
     xmlns:xaml="using:Microsoft.Toolkit.Uwp.UI"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d">
@@ -51,6 +51,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="68"/>
             <RowDefinition/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Column="1" HorizontalAlignment="Center">
             <TextBlock FontSize="30" Text="Οι ανακοινώσεις μου"/>
@@ -85,6 +86,7 @@
             </DataTemplate>
         </controls:MasterDetailsView.DetailsTemplate>       
         </controls:MasterDetailsView>
+        <Grid Grid.Column="1" Grid.Row="1" x:Name="DoneNotification" Canvas.ZIndex="28"/>
         <local:Navig x:Name="hamburgerMenuControl" Grid.RowSpan="2" Grid.ColumnSpan="3"/>
     </Grid>
 </Page>
