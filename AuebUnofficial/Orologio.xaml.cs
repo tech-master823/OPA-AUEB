@@ -10,7 +10,7 @@ using Windows.UI.Xaml.Navigation;
 using Flurl.Http;
 using System.Linq;
 using Newtonsoft.Json;
-using AuebUnofficial.Model;
+using AuebUnofficial.Core.Model;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
 using System.Threading.Tasks;
