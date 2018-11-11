@@ -42,7 +42,6 @@
                                    ItemsSource="{Binding TabControlItems}"
                                    ItemTemplate="{StaticResource PhotosTemplate}"
                                    Grid.Column="1"/>
-        <local:Navig x:Name="hamburgerMenuControl" Grid.RowSpan="2" Grid.ColumnSpan="3"/>
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup >
                 <VisualState x:Name="desktop">

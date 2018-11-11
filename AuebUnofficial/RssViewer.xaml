@@ -45,10 +45,8 @@
                 <ListView ItemTemplate="{StaticResource RssV}" x:Name="ListView1" HorizontalAlignment="Left"/>
             </ItemsControl>
         </ScrollViewer>
-        
-        <ProgressRing x:Name="testring" Grid.Row="2"></ProgressRing>
-        <local:Navig x:Name="hamburgerMenuControl" Grid.RowSpan="5" Grid.ColumnSpan="2"/>
 
+        <ProgressRing x:Name="testring" Grid.Row="2"></ProgressRing>
     </Grid>
 
 </Page>

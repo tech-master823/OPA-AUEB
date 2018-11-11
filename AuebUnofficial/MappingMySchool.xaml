@@ -21,6 +21,5 @@
                TiltInteractionMode="GestureAndControl"              
                MapServiceToken="exwabraOkDmCtrgOa9nN~V5xijbYrAJsFeECSTlMEsw~AsDHnK9GzSuVBZRybOzPiqBKVlyZkRaLXeBnoVjMUBclm6hcuITz8onUfOw5TRPT" Grid.Column="1">
         </Maps:MapControl>
-        <local:Navig x:Name="hamburgerMenuControl" Grid.RowSpan="2" Grid.ColumnSpan="3"/>
     </Grid>
 </Page>

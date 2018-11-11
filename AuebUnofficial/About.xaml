@@ -47,7 +47,6 @@
                 <GridView ItemTemplate="{StaticResource AApppack}" x:Name="GridView" HorizontalAlignment="Center" BorderThickness="0"/>
             </ItemsControl>
         </ScrollViewer>
-        <local:Navig x:Name="hamburgerMenuControl" Grid.RowSpan="2" Grid.ColumnSpan="3"/>
 
 
     </Grid>

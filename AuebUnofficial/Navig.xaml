@@ -1,15 +1,15 @@
-﻿<UserControl
+﻿<Page
     x:Class="AuebUnofficial.Navig"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:AuebUnofficial"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:controls="using:Microsoft.UI.Xaml.Controls"
     xmlns:view="using:AuebUnofficial"
     mc:Ignorable="d">
-    <UserControl.Resources>
-        <DataTemplate x:Key="DefaultTemplate" x:DataType="local:MenuItem">
+    <Page.Resources>
+        <DataTemplate x:Key="ViewModelTemplate" x:DataType="local:MenuItem">
             <Grid Width="240" Height="48">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="48" />
@@ -19,19 +19,47 @@
                 <TextBlock Grid.Column="1" Text="{x:Bind Name, Mode=OneWay}" TextWrapping="Wrap" FontSize="16" VerticalAlignment="Center" Foreground="White"/>
             </Grid>
         </DataTemplate>
-    </UserControl.Resources>
+        <DataTemplate x:Key="NavigationItemTemplate">
+        </DataTemplate>
+        <DataTemplate x:Key="DefaultTemplate" x:DataType="local:MenuItem">
+            <Grid HorizontalAlignment="Left"
+              Height="40"
+              Margin="-16,0,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="48" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Viewbox Grid.Column="0"
+                     Margin="16,12">
+                    <SymbolIcon Symbol="{x:Bind Icon}" />
+                </Viewbox>
+                <ContentPresenter Content="{x:Bind Name}"
+                              Grid.Column="1"
+                              VerticalAlignment="Center"/>
+            </Grid>
+        </DataTemplate>
+        <local:MenuItemTemplateSelector x:Key="NavigationItemTemplateSelector"
+                ViewModelTemplate="{StaticResource ViewModelTemplate}"
+                ItemTemplate="{StaticResource NavigationItemTemplate}"
+                />
+    </Page.Resources>
     <Grid>
-        <controls:HamburgerMenu x:Name="hamburgerMenuControl"
-                                DisplayMode="CompactOverlay"
-                                PaneBackground="Black"
+        <controls:NavigationView x:Name="hamburgerMenuControl"
+                                PaneDisplayMode="LeftCompact"
+                                MenuItemTemplate="{StaticResource DefaultTemplate}"
+                                 ItemInvoked="hamburgerMenuControl_ItemInvoked"
+                                Background="Black"
                                 Foreground="White"
-                                CompactPaneLength="48"                                
-                                OpenPaneLength="240"
-                                ItemTemplate="{StaticResource DefaultTemplate}"
-                                ItemClick="OnMenuItemClick"                                
-                                OptionsItemTemplate="{StaticResource DefaultTemplate}"
-                                OptionsItemClick="OnMenuItemClick"
-                                >            
-        </controls:HamburgerMenu>
+                                IsSettingsVisible="False"
+                                IsPaneOpen="False"
+                                >
+            
+            <controls:NavigationView.PaneFooter>
+             <controls:NavigationViewList x:Name="NavFooterList" ItemTemplate="{StaticResource DefaultTemplate}" IsItemClickEnabled="True" ItemClick="NavFooterList_ItemClick"/>
+            </controls:NavigationView.PaneFooter>
+            <controls:NavigationView.Content>
+                <Frame x:Name="ContentFrame" IsTabStop="True"/>
+            </controls:NavigationView.Content>
+        </controls:NavigationView>
     </Grid>
-</UserControl>
+</Page>

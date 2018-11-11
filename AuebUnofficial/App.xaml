@@ -3,12 +3,13 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:AuebUnofficial"
+    xmlns:xaml="using:Windows.UI.Xaml"
     RequestedTheme="Light">
     <Application.Resources>
         <ResourceDictionary x:Name="Rs">
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary x:Name="FontAwesome" Source="Helpers\HandlingUI\FontAwesomeDictionary.xaml"/>
-                
+                <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

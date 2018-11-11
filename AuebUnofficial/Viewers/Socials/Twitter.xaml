@@ -14,7 +14,7 @@
             <RelativePanel
                     Background="White"
                     BorderThickness="0">
-                <controls:RoundImageEx
+                <controls:ImageEx
                         x:Name="ProfileImage"
                         Source="{Binding UserProfileImageUrl}"
                         Stretch="Uniform"
@@ -53,7 +53,7 @@
                   ItemTemplate="{StaticResource PostsTemplate}"
                   ItemContainerStyle="{StaticResource ListViewItemExpanded}">
             <ListView.Header>
-                <controls:ScrollHeader Mode="Sticky" TargetListViewBase="{x:Bind TwitterFeed}">
+                <controls:ScrollHeader Mode="Sticky">
                     <StackPanel Orientation="Vertical" Background="#FF0078D7">
                         <Grid>
                             <HyperlinkButton Click="Button_Click" HorizontalAlignment="Left" VerticalAlignment="Center">

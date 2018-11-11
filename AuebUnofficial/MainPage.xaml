@@ -44,8 +44,6 @@
         <WebView NavigationFailed="auebgr_NavigationFailed" NavigationCompleted="auebgr_NavigationCompleted" x:Name="auebgr" Grid.Column="1" Grid.Row="1" 
                  Visibility="Collapsed" Source="http://www.aueb.gr" DefaultBackgroundColor="Transparent"/>
         <ProgressRing IsActive="True" Grid.Column="1" Grid.Row="1" Visibility="Visible" HorizontalAlignment="Center" VerticalAlignment="Top" x:Name="auebgr_pbar" Height="50" Width="50" Foreground="Black"/>
-        <local:Navig x:Name="hamburgerMenuControl" Grid.RowSpan="2" Grid.ColumnSpan="3"/>
-
 
     </Grid>
 

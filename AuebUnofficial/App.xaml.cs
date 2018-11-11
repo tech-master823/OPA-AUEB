@@ -81,13 +81,15 @@ namespace AuebUnofficial
                     // When the navigation stack isn't restored navigate to the first page,
                     // configuring the new page by passing required information as a navigation
                     // parameter
-                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                    rootFrame.Navigate(typeof(Navig), e.Arguments);
                 }
                 // Ensure the current window is active
                 Window.Current.Activate();
             }
+#if !DEBUG
             AppCenter.Start("bc8e0447-700a-4e68-a274-4cab46a9eac2", typeof(Analytics), typeof(Push));
             Push.CheckLaunchedFromNotification(e);
+#endif
             CurrentEclassUser = await GetUserAsync();
         }
 

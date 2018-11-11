@@ -87,6 +87,5 @@
         </controls:MasterDetailsView.DetailsTemplate>       
         </controls:MasterDetailsView>
         <Grid Grid.Column="1" Grid.Row="1" x:Name="DoneNotification" Canvas.ZIndex="28"/>
-        <local:Navig x:Name="hamburgerMenuControl" Grid.RowSpan="2" Grid.ColumnSpan="3"/>
     </Grid>
 </Page>
