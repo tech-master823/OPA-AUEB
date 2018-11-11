@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AuebUnofficial.Model
+namespace AuebUnofficial.Core.Model
 {
     public class Day2Day
     {

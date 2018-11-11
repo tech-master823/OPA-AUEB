@@ -22,7 +22,7 @@ namespace AuebUnofficial.Viewers
     public sealed partial class AnouncementsEclass : Page
     {
         private Announcement _CurrentAnnouncement;
-        Model.AnnouncementToken announcementToken;
+        Core.Model.AnnouncementToken announcementToken;
         private ObservableCollection<Course> Ycourses;
         private string eclassUID="", courseCodeRequested;
         private App _CurrentApp = App.Current as App;
@@ -107,9 +107,9 @@ namespace AuebUnofficial.Viewers
                     {
 
                         var url = "http://auebunofficialapi.azurewebsites.net/Announcements/Details/" + course.Id;
-                        Model.AnnouncementToken announcement;
+                        Core.Model.AnnouncementToken announcement;
                         var response = await url.GetAsync().ReceiveString();
-                        announcement = JsonConvert.DeserializeObject<Model.AnnouncementToken>(response);
+                        announcement = JsonConvert.DeserializeObject<Core.Model.AnnouncementToken>(response);
                         course.Ans = c = new EclassRssParser("https://eclass.aueb.gr/modules/announcements/rss.php?c=" + course.Id + "&uid=" + _CurrentApp.CurrentEclassUser.Uid + "&token=" + announcement.Token);
                         course.MyAnnouncements = c.Announcements;
                     }
@@ -226,7 +226,7 @@ namespace AuebUnofficial.Viewers
         }
         #endregion Utilities
         #region Helpers(Scrappers)
-        public Model.AnnouncementToken GetToken(string tokenSeq)
+        public Core.Model.AnnouncementToken GetToken(string tokenSeq)
         {
             var CourseAnnouncementsHtml = "";
             Task.Run(async () => { CourseAnnouncementsHtml = await ("https://eclass.aueb.gr/modules/announcements/?course="+courseCodeRequested).PostUrlEncodedAsync(new { token = tokenSeq }).ReceiveString(); }).GetAwaiter().GetResult();
@@ -235,7 +235,7 @@ namespace AuebUnofficial.Viewers
 
             var value = doc.DocumentNode.Descendants("a").Where(x => x.Attributes.Contains("href"));
             var myval = value.Where(y => y.Attributes["href"].Value.Contains("/modules/announcements/rss.php"));
-            announcementToken = new Model.AnnouncementToken() { ID = courseCodeRequested, Token = (myval.First().Attributes["href"].Value.Split('&').GetValue(2).ToString()).Split('=').Last().ToString() };
+            announcementToken = new Core.Model.AnnouncementToken() { ID = courseCodeRequested, Token = (myval.First().Attributes["href"].Value.Split('&').GetValue(2).ToString()).Split('=').Last().ToString() };
             return announcementToken;
         }
         public string GetUid(string tokenSeq)

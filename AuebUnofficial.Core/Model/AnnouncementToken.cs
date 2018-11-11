@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AuebUnofficial.Model
+namespace AuebUnofficial.Core.Model
 {
     public class AnnouncementToken
     {
