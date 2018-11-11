@@ -28,7 +28,7 @@ namespace AuebUnofficial.Viewers
 
         private async void ReviewOnStore_Loaded(object sender, RoutedEventArgs e)
         {
-            await Launcher.LaunchUriAsync(new Uri(string.Format("ms-windows-store:REVIEW?PFN={0}", Windows.ApplicationModel.Package.Current.Id.FamilyName)));
+            await Launcher.LaunchUriAsync(new Uri(string.Format("ms-windows-store://review/?ProductId={0}", Windows.ApplicationModel.Package.Current.Id.FamilyName)));
             Hide();
         }
     }

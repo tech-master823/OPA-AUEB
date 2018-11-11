@@ -62,18 +62,6 @@ namespace AuebUnofficial.Viewers
             }
            
         }
-        private void Spudes_Click(object sender, RoutedEventArgs e)
-        {
-            ((Frame)Window.Current.Content).Navigate(typeof(Viewers.SpoudesViewer), pi);
-        }
-        private void BackButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
-        {            
-            if (Frame.CanGoBack)
-            {
-                pdfViewer.Unload();
-                Frame.GoBack();
-            }
-        }
 
         private async void Maila_Click(object sender, RoutedEventArgs e)
         {

@@ -108,6 +108,7 @@
     <EmbeddedResource Include="Assets\StatOdhgSpoudwn.pdf" />
     <Content Include="Assets\eclass_aueb_logo.png" />
     <Content Include="Assets\fonts\FontAwesome.otf" />
+    <Content Include="Assets\Data\appsettings.json" />
     <None Include="AuebUnofficial_StoreKey.pfx" />
   </ItemGroup>
   <ItemGroup>

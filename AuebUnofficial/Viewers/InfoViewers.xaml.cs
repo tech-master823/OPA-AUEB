@@ -106,15 +106,10 @@ namespace AuebUnofficial.Viewers
         {
             return (p as UIElement).Visibility == Visibility.Visible;
         }
-        
-        private void BackButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
-        {
-            ((Frame)Window.Current.Content).Navigate(typeof(Classes));
-        }
 
         private void Spudes_Click(object sender, RoutedEventArgs e)
         {
-            ((Frame)Window.Current.Content).Navigate(typeof(Viewers.SpoudesViewer),pi);
+            this.Frame.Navigate(typeof(SpoudesViewer),pi);
         }
     }
 }

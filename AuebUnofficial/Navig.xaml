@@ -20,6 +20,7 @@
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="NavigationItemTemplate">
+            <controls:NavigationViewItemSeparator BorderThickness="23"/>
         </DataTemplate>
         <DataTemplate x:Key="DefaultTemplate" x:DataType="local:MenuItem">
             <Grid HorizontalAlignment="Left"
@@ -39,7 +40,7 @@
             </Grid>
         </DataTemplate>
         <local:MenuItemTemplateSelector x:Key="NavigationItemTemplateSelector"
-                ViewModelTemplate="{StaticResource ViewModelTemplate}"
+                ViewModelTemplate="{StaticResource DefaultTemplate}"
                 ItemTemplate="{StaticResource NavigationItemTemplate}"
                 />
     </Page.Resources>
@@ -47,16 +48,15 @@
         <controls:NavigationView x:Name="hamburgerMenuControl"
                                 PaneDisplayMode="LeftCompact"
                                 MenuItemTemplate="{StaticResource DefaultTemplate}"
-                                 ItemInvoked="hamburgerMenuControl_ItemInvoked"
+                                ItemInvoked="hamburgerMenuControl_ItemInvoked"
+                                BackRequested="hamburgerMenuControl_BackRequested"
+                                CompactModeThresholdWidth="0"
                                 Background="Black"
                                 Foreground="White"
+                                IsBackButtonVisible="Collapsed"
                                 IsSettingsVisible="False"
-                                IsPaneOpen="False"
+                                Loaded="hamburgerMenuControl_Loaded"
                                 >
-            
-            <controls:NavigationView.PaneFooter>
-             <controls:NavigationViewList x:Name="NavFooterList" ItemTemplate="{StaticResource DefaultTemplate}" IsItemClickEnabled="True" ItemClick="NavFooterList_ItemClick"/>
-            </controls:NavigationView.PaneFooter>
             <controls:NavigationView.Content>
                 <Frame x:Name="ContentFrame" IsTabStop="True"/>
             </controls:NavigationView.Content>

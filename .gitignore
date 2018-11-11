@@ -304,3 +304,6 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# Hide appsettings.json from source control
+appsettings.json

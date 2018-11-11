@@ -13,6 +13,7 @@ using AuebUnofficial.Model;
 using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Threading;
+using System.IO;
 
 namespace AuebUnofficial
 {
@@ -23,6 +24,7 @@ namespace AuebUnofficial
     {
         public EclassUser CurrentEclassUser { get; set; }
         public string eclassToken { get; set; }
+        public AppSettings AppSettings { get; set; }
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -86,11 +88,15 @@ namespace AuebUnofficial
                 // Ensure the current window is active
                 Window.Current.Activate();
             }
+            await SetAppSettingsAsync();
+            if (AppSettings == null) App.Current.Exit();
 #if !DEBUG
-            AppCenter.Start("bc8e0447-700a-4e68-a274-4cab46a9eac2", typeof(Analytics), typeof(Push));
+            AppCenter.Start(AppSettings.AppCenter, typeof(Analytics), typeof(Push));
             Push.CheckLaunchedFromNotification(e);
 #endif
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(AppSettings.SyncfusionLisenceKey);
             CurrentEclassUser = await GetUserAsync();
+
         }
 
         /// <summary>
@@ -157,6 +163,21 @@ namespace AuebUnofficial
                 var storageFile = await folder.GetFileAsync(fileName);
                 var readText = await FileIO.ReadTextAsync(storageFile);
                 return JsonConvert.DeserializeObject<EclassUser>(readText);
+            }
+        }
+        private async Task SetAppSettingsAsync()
+        {
+            try
+            {
+                var assetsFolder = await Package.Current.InstalledLocation.GetFolderAsync("Assets");
+                var dataFolder = await assetsFolder.GetFolderAsync("Data");
+                var file = await dataFolder.GetFileAsync(@"appsettings.json");
+                String appsetingsString = await FileIO.ReadTextAsync(file);
+                AppSettings = JsonConvert.DeserializeObject<AppSettings>(appsetingsString);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.StackTrace);
             }
         }
     }

@@ -8,7 +8,7 @@
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d">
 
-    <Grid Background="#762124">
+    <Grid Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="48"/>
             <RowDefinition Height="*"/>
@@ -17,13 +17,13 @@
             <ColumnDefinition Width="48"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Border Background="#762124" Grid.Column="1">
+        <Border Grid.Column="1">
             <Grid Height="48" Background="White" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="M.M.M." x:Name="mmm" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15"/>
+                <TextBlock Text="M.M.M." x:Name="mmm" Foreground="Black" HorizontalAlignment="Center" HorizontalTextAlignment="Center" VerticalAlignment="Center" FontSize="15"/>
                 <Button Height="48" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Click="Button_Click" 
                         Content="&#xE8AB;" FontFamily="Segoe MDL2 Assets" x:Name="switching"/>
             </Grid>

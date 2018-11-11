@@ -12,7 +12,6 @@ namespace AuebUnofficial
 
     public sealed partial class Classes : Page
     {
-        private Frame _param;
         public Classes()
         {
             this.InitializeComponent();
@@ -22,7 +21,6 @@ namespace AuebUnofficial
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            _param = e.Parameter as Frame;
         }
 
         private void LoadPivData()
@@ -39,7 +37,7 @@ namespace AuebUnofficial
         public void setItem()
         {
             PivotdItem menu = (PivotdItem)control.SelectedItem;
-            _param.Navigate(typeof(Viewers.InfoViewers), menu);
+            this.Frame.Navigate(typeof(Viewers.InfoViewers), menu);
         }
 
     }

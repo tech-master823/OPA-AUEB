@@ -55,7 +55,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="Ωρολόγιο Πρόγραμμα" x:Name="orologio" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15"/>
+                <TextBlock Text="Ωρολόγιο Πρόγραμμα" x:Name="orologio" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15"/>
                 <Button Height="48" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" IsEnabled="False"
                         Content="&#xE8AB;" FontFamily="Segoe MDL2 Assets" x:Name="switching" Click="Change_Frame"/>
             </Grid>
