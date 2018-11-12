@@ -1,0 +1,7 @@
+<resources>
+  <string name="app_name">OPA-AUEB</string>
+  <string name="navigation_drawer_open">Open navigation drawer</string>
+  <string name="navigation_drawer_close">Close navigation drawer</string>
+  <string name="action_settings">Settings</string>
+  <string name="aueb_home_url">https://aueb.gr</string>
+</resources>

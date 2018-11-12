@@ -5,8 +5,11 @@ VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuebUnofficial", "AuebUnofficial\AuebUnofficial.csproj", "{E6F78F77-E605-4287-B072-539DE7C2DF9A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuebUnofficial.Api", "AuebUnofficial.Api\AuebUnofficial.Api.csproj", "{8487A56D-6162-4738-8300-A198DA6785BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuebUnofficial.Api", "AuebUnofficial.Api\AuebUnofficial.Api.csproj", "{8487A56D-6162-4738-8300-A198DA6785BB}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuebUnofficial.Core", "AuebUnofficial.Core\AuebUnofficial.Core.csproj", "{04B4389F-B03C-44C0-8263-CD09A7FD3893}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuebUnofficial.Android", "AuebUnofficial.Android\AuebUnofficial.Android.csproj", "{07272096-7498-4F50-B9FC-AA5202BDA99D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -74,6 +77,30 @@ Global
 		{04B4389F-B03C-44C0-8263-CD09A7FD3893}.Release|x64.Build.0 = Release|Any CPU
 		{04B4389F-B03C-44C0-8263-CD09A7FD3893}.Release|x86.ActiveCfg = Release|Any CPU
 		{04B4389F-B03C-44C0-8263-CD09A7FD3893}.Release|x86.Build.0 = Release|Any CPU
+		{07272096-7498-4F50-B9FC-AA5202BDA99D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07272096-7498-4F50-B9FC-AA5202BDA99D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07272096-7498-4F50-B9FC-AA5202BDA99D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{07272096-7498-4F50-B9FC-AA5202BDA99D}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{07272096-7498-4F50-B9FC-AA5202BDA99D}.Debug|ARM.Build.0 = Debug|Any CPU
+		{07272096-7498-4F50-B9FC-AA5202BDA99D}.Debug|ARM.Deploy.0 = Debug|Any CPU
+		{07272096-7498-4F50-B9FC-AA5202BDA99D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{07272096-7498-4F50-B9FC-AA5202BDA99D}.Debug|x64.Build.0 = Debug|Any CPU
+		{07272096-7498-4F50-B9FC-AA5202BDA99D}.Debug|x64.Deploy.0 = Debug|Any CPU
+		{07272096-7498-4F50-B9FC-AA5202BDA99D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{07272096-7498-4F50-B9FC-AA5202BDA99D}.Debug|x86.Build.0 = Debug|Any CPU
+		{07272096-7498-4F50-B9FC-AA5202BDA99D}.Debug|x86.Deploy.0 = Debug|Any CPU
+		{07272096-7498-4F50-B9FC-AA5202BDA99D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07272096-7498-4F50-B9FC-AA5202BDA99D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07272096-7498-4F50-B9FC-AA5202BDA99D}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{07272096-7498-4F50-B9FC-AA5202BDA99D}.Release|ARM.ActiveCfg = Release|Any CPU
+		{07272096-7498-4F50-B9FC-AA5202BDA99D}.Release|ARM.Build.0 = Release|Any CPU
+		{07272096-7498-4F50-B9FC-AA5202BDA99D}.Release|ARM.Deploy.0 = Release|Any CPU
+		{07272096-7498-4F50-B9FC-AA5202BDA99D}.Release|x64.ActiveCfg = Release|Any CPU
+		{07272096-7498-4F50-B9FC-AA5202BDA99D}.Release|x64.Build.0 = Release|Any CPU
+		{07272096-7498-4F50-B9FC-AA5202BDA99D}.Release|x64.Deploy.0 = Release|Any CPU
+		{07272096-7498-4F50-B9FC-AA5202BDA99D}.Release|x86.ActiveCfg = Release|Any CPU
+		{07272096-7498-4F50-B9FC-AA5202BDA99D}.Release|x86.Build.0 = Release|Any CPU
+		{07272096-7498-4F50-B9FC-AA5202BDA99D}.Release|x86.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
