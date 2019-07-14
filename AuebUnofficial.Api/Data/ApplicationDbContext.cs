@@ -13,7 +13,7 @@ namespace AuebUnofficial.Api.Data
         {
         }
 
-        public DbSet<Model.Course> Courses {get;set;}
-
+        public DbSet<Model.Course> Courses { get; set; }
+        public DbSet<Model.RSSAnouncements> RSSAnouncements { get; set; }
     }
 }

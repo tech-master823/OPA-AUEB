@@ -1,4 +1,5 @@
 ﻿using AuebUnofficial.Api.Data;
+using AuebUnofficial.Api.Enums;
 using AuebUnofficial.Api.Interfaces;
 using AuebUnofficial.Api.Model;
 using Microsoft.EntityFrameworkCore;
@@ -56,8 +57,4 @@ namespace AuebUnofficial.Api.Services
         }
     }
 
-    public enum OperationsStatusCodes
-    {
-        Created, Updated, Failed
-    }
 }

@@ -1,5 +1,5 @@
-﻿using AuebUnofficial.Api.Model;
-using AuebUnofficial.Api.Services;
+﻿using AuebUnofficial.Api.Enums;
+using AuebUnofficial.Api.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;

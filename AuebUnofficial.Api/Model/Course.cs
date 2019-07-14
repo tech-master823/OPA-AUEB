@@ -5,8 +5,9 @@ namespace AuebUnofficial.Api.Model
 {
     public class Course
     {
-        [Key]
+        [Required]
         public String ID { get; set; }
+        [Required]
         public String Token { get; set; }
 
     }
