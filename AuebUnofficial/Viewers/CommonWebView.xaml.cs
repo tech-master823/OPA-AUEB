@@ -25,7 +25,7 @@ namespace AuebUnofficial.Viewers
     {
         string baseurl = "";
         Uri uri;
-        Announcement announcementParam = null;
+        EclassAnnouncement announcementParam = null;
         TwitterSchema tweetparam = null;
         public CommonWebView()
         {
@@ -45,9 +45,9 @@ namespace AuebUnofficial.Viewers
             {
                 tweetparam = (TwitterSchema)e.Parameter; baseurl="twitter.com"; Website.Text = baseurl;
                 uri = new Uri(tweetparam.Url);
-            }else if (e.Parameter.GetType() == typeof(Announcement))
+            }else if (e.Parameter.GetType() == typeof(EclassAnnouncement))
             {
-                announcementParam = (Announcement)e.Parameter; baseurl = "eclass.aueb.gr"; Website.Text = baseurl; Header.Text = announcementParam.Title;
+                announcementParam = (EclassAnnouncement)e.Parameter; baseurl = "eclass.aueb.gr"; Website.Text = baseurl; Header.Text = announcementParam.Title;
                 uri = announcementParam.Link;
             }
         }

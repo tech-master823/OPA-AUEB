@@ -14,6 +14,7 @@ using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Threading;
 using System.IO;
+using AuebUnofficial.Core.Model;
 
 namespace AuebUnofficial
 {

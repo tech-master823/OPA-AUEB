@@ -135,8 +135,6 @@
     <Compile Include="MappingMySchool.xaml.cs">
       <DependentUpon>MappingMySchool.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\AppSettings.cs" />
-    <Compile Include="Model\EclassUser.cs" />
     <Compile Include="Model\RadialMenuOption.cs" />
     <Compile Include="Navig.xaml.cs">
       <DependentUpon>Navig.xaml</DependentUpon>

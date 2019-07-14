@@ -1,4 +1,6 @@
-﻿using AuebUnofficial.Helpers;
+﻿using AuebUnofficial.Core.Interfaces;
+using AuebUnofficial.Core.Services;
+using AuebUnofficial.Helpers;
 using AuebUnofficial.Viewers.Notifications;
 using Flurl.Http;
 using HtmlAgilityPack;
@@ -21,21 +23,22 @@ namespace AuebUnofficial.Viewers
 {
     public sealed partial class AnouncementsEclass : Page
     {
-        private Announcement _CurrentAnnouncement;
+        private EclassAnnouncement _CurrentAnnouncement;
         Core.Model.AnnouncementToken announcementToken;
         private ObservableCollection<Course> Ycourses;
-        private string eclassUID="", courseCodeRequested;
+        private string eclassUID = "", courseCodeRequested;
         private App _CurrentApp = App.Current as App;
         private EclassRssParser c;
         private MenuFlyout menuFlyout;
         private object p;
         private LocalNotificationManager notificationManager;
         private LNotifications lNotifications = new LNotifications("Courses loaded succedfully!", "Logged out succesfully!");
-
+        private IEclassService _eclassService;
         public AnouncementsEclass()
         {
             this.InitializeComponent();
             this.NavigationCacheMode = NavigationCacheMode.Enabled;
+            _eclassService = new EclassService();
             this.Loaded += An_LoadedAsync;
         }
 
@@ -46,7 +49,7 @@ namespace AuebUnofficial.Viewers
 
         private async void An_LoadedAsync(object sender, RoutedEventArgs d)
         {
-            
+
             AddFlyoutMenu();
             //If this page is in the NavigationStack return, else go
             if (Ycourses == null)
@@ -72,7 +75,7 @@ namespace AuebUnofficial.Viewers
                 _CurrentApp.CurrentEclassUser.Uid = eclassUID = GetUid(_CurrentApp.eclassToken);
             }
             CorrectClosedCourses();
-            
+
         }
         private async Task FilCoursesAsync(string tokenSeq)
         {
@@ -94,12 +97,12 @@ namespace AuebUnofficial.Viewers
                  }).ToList().ForEach(course => this.Ycourses.Add(course));
             CoursesViewer.ItemsSource = Ycourses;
         }
-        
-        private async void CorrectClosedCourses()
+
+        private async Task CorrectClosedCourses()
         {
-           
-            
-            foreach(Course course in Ycourses)
+
+
+            foreach (Course course in Ycourses)
             {
                 if (course.MyAnnouncements.Count == 0)
                 {
@@ -116,7 +119,7 @@ namespace AuebUnofficial.Viewers
                     catch (FlurlHttpException)
                     {
                         courseCodeRequested = course.Id;
-                        var url = "https://eclass.aueb.gr/modules/announcements/?course=" + course.Id;                        
+                        var url = "https://eclass.aueb.gr/modules/announcements/?course=" + course.Id;
                         announcementToken = GetToken(_CurrentApp.eclassToken);
                         course.Ans = c = new EclassRssParser("https://eclass.aueb.gr/modules/announcements/rss.php?c=" + announcementToken.ID + "&uid=" + _CurrentApp.CurrentEclassUser.Uid + "&token=" + announcementToken.Token);
                         course.MyAnnouncements = c.Announcements;
@@ -126,7 +129,7 @@ namespace AuebUnofficial.Viewers
                             var response = await urlCreate.PostUrlEncodedAsync(new { ID = announcementToken.ID, Token = announcementToken.Token });
                         }
                         catch (Exception) { Analytics.TrackEvent("Cannot upload to API"); }
-                        
+
                     }
                 }
             }
@@ -137,15 +140,15 @@ namespace AuebUnofficial.Viewers
             notificationManager = new LocalNotificationManager(DoneNotification);
             notificationManager.Show(lNotifications.GetPositiveNotification(),LocalNotificationCollisionBehaviour.Replace);
         }
+
+
     
         #region Buttons
         private async void Logout_Click(object sender, RoutedEventArgs e)
         {
             notificationManager = new LocalNotificationManager(DoneNotification);
-            notificationManager.Show(lNotifications.GetNegativeNotification(), LocalNotificationCollisionBehaviour.Replace); 
-            var logout = await "https://eclass.aueb.gr/modules/mobile/mlogin.php?logout"
-                .PostUrlEncodedAsync(new { token = _CurrentApp.eclassToken })
-                .ReceiveString();
+            notificationManager.Show(lNotifications.GetNegativeNotification(), LocalNotificationCollisionBehaviour.Replace);
+            var logout = await _eclassService.LogoutAsync(_CurrentApp.eclassToken);
             await Task.Delay(1000);
             _CurrentApp.eclassToken = null;
             Ycourses = null;            
@@ -155,12 +158,12 @@ namespace AuebUnofficial.Viewers
 
         private void AnouncList_RightTapped(object sender, Windows.UI.Xaml.Input.RightTappedRoutedEventArgs e)
         {
-            _CurrentAnnouncement = (e.OriginalSource as FrameworkElement)?.DataContext as Announcement;
+            _CurrentAnnouncement = (e.OriginalSource as FrameworkElement)?.DataContext as EclassAnnouncement;
             menuFlyout.ShowAt((FrameworkElement)sender, new Windows.Foundation.Point(e.GetPosition(this).X, e.GetPosition(this).Y));
         }
         private void AnouncList_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
         {
-            _CurrentAnnouncement = (e.OriginalSource as FrameworkElement)?.DataContext as Announcement;
+            _CurrentAnnouncement = (e.OriginalSource as FrameworkElement)?.DataContext as EclassAnnouncement;
             ((Frame)Window.Current.Content).Navigate(typeof(CommonWebView), _CurrentAnnouncement);
         }
 
@@ -254,7 +257,7 @@ namespace AuebUnofficial
 {
     public class Course : BindableBase
     {
-        private ObservableCollection<Announcement> myAnnouncements;
+        private ObservableCollection<EclassAnnouncement> myAnnouncements;
         private EclassRssParser ans;
         public string Id { get; set; }
         public string Name { get; set; }
@@ -263,7 +266,7 @@ namespace AuebUnofficial
             get { return ans; }
             set { this.SetProperty(ref this.ans, value); }
         }
-        public ObservableCollection<Announcement> MyAnnouncements
+        public ObservableCollection<EclassAnnouncement> MyAnnouncements
         {
             get { return myAnnouncements; }
             set { this.SetProperty(ref this.myAnnouncements, value); }

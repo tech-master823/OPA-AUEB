@@ -1,6 +1,9 @@
 ﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace AuebUnofficial.Model
+namespace AuebUnofficial.Core.Model
 {
     public class EclassUser
     {

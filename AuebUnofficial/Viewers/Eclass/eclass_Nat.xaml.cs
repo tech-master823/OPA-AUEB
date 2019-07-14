@@ -7,6 +7,8 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using RavinduL.LocalNotifications;
+using AuebUnofficial.Core.Services;
+using AuebUnofficial.Core.Interfaces;
 
 namespace AuebUnofficial.Viewers
 {
@@ -19,6 +21,7 @@ namespace AuebUnofficial.Viewers
             new Notifications.LNotifications("Logged in successfully!", "Wrong Username or Password!");
         private LocalNotificationManager manager;
         private bool isGridCheckFocused=false;
+        private IEclassService _eclassService;
         public eclass_Nat()
         {
             this.InitializeComponent();
@@ -26,6 +29,7 @@ namespace AuebUnofficial.Viewers
             obj = App.Current as App;
             this.Loaded += Eclass_Nat_Loaded;
             CoreWindow.GetForCurrentThread().KeyDown+= PasswordKeyDown;
+            _eclassService = new EclassService();
         }
 
         private void Eclass_Nat_Loaded(object sender, RoutedEventArgs e)
@@ -41,7 +45,7 @@ namespace AuebUnofficial.Viewers
             }
             else
             {
-                obj.CurrentEclassUser = new Model.EclassUser();
+                obj.CurrentEclassUser = new Core.Model.EclassUser();
             }
             manager = new LocalNotificationManager(popup);
         }
@@ -67,9 +71,7 @@ namespace AuebUnofficial.Viewers
         private async void Login()
         {
             LoginBtn.IsEnabled = false; back.IsEnabled = false;
-            eclassOutput = await "https://eclass.aueb.gr/modules/mobile/mlogin.php"
-                .PostUrlEncodedAsync(new { uname = login.Text, pass = pass.Password })
-                .ReceiveString();
+            eclassOutput = await _eclassService.LoginAsync(login.Text, pass.Password);
             if (eclassOutput != ("FAILED") && eclassOutput != ("_"))
             {
                 obj.eclassToken = eclassOutput; obj.CurrentEclassUser.Username = login.Text; obj.CurrentEclassUser.Password = pass.Password;

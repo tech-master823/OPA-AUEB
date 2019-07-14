@@ -11,8 +11,8 @@ public class EclassRssParser
     public string LastU2Date { get; set;}
     public int RangeOfCourses { get; set; }//Number of Announcements in the course
 
-    private ObservableCollection<Announcement> items;
-    public ObservableCollection<Announcement> Announcements
+    private ObservableCollection<EclassAnnouncement> items;
+    public ObservableCollection<EclassAnnouncement> Announcements
     {
         get { return items; }
         set { items = value; }
@@ -28,7 +28,7 @@ public class EclassRssParser
     }
     public EclassRssParser(string struri)
     {
-        Announcements = new ObservableCollection<Announcement>();
+        Announcements = new ObservableCollection<EclassAnnouncement>();
         LoadAnnouncements(struri);
     }
     private async void LoadAnnouncements(string struri)
@@ -46,7 +46,7 @@ public class EclassRssParser
                 this.LastU2Date = feed.LastUpdatedTime.DateTime.ToString("MM/dd/yyyy HH:mm");
                 foreach (SyndicationItem item in feed.Items)
                 {
-                    Announcement an = new Announcement
+                    EclassAnnouncement an = new EclassAnnouncement
                     {
                         Title = StripHTML(item.Title.Text),
                         Description = StripHTML(item.Summary.Text),
@@ -64,21 +64,21 @@ public class EclassRssParser
         }
     }   
    
-    public void AddAnnouncement(Announcement announce)
+    public void AddAnnouncement(EclassAnnouncement announce)
     {
         Announcements.Add(announce);
     }
 }
 
 namespace AuebUnofficial{
-    public class Announcement
+    public class EclassAnnouncement
     {
         public string Title { get; set; }
         public Uri Link { get; set; }
         public string Description { get; set; }
         public string DatePub { get; set; }
-        public Announcement() { }
-        public Announcement(string title, string description)
+        public EclassAnnouncement() { }
+        public EclassAnnouncement(string title, string description)
         {
             Title = title;
             Description = description;
