@@ -37,6 +37,7 @@
     <Prefer32Bit>true</Prefer32Bit>
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <EnableGatekeeperAnalysis>false</EnableGatekeeperAnalysis>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -52,6 +53,7 @@
     <UseDotNetNativeSharedAssemblyFrameworkPackage>false</UseDotNetNativeSharedAssemblyFrameworkPackage>
     <TargetFrameworkMonikerAssemblyAttributesPath>$(IntermediateOutputPath)AssemblyTFMAttribute.cs</TargetFrameworkMonikerAssemblyAttributesPath>
     <EnableGatekeeperAnalysis>false</EnableGatekeeperAnalysis>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <DebugSymbols>true</DebugSymbols>

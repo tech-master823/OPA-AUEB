@@ -5,6 +5,7 @@
     <TargetFramework>netstandard1.6</TargetFramework>
     <ApplicationIcon />
     <StartupObject />
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
