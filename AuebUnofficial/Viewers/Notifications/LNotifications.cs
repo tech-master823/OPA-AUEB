@@ -1,14 +1,14 @@
 ﻿using System;
 using Windows.UI;
 using Windows.UI.Xaml.Media;
-using RavinduL.LocalNotifications.Presenters;
+using RavinduL.LocalNotifications.Notifications;
 using Windows.UI.Popups;
 
 namespace AuebUnofficial.Viewers.Notifications
 {
     public class LNotifications
     {
-        private SimpleNotificationPresenter positiveNotification, negativeNotification;
+        private SimpleNotification positiveNotification, negativeNotification;
         public string PositiveText { get; set; }
         public string NegativeText { get; set; }
         
@@ -30,13 +30,11 @@ namespace AuebUnofficial.Viewers.Notifications
         private void SetNegativeNotification()
         {
             
-            negativeNotification = new SimpleNotificationPresenter
-             (
-                 TimeSpan.FromSeconds(3),
-                 text: NegativeText,
-                 action: async () => await new MessageDialog(NegativeText).ShowAsync()
-             )
+            negativeNotification = new SimpleNotification
             {
+                 TransitionDuration = TimeSpan.FromSeconds(1),
+                 Text = NegativeText,
+                 Action = async () => await new MessageDialog(NegativeText).ShowAsync(),
                 Background = new SolidColorBrush(Colors.DarkRed),
                 Foreground = new SolidColorBrush(Colors.White)
             };
@@ -45,22 +43,20 @@ namespace AuebUnofficial.Viewers.Notifications
         private void SetPositiveNotification()
         {
 
-            positiveNotification = new SimpleNotificationPresenter
-             (
-                 TimeSpan.FromSeconds(3),
-                 text: PositiveText,
-                 action: async () => await new MessageDialog(PositiveText).ShowAsync()
-             )
+            positiveNotification = new SimpleNotification()
             {
+                TransitionDuration = TimeSpan.FromSeconds(1),
+                 Text = PositiveText,
+                 Action = async () => await new MessageDialog(PositiveText).ShowAsync(),          
                 Background = new SolidColorBrush(Colors.DarkGreen),
                 Foreground = new SolidColorBrush(Colors.White)
             };
         }
-        public SimpleNotificationPresenter GetPositiveNotification()
+        public SimpleNotification GetPositiveNotification()
         {
             return this.positiveNotification;
         }
-        public SimpleNotificationPresenter GetNegativeNotification()
+        public SimpleNotification GetNegativeNotification()
         {
             return this.negativeNotification;
         }

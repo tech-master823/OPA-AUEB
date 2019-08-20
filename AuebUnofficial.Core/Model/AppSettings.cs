@@ -8,5 +8,7 @@ namespace AuebUnofficial.Core.Model
     {
         public string SyncfusionLisenceKey { get; set; }
         public string AppCenter { get; set; }
+        public string FacebookAppId { get; set; }
+        public string FacebookAppSecret { get; set; }
     }
 }

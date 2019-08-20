@@ -33,8 +33,8 @@ namespace AuebUnofficial.Viewers
 
         public async void GetItems()
         {
-            string appId = "248058472262288";
-            string appSecret = "d74d68d717ff1a0c45dc3fbad0899d26";
+            string appId = (App.Current as App).AppSettings.FacebookAppId;
+            string appSecret = (App.Current as App).AppSettings.FacebookAppSecret;
             string FacebookQueryParam = "625038207649339";
             int MaxRecordsParam = 20;
             Items.Clear();
@@ -47,11 +47,13 @@ namespace AuebUnofficial.Viewers
 
             var items = await _facebookDataProvider.LoadDataAsync(config, MaxRecordsParam);
 
+
             foreach (var item in items)
             {
-                if (item.ImageUrl == null || item.ImageUrl=="") item.ImageUrl = "https://eclass.aueb.gr/courses/theme_data/9/eclass_aueb_logo.png";
+                if (string.IsNullOrEmpty(item.ImageUrl)) item.ImageUrl = "https://eclass.aueb.gr/courses/theme_data/9/eclass_aueb_logo.png";
                 Items.Add(item);
             }
+
             pring.IsActive = false;
             pring.Visibility = Visibility.Collapsed;
             FeedFb.Visibility = Visibility.Visible;

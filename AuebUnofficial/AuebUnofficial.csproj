@@ -11,7 +11,7 @@
     <AssemblyName>ΟΠΑ-AUEB</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion>10.0.17134.0</TargetPlatformVersion>
+    <TargetPlatformVersion>10.0.17763.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.16299.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
@@ -23,7 +23,7 @@
     <AppxBundlePlatforms>x86|arm</AppxBundlePlatforms>
     <AppxPackageDir>C:\Users\τασος\Desktop\Screenshots\AppPackages\</AppxPackageDir>
     <TargetFrameworkMonikerAssemblyAttributesPath>$(IntermediateOutputPath)AssemblyTFMAttribute.cs</TargetFrameworkMonikerAssemblyAttributesPath>
-    <RuntimeIdentifiers>win10-arm;win10-arm-aot;win10-x86;win10-x86-aot;win10-x64;win10-x64-aot</RuntimeIdentifiers>
+    <RuntimeIdentifiers>win10-arm;win10-arm-aot;win10-x86;win10-x86-aot</RuntimeIdentifiers>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -80,30 +80,6 @@
     <UseDotNetNativeSharedAssemblyFrameworkPackage>false</UseDotNetNativeSharedAssemblyFrameworkPackage>
     <TargetFrameworkMonikerAssemblyAttributesPath>$(IntermediateOutputPath)AssemblyTFMAttribute.cs</TargetFrameworkMonikerAssemblyAttributesPath>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x64\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
-    <NoWarn>;2008</NoWarn>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <ErrorReport>prompt</ErrorReport>
-    <Prefer32Bit>true</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <OutputPath>bin\x64\Release\</OutputPath>
-    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
-    <Optimize>true</Optimize>
-    <NoWarn>;2008</NoWarn>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <ErrorReport>prompt</ErrorReport>
-    <Prefer32Bit>true</Prefer32Bit>
-    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
-    <UseDotNetNativeSharedAssemblyFrameworkPackage>false</UseDotNetNativeSharedAssemblyFrameworkPackage>
-  </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <EmbeddedResource Include="Assets\LoxriOdhgosSp.pdf" />
@@ -154,11 +130,11 @@
     <Compile Include="Viewers\CommonWebView.xaml.cs">
       <DependentUpon>CommonWebView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Viewers\Eclass\AnouncementsEclass.xaml.cs">
-      <DependentUpon>AnouncementsEclass.xaml</DependentUpon>
+    <Compile Include="Viewers\Eclass\AnnouncementsEclass.xaml.cs">
+      <DependentUpon>AnnouncementsEclass.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Viewers\Eclass\eclass_Nat.xaml.cs">
-      <DependentUpon>eclass_Nat.xaml</DependentUpon>
+    <Compile Include="Viewers\Eclass\EclassNat.xaml.cs">
+      <DependentUpon>EclassNat.xaml</DependentUpon>
     </Compile>
     <Compile Include="Viewers\Notifications\LNotifications.cs" />
     <Compile Include="Viewers\ReviewOnStore.xaml.cs">
@@ -251,11 +227,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Viewers\Eclass\AnouncementsEclass.xaml">
+    <Page Include="Viewers\Eclass\AnnouncementsEclass.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Viewers\Eclass\eclass_Nat.xaml">
+    <Page Include="Viewers\Eclass\EclassNat.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -292,70 +268,63 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <SDKReference Include="Microsoft.VCLibs, Version=14.0">
-      <Name>Visual C++ 2015 Runtime for Universal Windows Platform Apps</Name>
-    </SDKReference>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Tasks\" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="akavache" Version="6.7.1" />
+    <PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.0.0" ExcludeAssets="All">
+      <IncludeAssets>none</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="EclassApi">
-      <Version>1.1.10</Version>
-    </PackageReference>
-    <PackageReference Include="Flurl.Http">
-      <Version>2.4.0</Version>
-    </PackageReference>
-    <PackageReference Include="HtmlAgilityPack">
-      <Version>1.8.10</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.AppCenter">
-      <Version>1.10.0</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.AppCenter.Analytics">
-      <Version>1.10.0</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.AppCenter.Push">
-      <Version>1.10.0</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Graph">
-      <Version>1.12.0</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.1.9</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Toolkit.Uwp">
-      <Version>5.0.0</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls">
-      <Version>5.0.0</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.UI.Xaml">
-      <Version>2.0.180724003-prerelease</Version>
-    </PackageReference>
-    <PackageReference Include="Newtonsoft.Json">
-      <Version>11.0.2</Version>
-    </PackageReference>
-    <PackageReference Include="RavinduL.LocalNotifications">
       <Version>2.0.0</Version>
     </PackageReference>
+    <PackageReference Include="Flurl.Http">
+      <Version>2.4.2</Version>
+    </PackageReference>
+    <PackageReference Include="HtmlAgilityPack">
+      <Version>1.11.12</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AppCenter">
+      <Version>2.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AppCenter.Analytics">
+      <Version>2.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AppCenter.Push">
+      <Version>2.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
+      <Version>6.2.8</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit">
+      <Version>5.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp">
+      <Version>5.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls">
+      <Version>5.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.UI.Xaml">
+      <Version>2.1.190606001</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>12.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="RavinduL.LocalNotifications">
+      <Version>3.0.0</Version>
+    </PackageReference>
     <PackageReference Include="Syncfusion.SfColorPickers.UWP">
-      <Version>16.3.0.29</Version>
+      <Version>17.2.0.41</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.SfInput.UWP">
-      <Version>16.3.0.29</Version>
+      <Version>17.2.0.41</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.SfPdfViewer.UWP">
-      <Version>16.3.0.29</Version>
-    </PackageReference>
-    <PackageReference Include="Syncfusion.SfRadialMenu.UWP">
-      <Version>16.3.0.29</Version>
-    </PackageReference>
-    <PackageReference Include="Syncfusion.SfShared.UWP">
-      <Version>16.3.0.29</Version>
+      <Version>17.2.0.41</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.SfTabControl.UWP">
-      <Version>16.3.0.29</Version>
+      <Version>17.2.0.41</Version>
     </PackageReference>
     <PackageReference Include="WindowsAppStudio.DataProviders">
       <Version>1.5.1</Version>
@@ -369,6 +338,11 @@
       <Project>{04b4389f-b03c-44c0-8263-cd09a7fd3893}</Project>
       <Name>AuebUnofficial.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="Microsoft.VCLibs.Desktop, Version=14.0">
+      <Name>Visual C++ 2015 UWP Desktop Runtime for native apps</Name>
+    </SDKReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

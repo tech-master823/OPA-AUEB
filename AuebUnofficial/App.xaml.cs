@@ -4,17 +4,15 @@ using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using System.Threading.Tasks;
+using Windows.Storage;
+using Newtonsoft.Json;
+using System.Diagnostics;
+using Akavache;
+using AuebUnofficial.Core.Model;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Push;
-using System.Threading.Tasks;
-using Windows.Storage;
-using AuebUnofficial.Model;
-using Newtonsoft.Json;
-using System.Diagnostics;
-using System.Threading;
-using System.IO;
-using AuebUnofficial.Core.Model;
 
 namespace AuebUnofficial
 {
@@ -39,7 +37,8 @@ namespace AuebUnofficial
                 if (CurrentEclassUser != null)
                 {
                     await SaveChanges(); // "I really like my data and want it for later too"
-                }                
+                }
+                await BlobCache.Shutdown();
             };
             this.Suspending += OnSuspending;
         }
@@ -88,7 +87,9 @@ namespace AuebUnofficial
                 }
                 // Ensure the current window is active
                 Window.Current.Activate();
-            }
+            };
+            Registrations.Start("AuebUnofficial.UWP");
+            BlobCache.EnsureInitialized();
             await SetAppSettingsAsync();
             if (AppSettings == null) App.Current.Exit();
 #if !DEBUG

@@ -33,7 +33,7 @@ namespace AuebUnofficial
         private string x1 = "", x2 = "";
         private int _PdfCurrentPage { get; set; }
         public Stream CurrentPageStream { get; private set; }
-        public Windows.UI.Xaml.Controls.Image CurrentPageImage { get; private set; }
+        public Image CurrentPageImage { get; private set; }
         
         public Orologio()
         {

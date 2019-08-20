@@ -1,32 +1,17 @@
 ﻿using AppStudio.DataProviders.Twitter;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
+using EclassApi.Models;
 
 namespace AuebUnofficial.Viewers
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class CommonWebView : Page
     {
-        string baseurl = "";
-        Uri uri;
-        EclassAnnouncement announcementParam = null;
-        TwitterSchema tweetparam = null;
+        private Uri _uri;
+        private Announcement _announcementParam = null;
+        private TwitterSchema _tweetParam = null;
         public CommonWebView()
         {
             this.InitializeComponent();
@@ -35,24 +20,33 @@ namespace AuebUnofficial.Viewers
 
         private void CommonWebView_Loaded(object sender, RoutedEventArgs e)
         {
-            SiteView.Navigate(uri);
+            SiteView.Navigate(_uri);
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            var baseurl = "";
-            if (e.Parameter.GetType() == typeof(TwitterSchema))
+            var parseurl = "";
+            if (e.Parameter?.GetType() == typeof(TwitterSchema))
             {
-                tweetparam = (TwitterSchema)e.Parameter; baseurl="twitter.com"; Website.Text = baseurl;
-                uri = new Uri(tweetparam.Url);
-            }else if (e.Parameter.GetType() == typeof(EclassAnnouncement))
+                _tweetParam = (TwitterSchema)e.Parameter; parseurl="twitter.com"; Website.Text = parseurl;
+                _uri = new Uri(_tweetParam.Url);
+            }else if (e.Parameter?.GetType() == typeof(Announcement))
             {
-                announcementParam = (EclassAnnouncement)e.Parameter; baseurl = "eclass.aueb.gr"; Website.Text = baseurl; Header.Text = announcementParam.Title;
-                uri = announcementParam.Link;
+                _announcementParam = (Announcement)e.Parameter; parseurl = "eclass.aueb.gr"; Website.Text = parseurl; Header.Text = _announcementParam.Title;
+                _uri = _announcementParam.Link;
+            }
+            else
+            {
+                GoBack();
             }
         }
 
         private void Close_Click(object sender, RoutedEventArgs e)
+        {
+            GoBack();
+        }
+
+        private void GoBack()
         {
             if (Frame.CanGoBack)
             {

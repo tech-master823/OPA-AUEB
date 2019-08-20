@@ -143,7 +143,7 @@ namespace AuebUnofficial
                 new MenuItem() { Icon = Symbol.Calendar, Name = "Ωρολόγιο", PageType = typeof(Orologio) },
                 new MenuItem() { Icon = Symbol.ContactInfo, Name = "Πληροφορίες τμημάτων", PageType = typeof(Classes) },
                 //items.Add(new MenuItem() { Icon = Symbol.Map, Name = "Map", PageType = typeof(MappingMySchool) });
-                new MenuItem() { Icon = login.Symbol, Name = "Eclass", PageType = typeof(Viewers.eclass_Nat) }
+                new MenuItem() { Icon = login.Symbol, Name = "Eclass", PageType = typeof(Viewers.Eclass.EclassNat) }
             };
             return items;
         }

@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="AuebUnofficial.Viewers.eclass_Nat"
+    x:Class="AuebUnofficial.Viewers.Eclass.EclassNat"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:AuebUnofficial.Viewers"
