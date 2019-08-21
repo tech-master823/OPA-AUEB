@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Akavache;
-using AuebUnofficial.Core.Converters;
+using EclassApi.Converters;
 using AuebUnofficial.Helpers;
 using EclassApi.Models;
 using Newtonsoft.Json;
