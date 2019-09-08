@@ -20,7 +20,7 @@ namespace AuebUnofficial.Api.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "RSSAnouncements",
+                name: "RSSAnouncement",
                 columns: table => new
                 {
                     Kind = table.Column<string>(nullable: false),
@@ -39,7 +39,7 @@ namespace AuebUnofficial.Api.Migrations
                 name: "Courses");
 
             migrationBuilder.DropTable(
-                name: "RSSAnouncements");
+                name: "RSSAnouncement");
         }
     }
 }

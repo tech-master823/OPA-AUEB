@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using NodaTime;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -25,16 +26,16 @@ namespace AuebUnofficial.Api.Services
             OperationsStatusCodes status;
             if (Exists(kind))
             {
-                var existingRssAnnouncemet = _context.RSSAnouncements.Where(a=> a.Kind.Equals(kind)).SingleOrDefault();
-                existingRssAnnouncemet.Link = link;
-                _context.RSSAnouncements.Update(existingRssAnnouncemet);
+                var existingRssAnnouncement = _context.RSSAnouncements.SingleOrDefault(a => a.Kind.Equals(kind));
+                existingRssAnnouncement.Link = link;
+                _context.RSSAnouncements.Update(existingRssAnnouncement);
                 status = await _context.SaveChangesAsync() > 0
                     ? OperationsStatusCodes.Updated
                     : OperationsStatusCodes.Failed;
             }
             else
             {
-                var rssAnnouncements = new RSSAnouncements
+                var rssAnnouncements = new RSSAnouncement
                 {
                     Kind = kind,
                     Link = link,
@@ -53,7 +54,7 @@ namespace AuebUnofficial.Api.Services
             return _context.RSSAnouncements.Any(a => a.Kind.Equals(kind));
         }
 
-        public async Task<RSSAnouncements> GetAnnouncementsAsync(string kind)
+        public async Task<RSSAnouncement> GetAnnouncementsAsync(string kind)
         {
             return await _context.RSSAnouncements.FirstOrDefaultAsync(a => a.Kind.Equals(kind));
         }

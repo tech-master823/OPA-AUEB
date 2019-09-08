@@ -9,7 +9,7 @@ namespace AuebUnofficial.Api.Interfaces
 {
     public interface ISchoolAnnouncementsService
     {
-        Task<RSSAnouncements> GetAnnouncementsAsync(string kind);
+        Task<RSSAnouncement> GetAnnouncementsAsync(string kind);
         Task<OperationsStatusCodes> CreateOrUpdateSchoolAnnouncementAsync(string kind, string link);
     }
 }

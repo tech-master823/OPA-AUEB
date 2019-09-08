@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AuebUnofficial.Core.Model;
 
 namespace AuebUnofficial.Api.Data
 {
@@ -13,7 +14,7 @@ namespace AuebUnofficial.Api.Data
         {
         }
 
-        public DbSet<Model.Course> Courses { get; set; }
-        public DbSet<Model.RSSAnouncements> RSSAnouncements { get; set; }
+        public DbSet<Faculty> Faculties { get; set; }
+        public DbSet<Model.RSSAnouncement> RSSAnouncements { get; set; }
     }
 }

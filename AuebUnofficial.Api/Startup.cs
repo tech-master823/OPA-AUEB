@@ -36,7 +36,6 @@ namespace AuebUnofficial.Api
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             // Add Nodatime IClock
             services.AddSingleton<IClock>(SystemClock.Instance);
-            services.AddScoped<ICourseService, CourseService>();
             services.AddScoped<ISchoolAnnouncementsService, SchoolAnnouncementsService>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSwaggerGen(options =>

@@ -34,7 +34,7 @@ namespace AuebUnofficial.Api.Migrations
                     b.ToTable("Courses");
                 });
 
-            modelBuilder.Entity("AuebUnofficial.Api.Model.RSSAnouncements", b =>
+            modelBuilder.Entity("AuebUnofficial.Api.Model.RSSAnouncement", b =>
                 {
                     b.Property<string>("Kind");
 
@@ -46,7 +46,7 @@ namespace AuebUnofficial.Api.Migrations
 
                     b.HasKey("Kind");
 
-                    b.ToTable("RSSAnouncements");
+                    b.ToTable("RSSAnouncement");
                 });
 #pragma warning restore 612, 618
         }

@@ -25,7 +25,7 @@ namespace AuebUnofficial.Api.Controllers
         }
 
         [HttpGet("{kind}", Name = "GetAnnouncements")]
-        public async Task<ActionResult<RSSAnouncements>> GetByKind(string kind)
+        public async Task<ActionResult<RSSAnouncement>> GetByKind(string kind)
         {
             var schoolAnnouncements = await _schoolAnnouncementsService.GetAnnouncementsAsync(kind);
             if (schoolAnnouncements == null)
@@ -35,7 +35,7 @@ namespace AuebUnofficial.Api.Controllers
         }
 
         [HttpPost("{apikey}", Name = "CreateAnnouncent")]
-        public async Task<IActionResult> CreateOrUpdateAnnouncement(string apikey, RSSAnouncements schoolAnnouncements)
+        public async Task<IActionResult> CreateOrUpdateAnnouncement(string apikey, RSSAnouncement schoolAnnouncements)
         {
             if (string.IsNullOrEmpty(Configuration["adminApiKey"])) return BadRequest(System.Net.HttpStatusCode.InternalServerError);
 

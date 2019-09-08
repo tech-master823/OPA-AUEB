@@ -18,8 +18,8 @@ namespace AuebUnofficial.Viewers
         }
         public ObservableCollection<object> Items
         {
-            get { return (ObservableCollection<object>)GetValue(ItemsProperty); }
-            set { SetValue(ItemsProperty, value); }
+            get => (ObservableCollection<object>)GetValue(ItemsProperty);
+            set => SetValue(ItemsProperty, value);
         }
 
         public static readonly DependencyProperty ItemsProperty = DependencyProperty
@@ -35,7 +35,7 @@ namespace AuebUnofficial.Viewers
         {
             string appId = (App.Current as App).AppSettings.FacebookAppId;
             string appSecret = (App.Current as App).AppSettings.FacebookAppSecret;
-            string FacebookQueryParam = "625038207649339";
+            string FacebookQueryParam = "auebgreece";
             int MaxRecordsParam = 20;
             Items.Clear();
 
